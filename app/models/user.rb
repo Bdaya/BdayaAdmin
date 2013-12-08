@@ -28,7 +28,7 @@ class User
   has_many :requests_responsible_for, class_name: 'Request', inverse_of: :responsible_user
 
   has_many :created_tasks, class_name: 'Task', inverse_of: :creator
-  has_many :tasks_responsible_for, class_name: 'Tasm', inverse_of: :responsible_user
+  has_many :tasks_responsible_for, class_name: 'Task', inverse_of: :responsible_user
 
   belongs_to :head_of_committee, class_name: 'Committee', inverse_of: :head
   belongs_to :vice_of_committee, class_name: 'Committee', inverse_of: :vices
