@@ -12,15 +12,14 @@ class User
   field :major, :type => String
   field :faculty, :type => String
   field :semester, :type => Integer
-  validates_length_of :phone, minimum: 1, maximum: 10, :message=> "Semester must be from 1 to 10 maximum!"
-  validates_numericality_of :phone, :message=> "Must enter semester in numerical form only!"
+  validates_numericality_of :semester, :message=> "Must enter semester in numerical form only!"
 
   field :tshirt_size, :type => String
   field :address, :type => String
   # field :progress, :type => Integer
 
   has_and_belongs_to_many :courses
-  has_many :notifactions
+  has_many :notifications
   has_many :newsFeedElements
   has_and_belongs_to_many :meetings
   has_and_belongs_to_many :tasks

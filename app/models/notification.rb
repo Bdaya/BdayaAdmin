@@ -6,7 +6,7 @@ class Notification
   field :seen, :type => Boolean
 
   belongs_to :creator, class_name: 'User', inverse_of: :created_notifications
-  belongs_to :users
+  belongs_to :user
 
   
 end
