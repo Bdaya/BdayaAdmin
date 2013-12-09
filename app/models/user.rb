@@ -19,6 +19,7 @@ class User
   # field :progress, :type => Integer
 
   has_and_belongs_to_many :courses
+  has_many :teaching_sessions, class_name: 'Session', inverse_of: :tutor
   has_many :notifications
   has_many :newsFeedElements
   has_and_belongs_to_many :meetings

@@ -3,10 +3,10 @@ class Request
   include Mongoid::Timestamps
 
   field :request_type, :type => String
-	field :roomnumbbers, :type => Array
+	field :roomnumber, :type => String
 	field :materials, :type => Array
 	field :notes, :type => String
-	field :permisiions, :type => Hash
+	field :permissions, :type => Hash
 	field :status, :type => String
 
   	belongs_to :event
