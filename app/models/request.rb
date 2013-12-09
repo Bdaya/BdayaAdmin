@@ -2,12 +2,12 @@ class Request
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :type, :type => String
-	field :roomnumbbers, type => Array
-	field :materials, type => Array
-	field :notes, type => String
-	field :permisiions, type => Hash
-	field :status, type => String
+  field :request_type, :type => String
+	field :roomnumbbers, :type => Array
+	field :materials, :type => Array
+	field :notes, :type => String
+	field :permisiions, :type => Hash
+	field :status, :type => String
 
   	belongs_to :event
   	belongs_to :meeting
