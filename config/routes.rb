@@ -1,4 +1,8 @@
 BdayaAdmin::Application.routes.draw do
+  namespace :logistics do
+    resources :requests 
+  end
+  post '/logistics/requests/update'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Logistics</title>
+	</head>
+	<body>
+		<table>
+	  		<thead>
+      			<tr>
+					<td>Creator</td>
+					<td>Type</td>
+					<td>Materials</td>
+					<td>Notes</td>
+					<td>Room No. </td>
+					<td>Status</td>
+				</tr>
+	  		</thead>
+	  		<tbody>
+	  			<% @request.each do |req| %>
+ 					<%= render partial: "form", locals: { req: req} %>
+				<% end %>
+	  		</tbody>
+		</table>
+	</body>
+</html>
