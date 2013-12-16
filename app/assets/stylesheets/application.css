@@ -30,3 +30,9 @@ body{
 .center{
   text-align: center;
 }
+#logo{
+  margin-left: 5%;
+}
+#logo img{
+  height: 300px;
+}
