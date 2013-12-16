@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     :token_url => "/o/oauth2/token",
     :authorize_url => "/o/oauth2/auth")
     @auth_url = client.auth_code.authorize_url(
-    :redirect_uri => "http://localhost:3000",
+    :redirect_uri => GOOGLE_REDIRECT_URI,
     :scope =>
         "https://docs.google.com/feeds/ " +
         "https://docs.googleusercontent.com/ " +
