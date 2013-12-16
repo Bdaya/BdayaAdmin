@@ -1,4 +1,7 @@
 BdayaAdmin::Application.routes.draw do
+  #matching for oauth only
+  match '/oauth2callback' => 'authentications#create'
+
   namespace :logistics do
     resources :requests 
   end
