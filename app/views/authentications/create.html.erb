@@ -1,4 +1,4 @@
-<% @files.each do |f| %>
-  <%= f.name %>
+<% @files.each_with_index do |f. i| %>
+  <%= i %> - <%= f.title %>
   <br>
 <% end %>
