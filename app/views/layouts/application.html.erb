@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BdayaAdmin</title>
+  <title>Bdaya Admin</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="logo">
+    <%= image_tag 'logo.jpg', alt: 'logo' %>
+  </div>
   <div id="main-content">
     <%= yield %>
   </div>
