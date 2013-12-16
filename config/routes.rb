@@ -2,7 +2,11 @@ BdayaAdmin::Application.routes.draw do
   namespace :logistics do
     resources :requests 
   end
-  post '/logistics/requests/update'
+  post '/logistics/requests/update' #this is already presented by the above block?!
+
+  root to: 'users#home'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

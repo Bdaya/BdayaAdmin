@@ -1,8 +1,13 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
 
-gem 'rails', '3.2.0'
+gem 'rails', '3.2.11'
+
 gem 'mongoid'
+gem 'omniauth'
+gem 'bson_ext'
+gem 'google_drive'
 
 
 # Bundle edge Rails instead:
