@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+ before_filter :authenticate_user!
   def home
     client = GOOGLE_CLIENT
     @auth_url = client.auth_code.authorize_url(
