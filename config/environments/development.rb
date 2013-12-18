@@ -44,5 +44,4 @@ BdayaAdmin::Application.configure do
     password: 'bd12345678'
   }
   config.action_mailer.default :charset => "utf-8"
-
 end
