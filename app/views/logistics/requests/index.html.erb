@@ -9,14 +9,21 @@
 					<td>Creator</td>
 					<td>Type</td>
 					<td>Materials</td>
+					<td>permissions</td>
 					<td>Notes</td>
 					<td>Room No. </td>
 					<td>Status</td>
 				</tr>
 	  		</thead>
 	  		<tbody>
-	  			<% @request.each do |req| %>
- 					<%= render partial: "form", locals: { req: req} %>
+	  			<% @request_meetings.each do |req| %>
+ 					<%= render partial: "form", locals: { :@req => req} %>
+				<% end %>
+				<% @request_permissions.each do |req| %>
+ 					<%= render partial: "form", locals: { :@req => req} %>
+				<% end %>
+				<% @request_materials.each do |req| %>
+ 					<%= render partial: "form", locals: { :@req => req} %>
 				<% end %>
 	  		</tbody>
 		</table>

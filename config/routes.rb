@@ -1,8 +1,11 @@
 BdayaAdmin::Application.routes.draw do
+  resources :meetings
+
   namespace :logistics do
     resources :requests 
   end
   post '/logistics/requests/update'
+  match 'logistics/requests/:id', :to => 'requests#update'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

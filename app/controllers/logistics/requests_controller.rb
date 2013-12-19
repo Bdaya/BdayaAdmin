@@ -1,13 +1,17 @@
 class Logistics::RequestsController < ApplicationController
 
 	def index
-		@request = Request.all.asc(:created_at).to_a
+		@users = User.all.to_a
+		@request_meetings = Request.where(request_type: 'room').asc(:created_at).to_a
+		@request_permissions = Request.where(request_type: 'permissions').asc(:created_at).to_a
+		@request_materials = Request.where(request_type: 'materials').asc(:created_at).to_a
+
 	end
 
 	def update
-		@request = Request.find_by(params[:req])
+		@request = Request.find(params[:id])
 		if @request.update_attributes(params[:request])
-			@request.status = "done"
+			@request.status = "Done"
 			@request.save
 			redirect_to(:action=>'index')
      	else

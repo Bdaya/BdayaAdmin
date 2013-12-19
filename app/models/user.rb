@@ -22,7 +22,7 @@ class User
   has_many :teaching_sessions, class_name: 'Session', inverse_of: :tutor
   has_many :notifications
   has_many :newsFeedElements
-  has_and_belongs_to_many :meetings
+  has_and_belongs_to_many :meetings_invited_to, class_name: 'Meeting', inverse_of: :invitees
   has_and_belongs_to_many :tasks
   has_many :created_requests, class_name: 'Request', inverse_of: :creator
   has_many :requests_responsible_for, class_name: 'Request', inverse_of: :responsible_user

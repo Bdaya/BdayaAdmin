@@ -1,29 +1,34 @@
-<%= form_for req ,:url => { :action => "update" } do |f| %>
+<%= form_for @req , :url => {:action => "update", :id => @req.id }  do |f| %>
 	<tr>
-		<th><%= if req.creator
-					req.creator.name
+		<th><%= if @req.creator
+					@req.creator.name
 				end %>
 		</th>
-		<th><%= req.request_type %></th>
+		<th><%= @req.request_type %></th>
 		<th>
-			<% if req.materials %>
-			<ul><% (req.materials).each do |material|%>
+			<% if @req.materials %>
+			<ul><% (@req.materials).each do |material|%>
 		        	<li> <%= material %> </li>
 		        <%- end %>
 	       	</ul>
-			<% else %>
-			<%= f.label :No_materials %>
+			<% end%>
+		<th>
+			<% if @req.permissions %>
+			<ul><% (@req.permissions).each do |permission|%>
+		        	<li> <%= permission %> </li>
+		        <%- end %>
+	       	</ul>
 			<% end%>
 		</th>
-		<th><%= req.notes %></th>
-		<th><%- if req.status %>
-				<%=	req.roomnumber %> 
+		<th><%= @req.notes %></th>
+		<th><%- if@req.status || !(@req.request_type.eql?'room')%>
+				<%=	@req.roomnumber %> 
 				<%- else %>
 				<%= f.text_field :roomnumber , placeholder: "Enter Room No." %> 
 				<%- end%>
 		</th>
-		<th><%= if req.status 
-					"Submited"
+		<th><%= if @req.status 
+					"Submitted"
 				else
 					f.submit "Submit Request"  
 		end%></th>

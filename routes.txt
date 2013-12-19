@@ -1,0 +1,16 @@
+                 meetings GET    /meetings(.:format)                    meetings#index
+                          POST   /meetings(.:format)                    meetings#create
+              new_meeting GET    /meetings/new(.:format)                meetings#new
+             edit_meeting GET    /meetings/:id/edit(.:format)           meetings#edit
+                  meeting GET    /meetings/:id(.:format)                meetings#show
+                          PUT    /meetings/:id(.:format)                meetings#update
+                          DELETE /meetings/:id(.:format)                meetings#destroy
+       logistics_requests GET    /logistics/requests(.:format)          logistics/requests#index
+                          POST   /logistics/requests(.:format)          logistics/requests#create
+    new_logistics_request GET    /logistics/requests/new(.:format)      logistics/requests#new
+   edit_logistics_request GET    /logistics/requests/:id/edit(.:format) logistics/requests#edit
+        logistics_request GET    /logistics/requests/:id(.:format)      logistics/requests#show
+                          PUT    /logistics/requests/:id(.:format)      logistics/requests#update
+                          DELETE /logistics/requests/:id(.:format)      logistics/requests#destroy
+logistics_requests_update POST   /logistics/requests/update(.:format)   logistics/requests#update
+                                 /logistics/requests/:id(.:format)      requests#update

@@ -8,6 +8,7 @@ class Request
 	field :notes, :type => String
 	field :permissions, :type => Hash
 	field :status, :type => String
+  field :time, :type => DateTime
 
   	belongs_to :event
   	belongs_to :meeting
