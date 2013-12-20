@@ -34,5 +34,12 @@ class User
   belongs_to :vice_of_committee, class_name: 'Committee', inverse_of: :vices
   belongs_to :member_of_committee, class_name: 'Committee', inverse_of: :members
 
+  def get_pending_tasks
+    tasks = self.tasks.where(:status=>"pending").to_a
+  end
+
+  def get_done_tasks
+    tasks = self.tasks.where(:status=>"done").to_a
+  end
 
 end
