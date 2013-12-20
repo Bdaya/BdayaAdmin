@@ -59,7 +59,7 @@ class User
   has_many :notifications
   has_many :newsFeedElements
   has_and_belongs_to_many :meetings
-  has_and_belongs_to_many :tasks
+  #has_and_belongs_to_many :tasks
   has_many :created_requests, class_name: 'Request', inverse_of: :creator
   has_many :requests_responsible_for, class_name: 'Request', inverse_of: :responsible_user
 
@@ -71,11 +71,31 @@ class User
   belongs_to :member_of_committee, class_name: 'Committee', inverse_of: :members
 
   def get_pending_tasks
-    tasks = self.tasks.where(:status=>"pending").to_a
+    tasks = self.tasks_responsible_for.where(:status=>"pending").to_a
   end
 
   def get_done_tasks
-    tasks = self.tasks.where(:status=>"done").to_a
+    tasks = self.tasks_responsible_for.where(:status=>"done").to_a
+  end
+
+  def get_sent_tasks
+    tasks = self.created_tasks
+  end
+
+  def assign_task(member,deadline,tite,details)
+    t = Task.new
+    t.creator = self
+    t.responsible_user = member
+    t.title = title
+    t.details = details
+    t.deadline = deadline
+    t.status = "pending"
+    t.save
+  end
+
+  def mark_task_done(t)
+    t.status = "done"
+    t.save
   end
 
 end
