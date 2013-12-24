@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -36,10 +37,8 @@ class User
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
   # field :locked_at,       :type => Time
-  include Mongoid::Timestamps
-  attr_accessible :semester, :phone
-
-  field :name, :type => String
+  
+   field :name, :type => String
   field :phone, :type => String
   validates_length_of :phone, minimum: 11, maximum: 11, :message=> "Mobile number must be of length 11.."
   validates_numericality_of :phone, :message=> "Must enter mobile number in numerical form only!"
@@ -53,6 +52,8 @@ class User
   field :tshirt_size, :type => String
   field :address, :type => String
   # field :progress, :type => Integer
+
+  attr_accessible :semester, :phone, :name, :major, :faculty, :tshirt_size, :address
 
   has_and_belongs_to_many :courses
   has_many :teaching_sessions, class_name: 'Session', inverse_of: :tutor
