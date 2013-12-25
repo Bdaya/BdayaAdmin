@@ -1,15 +1,13 @@
 BdayaAdmin::Application.routes.draw do
+  
   resources :meetings
+  resources :requests 
+  resources :users
+  
 
   devise_for :users
   #matching for oauth only
   match '/oauth2callback' => 'authentications#create'
-
-  namespace :logistics do
-    resources :requests 
-  end
-  post '/logistics/requests/update'
-  match 'logistics/requests/:id', :to => 'requests#update'
 
   root to: 'users#home'
   # The priority is based upon order of creation:

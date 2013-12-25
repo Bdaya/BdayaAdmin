@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<% if @meeting.time < Time.now %>
+	<h2>This Meeting has been expired</h2>
+<%- end %>
+
 <p>
   <b>Time:</b>
-  <%= @meeting.time%>
+  <%= @meeting.time.to_formatted_s(:long_ordinal)%>
 </p>
 
 <p>
@@ -15,7 +19,7 @@
   <%= @meeting.meeting_minuts %>
 </p>
 
-<p>
+<p>	
 	<b>Meeting Materials: </b>
 	<% if @request.materials %>
 		<ul><% (@request.materials).each do |material|%>
@@ -27,6 +31,18 @@
 	<% end%>
 </p>
 
+<p>	
+	<b>Meeting Permissions: </b>
+	<% if @request.permissions %>
+		<ul><% (@request.permissions).each do |permission|%>
+	        	<li> <%= permission %> </li>
+	        <% end %>
+	   	</ul>
+		<%- else %>
+		No Permissions
+	<% end%>
+</p>  
+
 <p>
 	<b>Meeting Room: </b>
 	<%- if @request.roomnumber %>
@@ -36,10 +52,20 @@
 	<% end%>
 </p>
 
+<% if current_user %>
+	<ul>
+		<% @meeting.invitees.each do |u| %>
+			<li> <%= u.name %> </li>
+			<li> <%= u.name %> </li>
+		<% end %>
+	</ul>
+<% end%>
+
 <p>
   <b>Request Status:</b>
   <%= @request.status || "Pending" %>
 </p>
-<% if ! @request.status %>
+
+<% if @meeting.time > Time.now  %>
 	<%= link_to 'Update', edit_meeting_path(@meeting) %>	 
 <% end%>

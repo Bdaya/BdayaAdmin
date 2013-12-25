@@ -2,8 +2,6 @@ class Meeting
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  	attr_accessible :time
-
 	field :time, :type => DateTime
 	field :location, :type => String
 	field :meeting_minuts, :type => String

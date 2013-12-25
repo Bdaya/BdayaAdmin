@@ -1,6 +1,7 @@
 class MeetingsController < ApplicationController
+  
   def index
-    @meeting = Meeting.all
+    @meeting = Meeting.desc(:time).all.to_a
   end
 
   def show
@@ -18,22 +19,27 @@ class MeetingsController < ApplicationController
   end
 
   def create
-    @meeting = Meeting.new(params[:meeting])
+    @meeting = Meeting.new(params[:meeting])    
     @request = Request.new(params[:meeting][:@request])
+    @meeting.creator = current_user
+    @request.creator = @meeting.creator
     @request.meeting = @meeting
+    @request.time = @meeting.time
     @request.request_type = "room"
 
-    if @meeting.save &&  @request.save
-      redirect_to action: 'index', notice: 'Meeting was successfully created.'
+    if (@meeting.save && @request.save)
+      redirect_to action: 'index'
     else
-      render action: "new"
+      @meeting.destroy
+      @request.destroy
+      render action: "index" 
     end
   end
 
   def update
     @meeting = Meeting.find(params[:id])
-    @request =  update_request
-    if @meeting.update_attributes(params[:meeting]) and @request.save
+    @request = Request.find(params[:id])
+    if @meeting.update_attributes(params[:meeting]) && @request.update_attributes(params[:meeting][:@request])
       redirect_to action: 'index', notice: 'Metesing was successfully updated.'
     else
       render action: "edit"
@@ -41,18 +47,16 @@ class MeetingsController < ApplicationController
   end
 
   def destroy
+    @meeting = Meeting.find(params[:id])
+    @request = Request.find_by(meeting_id: @meeting.id)
+    if @meeting.destroy && @request.destroy
       redirect_to action: 'index'
+    end
   end
 end
 
 
 private #---------------------------------------------------------------------------------
 
-def update_request 
-  @request = Request.find(params[:id])
-  @request.destroy
-  @request.new(params[:request])
-  @request
-end
 
 
