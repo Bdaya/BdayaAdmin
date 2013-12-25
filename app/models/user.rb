@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -36,10 +37,8 @@ class User
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
   # field :locked_at,       :type => Time
-  include Mongoid::Timestamps
-  attr_accessible :semester, :phone
-
-  field :name, :type => String
+  
+   field :name, :type => String
   field :phone, :type => String
   validates_length_of :phone, minimum: 11, maximum: 11, :message=> "Mobile number must be of length 11.."
   validates_numericality_of :phone, :message=> "Must enter mobile number in numerical form only!"
@@ -54,12 +53,16 @@ class User
   field :address, :type => String
   # field :progress, :type => Integer
 
+  attr_accessible :semester, :phone, :name, :major, :faculty, :tshirt_size, :address
+
   has_and_belongs_to_many :courses
   has_many :teaching_sessions, class_name: 'Session', inverse_of: :tutor
   has_many :notifications
   has_many :newsFeedElements
+
   has_and_belongs_to_many :meetings_invited_to, class_name: 'Meeting', inverse_of: :invitees
   has_and_belongs_to_many :tasks
+
   has_many :created_requests, class_name: 'Request', inverse_of: :creator
   has_many :requests_responsible_for, class_name: 'Request', inverse_of: :responsible_user
 
@@ -70,5 +73,32 @@ class User
   belongs_to :vice_of_committee, class_name: 'Committee', inverse_of: :vices
   belongs_to :member_of_committee, class_name: 'Committee', inverse_of: :members
 
+  def get_pending_tasks
+    tasks = self.tasks_responsible_for.where(:status=>"pending").to_a
+  end
+
+  def get_done_tasks
+    tasks = self.tasks_responsible_for.where(:status=>"done").to_a
+  end
+
+  def get_sent_tasks
+    tasks = self.created_tasks
+  end
+
+  def assign_task(member,deadline,tite,details)
+    t = Task.new
+    t.creator = self
+    t.responsible_user = member
+    t.title = title
+    t.details = details
+    t.deadline = deadline
+    t.status = "pending"
+    t.save
+  end
+
+  def mark_task_done(t)
+    t.status = "done"
+    t.save
+  end
 
 end
