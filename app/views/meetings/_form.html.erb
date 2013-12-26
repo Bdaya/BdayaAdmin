@@ -10,9 +10,17 @@
     </div>
   <% end %>
 
+  <div>
+    <%= f.label :Meeting_Type %>
+    <%= f.select :meeting_type, options_for_select(["Select Meeting Type",
+                                                ["Upper Board With Upper Board","upper_board_with_upper_board"],
+                                                ["Upper Board With Higher Board","upper_board_with_higher_board"],
+                                                ["Higher Board With Members","higher_board_with_members"]]) %>
+  </div>
+
   <div class="field">
     <%= f.label :time %>
-    <%= f.text_field :time, :class => 'datepicker' , placeholder: "ex: xxxx-xx-xx xx:xx"%>
+    <%= f.text_field :time, :'data-behaviour' => 'datepicker'%>
   </div>
 
   <div class="field">

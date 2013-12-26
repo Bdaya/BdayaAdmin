@@ -9,6 +9,8 @@ gem 'omniauth'
 gem 'bson_ext'
 gem 'google_drive'
 gem 'devise'
+gem "bootstrap-datepicker-rails", "~> 1.1.1.11"
+gem "bootstrap-datetimepicker-rails", "~> 0.0.11"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

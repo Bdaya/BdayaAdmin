@@ -10,12 +10,29 @@
     </div>
   <% end %>
 
-  <br>
-  <br>
-
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Password %><br>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Password_Confirmation %><br>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Address %><br>
+    <%= f.text_field :address %>
   </div>
 
   <div class="field">
@@ -23,18 +40,6 @@
     <%= f.text_field :phone %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :Password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :Address %><br>
-    <%= f.text_field :address %>
-  </div>
   <div class="field">
     <%= f.label :TShirt_size %><br>
     <%= f.text_field :tshirt_size %>

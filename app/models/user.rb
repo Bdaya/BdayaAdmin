@@ -38,7 +38,7 @@ class User
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
   # field :locked_at,       :type => Time
   
-   field :name, :type => String
+  field :name, :type => String
   field :phone, :type => String
   validates_length_of :phone, minimum: 11, maximum: 11, :message=> "Mobile number must be of length 11.."
   validates_numericality_of :phone, :message=> "Must enter mobile number in numerical form only!"

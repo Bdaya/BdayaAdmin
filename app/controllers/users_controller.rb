@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
- # before_filter :authenticate_user!
+   before_filter :authenticate_user!
   def home
     client = GOOGLE_CLIENT
     @auth_url = client.auth_code.authorize_url(
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def index 
-    @users = User.all.to_a 
+    @users = User.all.asc(:name).to_a
   end
 
 

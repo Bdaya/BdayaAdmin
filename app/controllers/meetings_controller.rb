@@ -50,7 +50,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
     @request = Request.find_by(meeting_id: @meeting.id)
     if @meeting.destroy && @request.destroy
-      redirect_to action: 'index'
+      redirect_to action:'index'
     end
   end
 end

@@ -31,6 +31,9 @@ GEM
     arel (3.0.3)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
+    bootstrap-datepicker-rails (1.1.1.11)
+      railties (>= 3.0)
+    bootstrap-datetimepicker-rails (0.0.11)
     bson (1.9.2)
     bson_ext (1.9.2)
       bson (~> 1.9.2)
@@ -152,6 +155,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-datepicker-rails (~> 1.1.1.11)
+  bootstrap-datetimepicker-rails (~> 0.0.11)
   bson_ext
   cancan
   coffee-rails (~> 3.2.1)

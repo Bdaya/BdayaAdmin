@@ -5,6 +5,7 @@ class Meeting
 	field :time, :type => DateTime
 	field :location, :type => String
 	field :meeting_minuts, :type => String
+	field :meeting_type, :type => String
 
   	has_one :creator, class_name: 'User', inverse_of: :created_meetings
   	has_and_belongs_to_many :invitees, class_name: 'User', inverse_of: :meetings_invited_to
