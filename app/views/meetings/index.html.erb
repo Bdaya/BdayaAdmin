@@ -12,7 +12,9 @@
 
 <% @meeting.each do |meeting| %>
   <tr>
-    <td><%= meeting.time.to_formatted_s(:long_ordinal) %></td>
+    <td><%= if meeting.time
+      meeting.time.to_formatted_s(:long_ordinal)
+    end %></td>
     <td><%= meeting.location %></td>
     <td><%= meeting.meeting_minuts %></td>
     <td><%= link_to 'Show Meeting',meeting %></td>

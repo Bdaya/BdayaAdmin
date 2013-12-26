@@ -1,6 +1,8 @@
 BdayaAdmin::Application.routes.draw do
   
-  resources :meetings
+  resources :meetings do
+    get 'invite_users'
+  end
   resources :requests 
   resources :users
   

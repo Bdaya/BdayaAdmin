@@ -55,6 +55,11 @@ class MeetingsController < ApplicationController
   end
 end
 
+def invite_users
+  @users = Meeting.find(params[:id])
+  redirect_to action:'index'
+end
+
 
 private #---------------------------------------------------------------------------------
 
