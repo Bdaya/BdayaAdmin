@@ -1,11 +1,11 @@
 BdayaAdmin::Application.routes.draw do
   
   resources :meetings do
-    get 'invite_users'
+    get :invite_users
   end
   resources :requests
   resources :tasks do
-    post 'done'
+    post :done
   end 
   devise_for :users
   resources :users

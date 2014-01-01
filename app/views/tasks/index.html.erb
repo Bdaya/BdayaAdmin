@@ -14,8 +14,11 @@
  					<td><%=t.title%></td>
  					<td><%=t.details%></td>
  					<td><%=t.deadline%></td>
- 					<!-- <td><%= link_to("Mark as done", {:controller => 'tasks', :action => 'done', :task_id => t.id}) %></td> -->
-				<% end %>
+					<td><%= link_to("Mark as done", task_done_path(t.id)) %></td>
+
+<!-- 					<td><%= link_to("Mark as done", {:controller => 'tasks', :action => 'done', :task_id => t.id}) %></td>
+ -->			
+ 				<% end %>
 	  		</tbody>
 </table>
 
