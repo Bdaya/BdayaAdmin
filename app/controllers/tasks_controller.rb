@@ -12,6 +12,7 @@ class TasksController < ApplicationController
 	def done
 		@task = Task.find(params[:id])
 		current_user.mark_task_done(@task)
+		redirect_to :index
 	end
 
 	def reopen
@@ -20,15 +21,15 @@ class TasksController < ApplicationController
 	end
 
 	def request_extension
-		@task = Task.find(params[:id])
+		@task = Task.find(params[:task_id])
 	end
 
-	def get_my_tasks
+	def index
 		@done_tasks = current_user.get_done_tasks
 		@pending_tasks = current_user.get_pending_tasks
 	end
 
-	def get_sent_tasks
+	def sent_tasks
 		@sent_tasks = current_user.get_sent_tasks
 	end
 end
