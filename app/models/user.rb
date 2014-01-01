@@ -88,7 +88,7 @@ class User
     tasks = self.created_tasks
   end
 
-  def assign_task(member,deadline,tite,details)
+  def assign_task(member,deadline,title,details)
     t = Task.new
     t.creator = self
     t.responsible_user = member
@@ -101,6 +101,11 @@ class User
 
   def mark_task_done(t)
     t.status = "done"
+    t.save
+  end
+
+  def reopen_task(t)
+    t.status = "pending"
     t.save
   end
 
