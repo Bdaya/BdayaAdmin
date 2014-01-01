@@ -4,10 +4,10 @@ BdayaAdmin::Application.routes.draw do
     get 'invite_users'
   end
   resources :requests 
+  devise_for :users
   resources :users
   
 
-  devise_for :users
   #matching for oauth only
   match '/oauth2callback' => 'authentications#create'
 
