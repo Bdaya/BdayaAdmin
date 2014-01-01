@@ -1,3 +1,4 @@
+<h2>Pending Tasks</h2>
 <table>
 	  		<thead>
       			<tr>
@@ -14,6 +15,26 @@
  					<td><%=t.details%></td>
  					<td><%=t.deadline%></td>
  					<!-- <td><%= link_to("Mark as done", {:controller => 'tasks', :action => 'done', :task_id => t.id}) %></td> -->
+				<% end %>
+	  		</tbody>
+</table>
+
+<h2>Done Tasks</h2>
+<table>
+	  		<thead>
+      			<tr>
+					<td>Task Creator</td>
+					<td>Title</td>
+					<td>Details</td>
+					<td>Deadline</td>
+				</tr>
+	  		</thead>
+	  		<tbody>
+	  			<% @done_tasks.each do |t| %>
+ 					<td><%=t.creator.name%></td>
+ 					<td><%=t.title%></td>
+ 					<td><%=t.details%></td>
+ 					<td><%=t.deadline%></td>
 				<% end %>
 	  		</tbody>
 </table>
