@@ -1,0 +1,32 @@
+<h1>Set Evaluation</h1>
+<%= flash[:notice] %>
+<%= form_for @evaluation, url: save_evaluation_users_path do |f| %>
+
+	<table summary="Criterion form fields">
+	<tr>
+		<th>Criterion 1</th>
+		<td><%=	f.text_field(:cri1)	%></td>
+	</tr>
+	<tr>
+		<th>Criterion 2</th>
+		<td><%=	f.text_field(:cri2)%></td>
+	</tr>
+	<tr>
+		<th>Criterion 3</th>
+		<td><%=	f.text_field(:cri3)%></td>
+	</tr>
+	<tr>
+		<th>Criterion 4</th>
+		<td><%=	f.text_field(:cri4)%></td>
+	</tr>
+	<tr>
+		<th>Criterion 5</th>
+		<td><%=	f.text_field(:cri5)%></td>
+	</tr>
+	<%= f.hidden_field :user_id, value: @evaluation.user_id %>
+	</table>
+	<div calss="form-buttons">
+		<%= submit_tag("Submit Evaluation") %>
+	</div>
+
+<% end %>

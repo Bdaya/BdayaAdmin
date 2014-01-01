@@ -31,3 +31,10 @@
   <%= @user.address %>
 </p>
 
+<p>
+<%= link_to "Evaluate",  set_evaluation_user_path(@user.id) %>
+</p>
+
+<p>
+<%= link_to "Show Evaluation", show_evaluation_user_path(@user.id) %>
+</p>
