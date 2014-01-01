@@ -57,7 +57,10 @@ class User
 
   has_and_belongs_to_many :courses
   has_many :teaching_sessions, class_name: 'Session', inverse_of: :tutor
-  has_many :notifications
+
+  has_many :created_notifications, class_name: 'Notification', inverse_of: :creator
+  has_many :notifications, class_name: 'Notification', inverse_of: :receiver
+  
   has_many :newsFeedElements
 
   has_and_belongs_to_many :meetings_invited_to, class_name: 'Meeting', inverse_of: :invitees
