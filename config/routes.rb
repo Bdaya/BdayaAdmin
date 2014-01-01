@@ -6,7 +6,10 @@ BdayaAdmin::Application.routes.draw do
   resources :requests
   resources :tasks do
     post :done
-  end 
+  end
+
+  resources :notifications
+
   devise_for :users
   resources :users do
     resources :evaluations
