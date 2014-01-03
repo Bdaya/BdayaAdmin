@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @crit = @user.get_crit    #this will be used in a javascript file to show the graph like in show_evaluation page
   end
 
   def edit
@@ -57,6 +58,51 @@ class UsersController < ApplicationController
   def filter_users_commitee
     @users = User.all.where()
     render 'new'
+  end
+
+  def set_evaluation
+    @user = User.find(params[:id])
+    @evaluations = @user.evaluations
+
+    if @evaluations.count == 0
+      @user = User.find(params[:id])
+      @evaluation = @user.evaluations.build
+    else
+      time = ((Time.now - @evaluations.last.created_at)/(60*60*24)).to_i
+      if(time > 3)
+        @user = User.find(params[:id])
+        @evaluation = @user.evaluations.build
+      else
+        render(:text => "Evaluation for this user is inaccessible right now! Only #{time} day(s) has passed.")
+      end
+    end
+  end
+
+  def save_evaluation
+    @evaluation = Evaluation.new(params[:evaluation])
+    # i think this is ineffiecient 5ales :D... i didn't find another way that works :D
+     @c1 = params[:evaluation][:cri1].to_i
+     @c2 = params[:evaluation][:cri2].to_i
+     @c3 = params[:evaluation][:cri3].to_i
+     @c4 = params[:evaluation][:cri4].to_i
+     @c5 = params[:evaluation][:cri5].to_i
+     @evaluation.cri1 = @c1
+     @evaluation.cri2 = @c2
+     @evaluation.cri3 = @c3
+     @evaluation.cri4 = @c4
+     @evaluation.cri5 = @c5
+
+    if @evaluation.save
+      redirect_to show_evaluation_user_path(@evaluation.user_id)
+    else
+      redirect_to :back, notice: "Sorry! Could Not save."
+    end
+  end
+
+  def show_evaluation
+    @user = User.find(params[:id])
+    @evaluations = @user.evaluations
+    @crit = @user.get_crit
   end
 
 end

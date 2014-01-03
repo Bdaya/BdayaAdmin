@@ -67,7 +67,10 @@ class User
 
   has_and_belongs_to_many :courses
   has_many :teaching_sessions, class_name: 'Session', inverse_of: :tutor
-  has_many :notifications
+
+  has_many :created_notifications, class_name: 'Notification', inverse_of: :creator
+  has_many :notifications, class_name: 'Notification', inverse_of: :receiver
+  
   has_many :newsFeedElements
 
   has_and_belongs_to_many :meetings_invited_to, class_name: 'Meeting', inverse_of: :invitees
@@ -78,6 +81,7 @@ class User
 
   has_many :created_tasks, class_name: 'Task', inverse_of: :creator
   has_many :tasks_responsible_for, class_name: 'Task', inverse_of: :responsible_user
+  has_many :evaluations
 
   belongs_to :head_of_committee, class_name: 'Committee', inverse_of: :head
   belongs_to :vice_of_committee, class_name: 'Committee', inverse_of: :vices
@@ -114,6 +118,33 @@ class User
   def reopen_task(t)
     t.status = "pending"
     t.save
+  end
+
+  def get_crit
+    data = []
+    categories = []
+
+    crit1_data = []
+    crit2_data = []
+    crit3_data = []
+    crit4_data = []
+    crit5_data = []
+
+    evaluations.each do |ev|
+      crit1_data << ev.cri1
+      crit2_data << ev.cri2
+      crit3_data << ev.cri3
+      crit4_data << ev.cri4
+      crit5_data << ev.cri5
+
+      categories << ev.created_at.to_date.to_formatted_s(:short)
+    end
+    data << crit1_data
+    data << crit2_data
+    data << crit3_data
+    data << crit4_data
+    data << crit5_data
+    [data,{categories: categories}]
   end
 
 end
