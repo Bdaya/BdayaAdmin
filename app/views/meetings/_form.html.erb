@@ -17,9 +17,9 @@
   <% end %>
 
   <div>
-    <%= f.label :Meeting_Type %>
-    <%= f.select :meeting_type, options_for_select(["Select Meeting Type",
-                                                ["Upper Board With Upper Board","upper_board_with_upper_board"],
+    <%= f.label :meeting_type %>
+    <%= f.select :meeting_type, options_for_select([["Upper Board With Upper Board",
+                                                  "upper_board_with_upper_board"],
                                                 ["Upper Board With Higher Board","upper_board_with_higher_board"],
                                                 ["Higher Board With Members","higher_board_with_members"]]) %>
   </div>
@@ -30,20 +30,14 @@
   </div>
 
   <div class="field">
-    <%= f.label :Location %>
+    <%= f.label "Enter Notes to Logistics" %>
     <%= f.text_field :location %>
   </div>
 
   <div class="field">
-    <%= f.label :Meeting_minuts %><br>
-    <%= f.text_area :meeting_minuts %>
+    <%= f.label "Invitees" %><br>
+    <%= f.collection_select :attendee_ids, User.order_by(:name.asc), :id, :name,{},{multiple: true} %>
   </div>
-
-  <%= f.fields_for :@request do |d| %>
-    <%= d.label :Request_Notes %><br>
-    <%= d.text_area :notes%><br>
-    <%= %>
-  <% end%>
  
   <div class="actions">
     <%= f.submit %>

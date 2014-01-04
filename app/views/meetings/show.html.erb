@@ -14,11 +14,6 @@
   <%= @meeting.location %>
 </p>
 
-<p>
-  <b>Meeting minuts:</b>
-  <%= @meeting.meeting_minuts %>
-</p>
-
 <p>	
 	<b>Meeting Materials: </b>
 	<% if @request.materials %>
@@ -42,7 +37,7 @@
 		No Permissions
 	<% end%>
 </p>  
-
+              
 <p>
 	<b>Meeting Room: </b>
 	<%- if @request.roomnumber %>
@@ -58,7 +53,6 @@
 			<ul>
 				<% @meeting.invitees.each do |u| %>
 					<li> <%= u.name %> </li>
-					<li> <%= u.name %> </li>
 				<% end %>
 			</ul>
 		<% end%>
@@ -70,7 +64,8 @@
   <%= @request.status || "Pending" %>
 </p>
 
-<% if @meeting.time > Time.now  %>
+<% if(DateTime.now.end_of_day < @meeting.time) %>
 	<%= link_to 'Update', edit_meeting_path(@meeting) %>	
-	<%= link_to 'Invite Users'%> 
+<% else %>
+  <%= link_to 'Enter After Meeting', edit_meeting_path(@meeting) %>  
 <% end%>
