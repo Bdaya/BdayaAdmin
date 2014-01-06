@@ -69,7 +69,7 @@ class UsersController < ApplicationController
       @evaluation = @user.evaluations.build
     else
       time = ((Time.now - @evaluations.last.created_at)/(60*60*24)).to_i
-      if(time > 3)
+      if(time > 14)
         @user = User.find(params[:id])
         @evaluation = @user.evaluations.build
       else
