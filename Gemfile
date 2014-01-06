@@ -9,6 +9,7 @@ gem 'omniauth'
 gem 'bson_ext'
 gem 'google_drive'
 gem 'devise'
+gem 'devise_invitable'
 gem "bootstrap-datepicker-rails", "~> 1.1.1.11"
 gem "bootstrap-datetimepicker-rails", "~> 0.0.11"
 

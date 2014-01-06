@@ -1,26 +1,36 @@
 <h1>Meetings</h1>
 <p id="notice"><%= notice %></p>
-<table>
-  <tr>
-    <th>Time</th>
-    <th>Location</th>
-    <th>Meeting minuts</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @meeting.each do |meeting| %>
-  <tr>
-    <td><%= if meeting.time
-      meeting.time.to_formatted_s(:long_ordinal)
-    end %></td>
-    <td><%= meeting.location %></td>
-    <td><%= meeting.meeting_minuts %></td>
-    <td><%= link_to 'Show Meeting',meeting %></td>
-    <td><%= link_to 'Cancel Meeting', meeting ,confirm: 'Are you sure?', method: :delete ,remote: true %></td>
-  </tr>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Room</th>
+      <th>Meeting Date</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+    <% @meetings.each do |meeting| %>
+    <tr>
+      <td>
+        <%= meeting.meeting_type %>
+      </td>
+      <td>
+        <%= meeting.location %>
+      </td>
+      <td>
+        <%= meeting.time.to_date if meeting.time %>
+      </td>
+      <td><%= link_to 'Show Meeting',meeting %></td>
+      <td><%= link_to 'Cancel Meeting', meeting ,confirm: 'Are you sure?', method: :delete%></td>
+    </tr>
+    <%end%>
+
+  </tbody>
 </table>
 
 <br />

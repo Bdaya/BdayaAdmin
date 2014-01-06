@@ -1,11 +1,11 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable, :registerable
+  devise :invitable, :database_authenticatable,
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :invitable
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
@@ -38,18 +38,37 @@ class User
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
   # field :locked_at,       :type => Time
   
+  ## Invitable
+  field :invitation_token, type: String
+  field :invitation_created_at, type: Time
+  field :invitation_sent_at, type: Time
+  field :invitation_accepted_at, type: Time
+  field :invitation_limit, type: Integer
+
+  index( {invitation_token: 1}, {:background => true} )
+  index( {invitation_by_id: 1}, {:background => true} )
+
   field :name, :type => String
+  validates_presence_of :name, :message=> "Must enter your name!"
+
   field :phone, :type => String
+  validates_presence_of :phone, :message=> "Must enter your Mobile number!"
   validates_length_of :phone, minimum: 11, maximum: 11, :message=> "Mobile number must be of length 11.."
   validates_numericality_of :phone, :message=> "Must enter mobile number in numerical form only!"
   validates_uniqueness_of :phone, :message=> "This mobile number is already associated with another user!"
 
   field :major, :type => String
+  validates_presence_of :major, :message=> "Must enter your major!"
+
   field :faculty, :type => String
+  validates_presence_of :faculty, :message=> "Must enter your faculty!"
+
   field :semester, :type => Integer
-  validates_numericality_of :semester, :message=> "Must enter semester in numerical form only!"
+  validates_numericality_of :semester, :presence => true, :message=> "Must enter semester in numerical form only!"
 
   field :tshirt_size, :type => String
+  validates_presence_of :tshirt_size, :message=> "Must enter your T-shirt Size!"
+
   field :address, :type => String
   # field :progress, :type => Integer
 
@@ -64,6 +83,7 @@ class User
   has_many :newsFeedElements
 
   has_and_belongs_to_many :meetings_invited_to, class_name: 'Meeting', inverse_of: :invitees
+  has_many :created_meetings, class_name: 'Meeting', inverse_of: :creator
   has_and_belongs_to_many :tasks
 
   has_many :created_requests, class_name: 'Request', inverse_of: :creator

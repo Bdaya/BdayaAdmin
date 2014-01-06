@@ -1,7 +1,7 @@
 class MeetingsController < ApplicationController
   
   def index
-    @meeting = Meeting.desc(:time).all.to_a
+    @meetings = Meeting.desc(:time).all.to_a
   end
 
   def show
@@ -19,13 +19,16 @@ class MeetingsController < ApplicationController
   end
 
   def create
+    params[:meeting][:attendee_ids].shift
     @meeting = Meeting.new(params[:meeting])    
-    @request = Request.new(params[:meeting][:@request])
     @meeting.creator = current_user
+    @request = Request.new
+    @request.notes = params[:notes]
     @request.creator = @meeting.creator
     @request.meeting = @meeting
     @request.time = @meeting.time
     @request.request_type = "room"
+    @request.roomnumber = @meeting.location
 
     if (@meeting.save && @request.save)
       redirect_to action: 'index'
@@ -38,9 +41,20 @@ class MeetingsController < ApplicationController
 
   def update
     @meeting = Meeting.find(params[:id])
-    @request = Request.find(params[:id])
-    if @meeting.update_attributes(params[:meeting]) && @request.update_attributes(params[:meeting][:@request])
-      redirect_to action: 'index', notice: 'Metesing was successfully updated.'
+    @request = @meeting.request
+    @request.notes = params[:notes]
+    @request.time = params[:meeting][:time]
+    @request.request_type = "room"
+
+    @meeting.attendees.each do |attender|
+      param_att = "attendance_"+attender.id
+      if(params[param_att])
+        @meeting.attendance << [attender.id,params[param_att]]
+      end
+    end
+
+    if (@meeting.update_attributes(params[:meeting]) && @request.save)
+      redirect_to action: 'index', notice: 'Meeting was successfully updated.'
     else
       render action: "edit"
     end
@@ -48,18 +62,12 @@ class MeetingsController < ApplicationController
 
   def destroy
     @meeting = Meeting.find(params[:id])
-    @request = Request.find_by(meeting_id: @meeting.id)
+    @request = @meeting.request
     if @meeting.destroy && @request.destroy
-      redirect_to action:'index'
+      redirect_to meetings_path
     end
   end
 end
-
-def invite_users
-  @users = Meeting.find(params[:id])
-  redirect_to action:'index'
-end
-
 
 private #---------------------------------------------------------------------------------
 
