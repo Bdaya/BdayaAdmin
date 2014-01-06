@@ -60,6 +60,7 @@ GEM
       nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
+    hash-deep-merge (0.1.1)
     hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -71,6 +72,10 @@ GEM
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
+    lazy_high_charts (1.5.1)
+      bundler (>= 1.0)
+      hash-deep-merge
+    libv8 (3.16.14.3)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -127,6 +132,7 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    ref (1.0.5)
     sass (3.2.12)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -137,6 +143,9 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    therubyracer (0.12.0)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.18.1)
     thread_safe (0.1.3)
       atomic
@@ -161,10 +170,13 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 3.2.1)
   devise
+  execjs
   google_drive
   jquery-rails
+  lazy_high_charts
   mongoid
   omniauth
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)
+  therubyracer
   uglifier (>= 1.0.3)
