@@ -4,8 +4,12 @@ BdayaAdmin::Application.routes.draw do
     get :invite_users
   end
   resources :requests
+  #to_be_modified
+  get  '/sent_tasks' , to: "tasks#sent_tasks"
   resources :tasks do
     post :done
+    post :reopen
+    post :accept
   end
 
   resources :notifications
@@ -19,6 +23,8 @@ BdayaAdmin::Application.routes.draw do
       member do
         get "set_evaluation"
         get "show_evaluation"
+        get "assign_task"
+        post "save_assign_task"
       end
   end
 
