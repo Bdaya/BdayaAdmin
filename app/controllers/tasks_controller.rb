@@ -4,9 +4,8 @@ class TasksController < ApplicationController
 		@task = Task.new
 	end
 
-	def assign_task
-		@user = User.where(:id=> params[:user_id])
-		current_user.assign_task(@user, params[:deadline], params[:title], params[:details])
+	def show
+		@task = Task.first
 	end
 
 	def done
@@ -16,8 +15,15 @@ class TasksController < ApplicationController
 	end
 
 	def reopen
-		@task = Task.find(params[:id])
+		@task = Task.find(params[:task_id])
 		current_user.reopen_task(@task)
+		redirect_to action: "sent_tasks"
+	end
+
+	def accept
+		@task = Task.find(params[:task_id])
+		current_user.accept_task(@task)
+		redirect_to action: "sent_tasks"
 	end
 
 	def request_extension
