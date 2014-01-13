@@ -1,6 +1,5 @@
 <h1>Assign Task</h1>
 
-<!--<%= render 'assignform' %>-->
 <script type="text/javascript">
   $(document).ready(function(){
     $('[data-behaviour~=datepicker]').datepicker();
@@ -24,7 +23,7 @@
     <%= f.label "Deadline" %>
     <%= f.text_field :deadline, :'data-behaviour' => 'datepicker'%>
   </div>
-  <%= params[:id]%>
+  
   <%= f.hidden_field :user_id, value: params[:id]%>
    
   <div class="actions">
