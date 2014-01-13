@@ -173,11 +173,8 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 3.2.1)
   devise
-<<<<<<< HEAD
-  execjs
-=======
   devise_invitable
->>>>>>> 26b42f6c28d12538478d3614613af808580d4723
+  execjs
   google_drive
   jquery-rails
   lazy_high_charts
