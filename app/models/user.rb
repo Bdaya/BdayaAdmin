@@ -130,6 +130,12 @@ class User
     t.save
   end
 
+  def accept_task(t)
+    t.status = "accepted"
+    t.save
+  end
+
+
   def get_crit
     data = []
     categories = []
