@@ -4,9 +4,9 @@ class Request
 
   field :request_type, :type => String
 	field :roomnumber, :type => String
-	field :materials, :type => Array
+	field :materials, :type => String
 	field :notes, :type => String
-	field :permissions, :type => Hash
+	field :permissions, :type => String
 	field :status, :type => String
   field :time, :type => DateTime
 
