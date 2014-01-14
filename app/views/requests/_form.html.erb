@@ -4,29 +4,35 @@
 					@req.creator.name
 				end %>
 		</th>
-		<th><%= @req.request_type %></th>
+
+		<%if @req.request_type == "materials"%>
 		<th>
 			<% if @req.materials %>
-			<ul><% (@req.materials).each do |material|%>
-		        	<li> <%= material %> </li>
-		        <%- end %>
-	       	</ul>
-			<% end%>
-		<th>
-			<% if @req.permissions %>
-			<ul><% (@req.permissions).each do |permission|%>
-		        	<li> <%= permission %> </li>
-		        <%- end %>
-	       	</ul>
+			<%= @req.materials %>
 			<% end%>
 		</th>
-		<th><%= @req.notes %></th>
-		<th><%- if@req.status || !(@req.request_type.eql?'room')%>
+		<% end%>	
+
+		<%if @req.request_type == "permissions"%>
+		<th>
+			<% if @req.permissions %>
+			<%= @req.permissions %>
+			<% end%>
+		</th>
+		<% end%>	
+
+		<%if @req.request_type == "room"%>
+		<th>
+			<%- if@req.status || !(@req.request_type.eql?'room')%>
 				<%=	@req.roomnumber %> 
 				<%- else %>
 				<%= f.text_field :roomnumber , placeholder: "Enter Room No." %> 
-				<%- end%>
+			<%- end%>
 		</th>
+		<% end%>
+
+		<th><%= @req.notes %></th>
+		
 		<th><%= if @req.status 
 					"Submitted"
 				else

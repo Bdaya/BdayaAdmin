@@ -1,31 +1,47 @@
-<html>
-	<head>
-		<title>Logistics</title>
-	</head>
-	<body>
+<h1>Requests</h1>
+	<h2>Room Requests</h2>
 		<table>
 	  		<thead>
       			<tr>
 					<td>Creator</td>
-					<td>Type</td>
-					<td>Materials</td>
-					<td>permissions</td>
-					<td>Notes</td>
 					<td>Room No. </td>
-					<td>Status</td>
+					<td>Notes</td>
 				</tr>
 	  		</thead>
 	  		<tbody>
-	  			<% @request_meetings.each do |req| %>
+	  			<% @request_rooms.each do |req| %>
  					<%= render partial: "form", locals: { :@req => req} %>
 				<% end %>
-				<% @request_permissions.each do |req| %>
- 					<%= render partial: "form", locals: { :@req => req} %>
-				<% end %>
+	  		</tbody>
+		</table>
+	<h2>Materials Requests</h2>
+		<table>
+	  		<thead>
+      			<tr>
+					<td>Creator</td>
+					<td>Materials</td>
+					<td>Notes</td>
+				</tr>
+	  		</thead>
+	  		<tbody>
 				<% @request_materials.each do |req| %>
  					<%= render partial: "form", locals: { :@req => req} %>
 				<% end %>
 	  		</tbody>
 		</table>
-	</body>
-</html>
+	<h2>Permissions Requests</h2>
+		<table>
+	  		<thead>
+      			<tr>
+					<td>Creator</td>
+					<td>permissions</td>
+					<td>Notes</td
+				</tr>
+	  		</thead>
+	  		<tbody>
+				<% @request_permissions.each do |req| %>
+ 					<%= render partial: "form", locals: { :@req => req} %>
+				<% end %>
+	  		</tbody>
+		</table>
+	

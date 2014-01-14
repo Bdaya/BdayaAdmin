@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   def index
 		@users = User.all.to_a
-		@request_meetings = Request.where(request_type: 'room').desc(:time).to_a
+		@request_rooms = Request.where(request_type: 'room').desc(:time).to_a
 		@request_permissions = Request.where(request_type: 'permissions').desc(:time).to_a
 		@request_materials = Request.where(request_type: 'materials').desc(:time).to_a
 
