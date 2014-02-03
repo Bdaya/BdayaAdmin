@@ -1,7 +1,7 @@
 class MeetingsController < ApplicationController
   
   def index
-    @meetings = Meeting.desc(:time).all.to_a
+    @meetings = Meeting.desc(:date).all.to_a
   end
 
   def show
@@ -22,11 +22,16 @@ class MeetingsController < ApplicationController
     params[:meeting][:attendee_ids].shift
     @meeting = Meeting.new(params[:meeting])    
     @meeting.creator = current_user
+    begin
+      Time.parse(@meeting.time)
+    rescue Exception
+      @meeting.time = "12:00pm" #default time
+    end
     @request = Request.new
     @request.notes = params[:notes]
     @request.creator = @meeting.creator
     @request.meeting = @meeting
-    @request.time = @meeting.time
+    @request.time = @meeting.date
     @request.request_type = "room"
     @request.roomnumber = @meeting.location
 
@@ -43,7 +48,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
     @request = @meeting.request
     @request.notes = params[:notes]
-    @request.time = params[:meeting][:time]
+    @request.time = params[:meeting][:date]
     @request.request_type = "room"
 
     @meeting.attendees.each do |attender|

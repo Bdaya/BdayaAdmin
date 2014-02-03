@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<% if @meeting.time < Time.now %>
+<% if @meeting.date < Time.now.to_date %>
 	<h2>This Meeting has been expired</h2>
 <%- end %>
 
@@ -64,7 +64,7 @@
   <%= @request.status || "Pending" %>
 </p>
 
-<% if(DateTime.now.end_of_day < @meeting.time) %>
+<% if(DateTime.now.to_date < @meeting.date) %>
 	<%= link_to 'Update', edit_meeting_path(@meeting) %>	
 <% else %>
   <%= link_to 'Enter After Meeting', edit_meeting_path(@meeting) %>  

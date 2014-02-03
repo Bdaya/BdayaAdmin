@@ -7,6 +7,7 @@
       <th>Type</th>
       <th>Room</th>
       <th>Meeting Date</th>
+      <th>Time</th>
       <th></th>
       <th></th>
     </tr>
@@ -23,7 +24,10 @@
         <%= meeting.location %>
       </td>
       <td>
-        <%= meeting.time.to_date if meeting.time %>
+        <%= meeting.date.to_date if meeting.date %>
+      </td>
+       <td>
+        <%= meeting.time if meeting.time %>
       </td>
       <td><%= link_to 'Show Meeting',meeting %></td>
       <td><%= link_to 'Cancel Meeting', meeting ,confirm: 'Are you sure?', method: :delete%></td>
