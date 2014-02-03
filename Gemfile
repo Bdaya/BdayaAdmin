@@ -3,12 +3,15 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 
 gem 'rails', '3.2.11'
-
 gem 'mongoid'
+gem "cancan"
 gem 'omniauth'
 gem 'bson_ext'
 gem 'google_drive'
-
+gem 'devise'
+gem 'devise_invitable'
+gem "bootstrap-datepicker-rails", "~> 1.1.1.11"
+gem "bootstrap-datetimepicker-rails", "~> 0.0.11"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -28,7 +31,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
+gem 'lazy_high_charts'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

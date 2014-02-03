@@ -1,0 +1,46 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('[data-behaviour~=datepicker]').datepicker();
+  })
+</script>
+
+<%= form_for(@meeting) do |f| %>
+  <% if @meeting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+      <ul>
+      <% @meeting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :meeting_type %>
+    <%= f.select :meeting_type, options_for_select([["Upper Board With Upper Board",
+                                                  "upper_board_with_upper_board"],
+                                                ["Upper Board With Higher Board","upper_board_with_higher_board"],
+                                                ["Higher Board With Members","higher_board_with_members"]]) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :time %>
+    <%= f.text_field :time, :'data-behaviour' => 'datepicker'%>
+  </div>
+
+  <div class="field">
+    <%= f.label "Enter Notes to Logistics" %>
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Invitees" %><br>
+    <%= f.collection_select :attendee_ids, User.order_by(:name.asc), :id, :name,{},{multiple: true} %>
+  </div>
+ 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

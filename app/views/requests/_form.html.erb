@@ -1,0 +1,42 @@
+<%= form_for @req , :url => {:action => "update", :id => @req.id }  do |f| %>
+	<tr>
+		<th><%= if @req.creator
+					@req.creator.name
+				end %>
+		</th>
+
+		<%if @req.request_type == "materials"%>
+		<th>
+			<% if @req.materials %>
+			<%= @req.materials %>
+			<% end%>
+		</th>
+		<% end%>	
+
+		<%if @req.request_type == "permissions"%>
+		<th>
+			<% if @req.permissions %>
+			<%= @req.permissions %>
+			<% end%>
+		</th>
+		<% end%>	
+
+		<%if @req.request_type == "room"%>
+		<th>
+			<%- if@req.status || !(@req.request_type.eql?'room')%>
+				<%=	@req.roomnumber %> 
+				<%- else %>
+				<%= f.text_field :roomnumber , placeholder: "Enter Room No." %> 
+			<%- end%>
+		</th>
+		<% end%>
+
+		<th><%= @req.notes %></th>
+		
+		<th><%= if @req.status 
+					"Submitted"
+				else
+					f.submit "Submit Request"  
+		end%></th>
+	</tr>
+<% end %>

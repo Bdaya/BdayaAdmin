@@ -1,0 +1,88 @@
+<h1> this is the show evaluations page <h1>
+
+
+    <script type="text/javascript" charset="utf-8">
+		     $(function(){
+        new Highcharts.Chart({
+            chart: {
+                renderTo: "evaluations_chart"
+            },
+            title: {
+                text: 'User evaluations' ,
+                x: -20 //center
+            },
+  					xAxis: {
+              type: 'time'
+            },        
+            yAxis: {
+                title: {
+                    text: 'Points'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: 'point'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [
+                 {
+                   name: "Crit 1",
+                   data: <%=@crit[0][0]%>
+                 },
+                                  {
+                   name: "Crit 2",
+                   data: <%=@crit[0][1]%>
+                 },
+                                  {
+                   name: "Crit 3",
+                   data: <%=@crit[0][2]%>
+                 },
+                                  {
+                   name: "Crit 4",
+                   data: <%=@crit[0][3]%>
+                 },
+                                  {
+                   name: "Crit 5",
+                   data: <%=@crit[0][4]%>
+                 }
+               ]
+        });
+    });
+	</script>
+
+		           
+
+	<div id="evaluations_chart" style="width:560px; height:300px;"></div>
+	<table  style="border-spacing: 30px;" BGCOLOR=#eef>
+		<tr>
+			<th>Criterion 1</th>
+			<th>Criterion 2</th>
+			<th>Criterion 3</th>
+			<th>Criterion 4</th>
+			<th>Criterion 5</th>
+
+		</tr>
+
+		<% @evaluations.each do |e| %>
+		<tr>
+			<td><font color=gray size=5><%= e.cri1 %></td>
+			<td><font color=gray size=5><%= e.cri2 %></td>
+			<td><font color=gray size=5><%= e.cri3 %></td>
+			<td><font color=gray size=5><%= e.cri4 %></td>
+			<td><font color=gray size=5><%= e.cri5 %></td>
+
+
+		</tr>
+		<% end %>
+	</table>
+
+	<%= link_to "Go Back", action: "index" %>

@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<% if @meeting.time < Time.now %>
+	<h2>This Meeting has been expired</h2>
+<%- end %>
+
+<p>
+  <b>Time:</b>
+  <%= @meeting.time.to_formatted_s(:long_ordinal)%>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @meeting.location %>
+</p>
+
+<p>	
+	<b>Meeting Materials: </b>
+	<% if @request.materials %>
+		<ul><% (@request.materials).each do |material|%>
+	        	<li> <%= material %> </li>
+	        <% end %>
+	   	</ul>
+		<%- else %>
+		No materials
+	<% end%>
+</p>
+
+<p>	
+	<b>Meeting Permissions: </b>
+	<% if @request.permissions %>
+		<ul><% (@request.permissions).each do |permission|%>
+	        	<li> <%= permission %> </li>
+	        <% end %>
+	   	</ul>
+		<%- else %>
+		No Permissions
+	<% end%>
+</p>  
+              
+<p>
+	<b>Meeting Room: </b>
+	<%- if @request.roomnumber %>
+    	<%= @request.roomnumber %> 
+	<%- else %>
+		Not checked yet
+	<% end%>
+</p>
+
+<% if current_user %>
+	<% if current_user.head_of_committee %>
+		<% if current_user.head_of_committee.title == "hr" %>
+			<ul>
+				<% @meeting.invitees.each do |u| %>
+					<li> <%= u.name %> </li>
+				<% end %>
+			</ul>
+		<% end%>
+	<% end%>
+<% end%>
+
+<p>
+  <b>Request Status:</b>
+  <%= @request.status || "Pending" %>
+</p>
+
+<% if(DateTime.now.end_of_day < @meeting.time) %>
+	<%= link_to 'Update', edit_meeting_path(@meeting) %>	
+<% else %>
+  <%= link_to 'Enter After Meeting', edit_meeting_path(@meeting) %>  
+<% end%>
