@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-datetimepicker
+//= require jquery.timepicker.js
 
