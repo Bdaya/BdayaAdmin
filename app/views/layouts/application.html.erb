@@ -14,4 +14,9 @@
     <%= yield %>
   </div>
 </body>
+<script>
+  $(document).ready(function(){
+    $('#logo img').delay(200).animate({marginLeft: '5%', opacity: '1'}, 500);
+  });
+</script>
 </html>

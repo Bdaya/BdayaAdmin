@@ -31,8 +31,10 @@ body{
   text-align: center;
 }
 #logo{
-  margin-left: 5%;
+
 }
 #logo img{
+  opacity: 0.3;
   height: 300px;
+  margin-left: -23%;
 }
