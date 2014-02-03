@@ -5,13 +5,26 @@
 <%- end %>
 
 <p>
+  <%= @meeting.title%>
+</p>
+
+<p>
   <b>Time:</b>
-  <%= @meeting.time.to_formatted_s(:long_ordinal)%>
+  <%= @meeting.time%>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @meeting.date%>
 </p>
 
 <p>
   <b>Location:</b>
+  <% if @meeting.location && @meeting.location != ""%>
   <%= @meeting.location %>
+  <%else%>
+  <%= "TBA" %>
+  <%end%>
 </p>
 
 <p>	
