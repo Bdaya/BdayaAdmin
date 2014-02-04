@@ -10,31 +10,7 @@
  *
  *= require_self
  *= require_tree .
- *= require bootstrap
  *= require bootstrap-datetimepicker
  *= require bootstrap-datepicker
  *= require jquery.timepicker.css
 */
-
-body{
-  width: 100%;
-  margin: auto;
-}
-#main-content{
-  border: 1px solid #ddd;
-  width: 80%;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #eeeeff;
-  border-radius: 5px;
-  box-shadow: 3px 3px 10px #ccc;
-}
-.center{
-  text-align: center;
-}
-#logo{
-  margin-left: 5%;
-}
-#logo img{
-  height: 300px;
-}

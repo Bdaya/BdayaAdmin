@@ -14,6 +14,7 @@ gem "bootstrap-datepicker-rails", "~> 1.1.1.11"
 gem "bootstrap-datetimepicker-rails", "~> 0.0.11"
 gem 'bootstrap-timepicker-rails'
 gem 'jquery-timepicker-rails'
+gem "haml"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

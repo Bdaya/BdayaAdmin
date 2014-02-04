@@ -1,0 +1,42 @@
+<h1>Meetings</h1>
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Room</th>
+      <th>Meeting Date</th>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+    <% @meetings.each do |meeting| %>
+    <tr>
+      <td>
+        <%= meeting.meeting_type %>
+      </td>
+      <td>
+        <%= meeting.location %>
+      </td>
+      <td>
+        <%= meeting.date.to_date if meeting.date %>
+      </td>
+       <td>
+        <%= meeting.time if meeting.time %>
+      </td>
+      <td><%= link_to 'Show Meeting',meeting %></td>
+      <td><%= link_to 'Cancel Meeting', meeting ,confirm: 'Are you sure?', method: :delete%></td>
+    </tr>
+    <%end%>
+
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'Create a Meeting', new_meeting_path %>

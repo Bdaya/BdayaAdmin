@@ -1,0 +1,62 @@
+#meetings
+  .split-main
+    .container
+      %span.button.right
+        = link_to 'Create', new_meeting_path
+      %h1 Meetings
+
+      %br
+
+      .vertical-line
+
+      .group
+        .title Today
+        -@meetings.each do |meeting|
+          .meeting
+            .datetime
+              .time= meeting.time if meeting.time
+              .date= meeting.date.to_date if meeting.date
+            .circle
+            %h2.name= meeting.title
+            .location= meeting.location != '' ? meeting.location : "TBA"
+
+
+
+
+  .split-side
+    .topbar
+      %span.back.fa.fa-angle-left.fa-2x.topbarButton
+
+    .container
+      %dl.tabs
+        %dd.active
+          %a#info Info
+        %dd
+          %a#agenda Agenda
+        %dd
+          %a#minutes Meeting Minutes
+
+      .tabs-content
+        #agenda.content Agenda
+        #minutes.content Meeting Minutes
+
+        #info.content.active
+          %h2 Weekly Meeting
+          .row
+            .columns.small-6
+              .location GUC C3 205
+              .date: strong 9:00 AM
+              .time 12/3/2014
+            .columns.small-6
+              %p This meeting is superduper awesome.
+
+          .invites
+            %h3 Invites
+            .pp= image_tag 'pp.png', alt: 'logo'
+            .pp= image_tag 'pp.png', alt: 'logo'
+            .pp= image_tag 'pp.png', alt: 'logo'
+            .pp= image_tag 'pp.png', alt: 'logo'
+    
+
+    .container.discussion
+      .gap
