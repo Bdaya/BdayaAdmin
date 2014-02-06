@@ -2,7 +2,8 @@ class MeetingsController < ApplicationController
   
   def index
     @meetings = Meeting.desc(:date).all.to_a
-
+    @today_meetings = current_user.get_today_meetings
+    @tomorrow_meetings = current_user.get_tomorrow_meetings
     # The creation of a new model is in index view (inside the modal)
     @meeting = Meeting.new
     @request = Request.new
