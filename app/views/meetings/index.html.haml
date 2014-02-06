@@ -65,5 +65,8 @@
 #createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
   .modal-dialog
     .modal-content
+      .modal-header
+        %span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+        %h1 Create Meeting
       .modal-body
         = render :partial => 'meetings/form'
