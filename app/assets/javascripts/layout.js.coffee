@@ -12,10 +12,6 @@ $(document).ready ->
 		$("#rightbar").addClass('show')
 		$("#content").toggleClass('show-rightbar')
 
-	$(".meeting").click ->
-		$(".split-side").css "margin": "0px"
-		$(this).addClass("selected").siblings(".selected").removeClass("selected")
-
 	$(".split-side .back").click ->
 		$(".split-side").css "margin-right": "-100%"
 

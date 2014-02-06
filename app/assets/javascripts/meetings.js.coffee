@@ -6,6 +6,10 @@ $(document).ready ->
 
 	$('[data-behaviour~=timepicker]').timepicker();
 
+	# Add selected class to the first meeting which is loaded at first.
+	$('#meetings .meeting').first().addClass 'selected'
+
+	# Load the details of a meeting.
 	$('#meetings').on 'click touchstart', '.meeting', ->
 		url = $(this).attr 'data-link'
 		$.ajax
@@ -13,7 +17,10 @@ $(document).ready ->
 			success: (data)->
 				$('#details').html data
 
-	# Add selected class to the first meeting which is loaded at first.
-	$('#meetings .meeting').first().addClass 'selected'
+	# Select the clicked meeting.
+	$('#meetings').on 'click touchstart', '.meeting', ->
+		$(".split-side").css "margin": "0px"
+		$('#meetings').find('.meeting.selected').removeClass 'selected'
+		$(this).addClass("selected")
 
 	return
