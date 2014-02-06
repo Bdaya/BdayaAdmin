@@ -166,11 +166,15 @@ class User
   end
 
   def get_today_meetings
-    meetings = self.attending_meetings.where(:date => DateTime.now.to_date)
+    invited_meetings = self.attending_meetings.where(:date => DateTime.now.to_date).to_a
+    created_meetings = self.created_meetings.where(:date => DateTime.now.to_date).to_a
+    meetings = invited_meetings.concat(created_meetings)
   end
 
   def get_tomorrow_meetings
-    meetings = self.attending_meetings.where(:date => DateTime.now.tomorrow.to_date)
+    invited_meetings = self.attending_meetings.where(:date => DateTime.now.tomorrow.to_date).to_a
+    created_meetings = self.created_meetings.where(:date => DateTime.now.tomorrow.to_date).to_a
+    meetings = invited_meetings.concat(created_meetings)
   end
 
 end
