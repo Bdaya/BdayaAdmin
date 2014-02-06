@@ -13,4 +13,7 @@ $(document).ready ->
 			success: (data)->
 				$('#details').html data
 
+	# Add selected class to the first meeting which is loaded at first.
+	$('#meetings .meeting').first().addClass 'selected'
+
 	return

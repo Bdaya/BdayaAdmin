@@ -27,12 +27,12 @@
       %span.back.fa.fa-angle-left.fa-2x.topbarButton
 
     #details.content.hidden-scroll
-      / = render :partial => 'details'
+      / Load the details of the first meeting.
+      = render :partial => 'details', :locals => {:@meeting => @meetings.first}
     
 
     .discussion.content.hidden-scroll
       .gap
-
 
 
 #createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
@@ -42,4 +42,4 @@
         %span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
         %h1 Create Meeting
       .modal-body
-        = render :partial => 'form'
+        = render :partial => 'form', :locals => {:@meeting => Meeting.new}

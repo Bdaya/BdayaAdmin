@@ -50,8 +50,10 @@ h3 {
 	font-size: 18px;
 	font-weight: 200;
 	padding: 3px 20px 3px 20px;
+	margin: 0px;
 	display: inline-block;
 	cursor: pointer;
+	vertical-align: middle;
 
 	&:hover {
 		background-color: @color1;
@@ -61,7 +63,15 @@ h3 {
 		}
 	}
 	a {
-		color: @color1;
+		color: inherit;
+	}
+}
+.red {
+	color: red;
+	border-color: red;
+
+	&:hover {
+		background-color: red;
 	}
 }
 
