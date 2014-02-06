@@ -10,8 +10,29 @@
       %a{:href=> "#minutes", :data=> {:toggle=> 'tab'}} Meeting Minutes
 
   .tab-content
-    #agenda.tab-pane Agenda
-    #minutes.tab-pane Meeting Minutes
+    #agenda.tab-pane
+      -if @meeting.agenda == nil
+        = form_for @meeting, :html => {:role => 'form'} do |f|
+
+          .form-group
+            = f.text_area :agenda
+
+          .form-group
+            = f.submit :class => 'button'
+      -else
+        =@meeting.agenda
+
+    #minutes.tab-pane
+      -if @meeting.meeting_minuts == nil
+        = form_for @meeting, :html => {:role => 'form'} do |f|
+
+          .form-group
+            = f.text_area :meeting_minuts
+
+          .form-group
+            = f.submit :class => 'button'
+      -else
+        =@meeting.meeting_minuts      
 
     #info.tab-pane.active
       %h2= @meeting.title
@@ -24,7 +45,7 @@
           %p= @meeting.description
 
       .invites
-        %h3 Invites
+        %h3 Invitees
         / .pp= image_tag 'pp.png', alt: 'logo'
 
 

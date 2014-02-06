@@ -5,7 +5,7 @@ class Meeting
 	field :time, :type => String
   field :date, :type => Date
 	field :location, :type => String
-	# field :meeting_minuts, :type => String
+	field :meeting_minuts, :type => String
 	# field :meeting_type, :type => String #*************No need for meeting type
   field :description, :type => String
   field :agenda, :type => String
@@ -17,9 +17,9 @@ class Meeting
 
   field :title, type: String
 
-  field :meeting_minutes1, type: String
-  field :meeting_minutes2, type: String
-  field :meeting_minutes3, type: String
+  # field :meeting_minutes1, type: String
+  # field :meeting_minutes2, type: String
+  # field :meeting_minutes3, type: String
   # field :room, type: String
   field :attendance, type: Array, default: [] #Will be Entered as Array of 2D arrays in the form of [[Member,attendance_status],[Member,attendance_status],..]
   # field :meeting_time, type: DateTime
