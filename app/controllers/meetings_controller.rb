@@ -11,6 +11,9 @@ class MeetingsController < ApplicationController
   def show
      @meeting = Meeting.find(params[:id])
      @request = Request.find_by(meeting_id: @meeting.id)
+
+     # Show Page is rendered in details partial
+     render :partial => 'details'
   end
 
   def edit

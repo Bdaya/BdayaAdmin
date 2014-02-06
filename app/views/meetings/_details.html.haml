@@ -1,0 +1,25 @@
+%ul.nav.nav-tabs
+  %li.active
+    %a{:href=> '#info', :data=> {:toggle=> 'tab'}} Info
+  %li
+    %a{:href=> '#agenda', :data=> {:toggle=> 'tab'}} Agenda
+  %li
+    %a{:href=> "#minutes", :data=> {:toggle=> 'tab'}} Meeting Minutes
+
+.tab-content
+  #agenda.tab-pane Agenda
+  #minutes.tab-pane Meeting Minutes
+
+  #info.tab-pane.active
+    %h2= @meeting.title
+    .row
+      .col.col-xs-5
+        .location= @meeting.location != '' ? @meeting.location : "TBA"
+        .time= @meeting.date.to_date if @meeting.date
+        .date= @meeting.time if @meeting.time
+      .col.col-xs-6.col-xs-offset-1
+        %p= @meeting.description
+
+    .invites
+      %h3 Invites
+      / .pp= image_tag 'pp.png', alt: 'logo'

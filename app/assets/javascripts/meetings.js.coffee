@@ -6,4 +6,11 @@ $(document).ready ->
 
 	$('[data-behaviour~=timepicker]').timepicker();
 
+	$('#meetings').on 'click touchstart', '.meeting', ->
+		url = $(this).attr 'data-link'
+		$.ajax
+			url: url
+			success: (data)->
+				$('#details').html data
+
 	return
