@@ -10,6 +10,28 @@
 
       .group
         .title Today
+        -@today_meetings.each do |meeting|
+          .meeting{:data => {:link => (url_for meeting)}}
+            .datetime
+              .time= meeting.time if meeting.time
+              .date= meeting.date.to_date if meeting.date
+            .circle
+            %h2.name= meeting.title
+            .location= meeting.location != '' ? meeting.location : "TBA"
+
+      .group
+        .title Tomorrow
+        -@tomorrow_meetings.each do |meeting|
+          .meeting{:data => {:link => (url_for meeting)}}
+            .datetime
+              .time= meeting.time if meeting.time
+              .date= meeting.date.to_date if meeting.date
+            .circle
+            %h2.name= meeting.title
+            .location= meeting.location != '' ? meeting.location : "TBA"      
+
+      .group
+        .title All
         -@meetings.each do |meeting|
           .meeting{:data => {:link => (url_for meeting)}}
             .datetime
@@ -20,15 +42,13 @@
             .location= meeting.location != '' ? meeting.location : "TBA"
 
 
-
-
   .split-side
     .topbar
       %span.back.fa.fa-angle-left.fa-2x.topbarButton
 
     #details.content.hidden-scroll
       / Load the details of the first meeting.
-      = render :partial => 'details', :locals => {:@meeting => @meetings.first}
+      = render :partial => 'details', :locals => {:@meeting => @today_meetings.first}
     
 
     .discussion.content.hidden-scroll
