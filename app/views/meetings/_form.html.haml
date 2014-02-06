@@ -1,0 +1,28 @@
+= form_for @meeting, :html => {:role => 'form'} do |f|
+	
+	.form-group
+		.col.col-xs-3= f.label "Meeting Title"
+		= f.text_field :title
+
+	.form-group
+		.col.col-xs-3= f.label "Meeting Description"
+		= f.text_area :description
+
+	.form-group
+		.col.col-xs-3= f.label "Meeting Agenda"
+		= f.text_field :agenda
+
+	.form-group
+		.col.col-xs-3= f.label :time
+		= f.text_field :time, :'data-behaviour' => 'timepicker'
+
+	.form-group
+		.col.col-xs-3= f.label :date
+		= f.text_field :date, :'data-behaviour' => 'datepicker'
+
+	.form-group
+		.col.col-xs-3= f.label "Notes For Logistics"
+		= f.text_field :location
+
+	.form-group
+		= f.submit :class => 'button'

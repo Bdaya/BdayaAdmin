@@ -1,8 +1,7 @@
 #meetings
   .split-main
     .content.hidden-scroll
-      %span.button.right
-        = link_to 'Create', new_meeting_path
+      %span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
       %h1 Meetings
 
       %br
@@ -60,3 +59,11 @@
 
     .discussion.content.hidden-scroll
       .gap
+
+
+
+#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+  .modal-dialog
+    .modal-content
+      .modal-body
+        = render :partial => 'meetings/form'

@@ -2,6 +2,10 @@ class MeetingsController < ApplicationController
   
   def index
     @meetings = Meeting.desc(:date).all.to_a
+
+    # The creation of a new model is in index view (inside the modal)
+    @meeting = Meeting.new
+    @request = Request.new
   end
 
   def show
@@ -19,7 +23,8 @@ class MeetingsController < ApplicationController
   end
 
   def create
-    params[:meeting][:attendee_ids].shift
+    #Causing error, no need for invites in creation a new meeting.
+    # params[:meeting][:attendee_ids].shift
     @meeting = Meeting.new(params[:meeting])    
     @meeting.creator = current_user
     begin

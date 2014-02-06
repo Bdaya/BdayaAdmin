@@ -6,7 +6,7 @@ class Meeting
   field :date, :type => Date
 	field :location, :type => String
 	# field :meeting_minuts, :type => String
-	field :meeting_type, :type => String
+	# field :meeting_type, :type => String #*************No need for meeting type
   field :description, :type => String
   field :agenda, :type => String
 

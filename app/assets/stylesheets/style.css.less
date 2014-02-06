@@ -1,13 +1,13 @@
 /************************************************************/
 /* Imports
 /************************************************************/
-@import 'reset';
-@import 'elements';
-@import 'leftbar';
-@import 'rightbar';
-@import 'content';
+@import 'less/lib/reset';
+@import 'less/lib/elements';
+@import 'less/leftbar';
+@import 'less/rightbar';
+@import 'less/content';
 
-@import 'meetings';
+@import 'less/meetings';
 
 @color1: #009ee0;
 @color2: #eeeeee;
@@ -102,3 +102,21 @@ h3 {
 	padding: 0px;
 }
 
+.modal {
+	overflow-y: auto; //Hide Scroll bar of Modal
+
+}
+.datepicker {z-index: 1151 !important;} //Show calendar in modal
+
+
+form {
+	label {
+		color: @color1;
+	}
+	input, textarea {
+		border: 1px solid @color2dark;
+		padding: 5px;
+		max-height: 100px;
+		max-width: 300px;
+	}
+}

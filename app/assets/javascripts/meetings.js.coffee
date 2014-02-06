@@ -1,5 +1,9 @@
 $(document).ready ->
 
-	 $('#myTab').tab('show')
+	$('[data-behaviour~=datepicker]').datepicker
+		format: 'dd-mm-yyyy'
+		startDate: '+0d'
 
-	 return
+	$('[data-behaviour~=timepicker]').timepicker();
+
+	return
