@@ -5,12 +5,11 @@
 @topbar-height: 50px;
 
 #content {
-	position: fixed;
+	position: absolute;
 	top: 0px; left: @leftbar-width; right: 0px; bottom: 0px;
 	background-color: white;
 	.transition(margin 0.5s);
 	overflow: hidden;
-	z-index: 10;
 	
 	&.show-rightbar {
 		margin-left: -@leftbar-width;

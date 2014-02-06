@@ -12,7 +12,7 @@
 	border-right: 1px solid @color-border;
 	z-index: 0;
 	
-	&.show { z-index: 1; }
+	&.show { z-index: 0; }
 
 	ul.menu {
 		list-style: none;
@@ -110,12 +110,18 @@
 }
 
 /************************************************************/
+/* Tablet Screens
+/************************************************************/
+@media only screen and (max-width : 1024px) {
+	#leftbar {
+	    z-index: -1;
+	  }
+}
+
+/************************************************************/
 /* Smartphones Screens
 /************************************************************/
-@media only screen 
-		and (min-width : 320px) 
-		and (max-width : 480px)
-{
+@media only screen and (max-width : 480px) {
   #leftbar {
     width: 100% - 15px;
   }
