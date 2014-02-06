@@ -1,6 +1,6 @@
 #meetings
   .split-main
-    .container
+    .content.hidden-scroll
       %span.button.right
         = link_to 'Create', new_meeting_path
       %h1 Meetings
@@ -27,27 +27,27 @@
     .topbar
       %span.back.fa.fa-angle-left.fa-2x.topbarButton
 
-    .container
-      %dl.tabs
-        %dd.active
-          %a#info Info
-        %dd
-          %a#agenda Agenda
-        %dd
-          %a#minutes Meeting Minutes
+    .content.hidden-scroll
+      %ul.nav.nav-tabs
+        %li.active
+          %a{:href=> '#info', :data=> {:toggle=> 'tab'}} Info
+        %li
+          %a{:href=> '#agenda', :data=> {:toggle=> 'tab'}} Agenda
+        %li
+          %a{:href=> "#minutes", :data=> {:toggle=> 'tab'}} Meeting Minutes
 
-      .tabs-content
-        #agenda.content Agenda
-        #minutes.content Meeting Minutes
+      .tab-content
+        #agenda.tab-pane Agenda
+        #minutes.tab-pane Meeting Minutes
 
-        #info.content.active
+        #info.tab-pane.active
           %h2 Weekly Meeting
           .row
-            .columns.small-6
+            .col.col-xs-5
               .location GUC C3 205
-              .date: strong 9:00 AM
+              .date <strong> 9:00 AM </strong>
               .time 12/3/2014
-            .columns.small-6
+            .col.col-xs-6.col-xs-offset-1
               %p This meeting is superduper awesome.
 
           .invites
@@ -58,5 +58,5 @@
             .pp= image_tag 'pp.png', alt: 'logo'
     
 
-    .container.discussion
+    .discussion.content.hidden-scroll
       .gap

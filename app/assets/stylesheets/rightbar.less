@@ -1,0 +1,27 @@
+/************************************************************/
+/* Right Bar
+/************************************************************/
+@rightbar-width: 300px;
+
+#rightbar {
+	position: fixed;
+	top: 0px; right: 0px; bottom: 0px;
+	background-color: #e9eff5;
+	width: @rightbar-width;
+	z-index: -1;
+	
+	&.show { z-index: 0; }
+}
+
+/************************************************************/
+/* Smartphones Screens
+/************************************************************/
+@media only screen 
+		and (min-width : 320px) 
+		and (max-width : 480px)
+{
+  #rightbar {
+    width: 100%;
+   
+  }
+}

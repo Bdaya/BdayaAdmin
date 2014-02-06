@@ -48,6 +48,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    commonjs (0.2.7)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -84,6 +85,11 @@ GEM
     lazy_high_charts (1.5.1)
       bundler (>= 1.0)
       hash-deep-merge
+    less (2.4.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.4.2)
+      actionpack (>= 3.1)
+      less (~> 2.4.0)
     libv8 (3.16.14.3)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -187,6 +193,7 @@ DEPENDENCIES
   jquery-rails
   jquery-timepicker-rails
   lazy_high_charts
+  less-rails
   mongoid
   omniauth
   rails (= 3.2.11)

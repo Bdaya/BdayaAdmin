@@ -3,7 +3,6 @@
   %head
     %title Bdaya Admin
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
     = csrf_meta_tags
 
   %body
@@ -19,3 +18,7 @@
           %input(placeholder='Search')
 
       = yield
+
+
+  / Javascript files are loaded at the end of 'body', to not cause blocking
+  = javascript_include_tag "application"

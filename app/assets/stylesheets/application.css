@@ -9,8 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
- *= require bootstrap-datetimepicker
- *= require bootstrap-datepicker
- *= require jquery.timepicker.css
+ *= require bootstrap
+ * require bootstrap-datetimepicker
+ * require bootstrap-datepicker
+ * require jquery.timepicker.css
+ *= require font-awesome.min.css
+ *= require style.less
 */

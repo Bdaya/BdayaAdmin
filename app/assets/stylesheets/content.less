@@ -1,0 +1,149 @@
+/************************************************************/
+/* Content
+/************************************************************/
+@padding: 20px;
+@topbar-height: 50px;
+
+#content {
+	position: fixed;
+	top: 0px; left: @leftbar-width; right: 0px; bottom: 0px;
+	background-color: white;
+	.transition(margin 0.5s);
+	overflow: hidden;
+	
+	&.show-rightbar {
+		margin-left: -@leftbar-width;
+		margin-right: @rightbar-width;
+	}
+
+	.split-main {
+		position: absolute;
+		top: @topbar-height; left: 0px; bottom: 0px;
+		width: 50%;
+		overflow: hidden;
+	}
+	.split-side {
+		position: absolute;
+		top: @topbar-height; right: 0px; bottom: 0px;
+		width: 50%;
+		background: @color2light;
+		.box-sizing(); //Make border inside
+		border-left: 1px solid @color-border;
+		overflow: hidden;
+
+		.topbar {
+			position: absolute;
+			right: 0px; left: 0px;
+			z-index: 100;
+			display: none;
+		}
+
+	}
+
+	.hidden-scroll {
+		position: absolute;
+		top: 0px; left: 0px; bottom: 0px;
+		right: -15px; //Hide Scrollbar
+		overflow-y: scroll;
+	}
+}
+
+#topbar, .topbar {
+	height: @topbar-height;
+	border-bottom: 1px solid @color-border;
+	padding: 0px 15px 0px 15px;	
+	background-color: white;
+	color: #cecece;
+	overflow: hidden;
+
+	span {
+		margin: 14px 20px 14px 0px;
+	}
+
+	span.right {
+		float: right;
+		margin: 14px 0px 14px 20px;
+	}
+
+	.topbar-button {
+		cursor: pointer;
+		&:hover {
+			color: @color1;
+		}
+	}
+}
+
+#search {
+	span {
+		margin-right: 0px;
+	}
+	input {
+		border:none;
+		font-size: 14px;
+		height: 30px;
+		padding: 0px 0px 0px 10px;
+		margin: 0px;
+		margin-top: -10px;
+	}
+}
+
+#leftbar-button {display: none;}
+
+
+/************************************************************/
+/* Tablet Screens
+/************************************************************/
+@media only screen and (max-width : 1024px) {
+	#content {
+	    margin-left: 0px;
+	    margin-right: 0px;
+	    left: 0px;
+	    
+	    &.show-rightbar {
+			margin-left: -@leftbar-width;
+			margin-right: @rightbar-width;
+		}
+		&.show-leftbar {
+			margin-left: @leftbar-width;
+			margin-right: -@rightbar-width;
+		}
+	}
+	#leftbar-button {display: inline-block;}
+}
+
+
+/************************************************************/
+/* Smartphones Screens
+/************************************************************/
+@media only screen and (max-width : 480px) {
+	#content {
+	    margin-left: 0px;
+	    margin-right: 0px;
+	    left: 0px;
+	    
+	    &.show-rightbar {
+			margin-left: -100% + 15px;
+			margin-right: 100% - 15px;
+		}
+		&.show-leftbar {
+			margin-left: 100% - 15px;
+			margin-right: -100% + 15px;
+		}
+
+		.split-main {
+			width: 100%;
+		}
+		.split-side {
+			top: 0px;
+			width: 100%;
+			margin-right: -100%;
+			border-left: none;
+			.transition(margin 0.5s);
+
+			.content { padding-top: @topbar-height + @padding; }
+			.topbar { display: block; }
+		}
+	}
+	#leftbarButton {display: inline-block;}
+	#search input {display: none;}
+}

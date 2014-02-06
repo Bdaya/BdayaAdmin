@@ -1,0 +1,93 @@
+@leftPart: 100px;
+#meetings {
+	.split-main {
+		.vertical-line {
+			width: 2px;
+			position: fixed;
+			height: 100%;
+			margin-left: @leftPart - 1px; //+ padding
+			background-color: @color-border;
+			z-index: -1;
+		}
+		.group {
+			margin-bottom: 20px;
+
+			.title {
+				text-align: center;
+				margin-left: @leftPart;
+				margin-bottom: 20px;
+				color: @color-border;
+			}
+			.meeting {
+				padding: 20px 0px 20px 0px;
+				margin: 5px 0px 5px 0px;
+				cursor: pointer;
+				.box-sizing();
+				
+				&:hover {
+					background-color: @color2;
+				}
+				&.selected {
+
+					border: 1px solid @color1;
+					background-color: @color2;
+				}
+
+				.datetime {
+					float: left;
+					width: @leftPart - 23px; // minus fot centering the circle
+					text-align: right;
+
+					.time {
+						font-weight: 500;
+					}
+				}
+				.circle {
+					width: 25px;
+					height: 25px;
+					.border-radius(25px);
+					border: 2px solid white;
+					background-color: @color-border;
+					margin: 0px 10px 0px 10px;
+					float: left;
+				}
+			}
+		}
+	}
+	.split-side{
+		h2 {margin-bottom: 5px;}
+		.content {
+			height: 50%;
+			&.discussion {
+				top: 50%;
+			}
+		}
+		.invites {
+			margin-top: 20px;
+			.pp {
+				margin: 5px;
+				display: inline-block;
+				img {
+					width: 50px;
+					height: 50px;
+					border-radius: 50px;
+				}
+			}
+		}
+	}
+	.discussion {
+		background-color: @color2;
+
+		.gap {
+			position: absolute;
+			top: 0px; left: 0px; right: 0px;
+			background-color: white;
+			height: 15px;
+			border-top: 1px solid @color-border;
+			border-bottom: 1px solid @color-border;
+		}
+	}
+	.content {
+		padding: @padding;
+	}
+}
