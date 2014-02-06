@@ -17,7 +17,7 @@
               .date= meeting.date.to_date if meeting.date
             .circle
             %h2.name= meeting.title
-            .location= meeting.location != '' ? meeting.location : "TBA"
+            .location= meeting.location == '' || meeting.location == nil ? meeting.location : "TBA"
 
       .group
         .title Tomorrow
