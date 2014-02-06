@@ -10,7 +10,6 @@
  *
  *= require_self
  *= require bootstrap
- *= require bootstrap-datetimepicker
  *= require bootstrap-datepicker
  *= require jquery.timepicker.css
  *= require font-awesome.min.css
