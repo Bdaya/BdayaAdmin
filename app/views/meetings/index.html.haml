@@ -9,26 +9,28 @@
       .vertical-line
 
       .group
-        .title Today
-        -@today_meetings.each do |meeting|
-          .meeting{:data => {:link => (url_for meeting)}}
-            .datetime
-              .time= meeting.time if meeting.time
-              .date= meeting.date.to_date if meeting.date
-            .circle
-            %h2.name= meeting.title
-            .location= meeting.request.roomnumber == '' || meeting.request.roomnumber == nil ? "TBA" : meeting.request.roomnumber
+        -if @today_meetings.length > 0
+          .title Today
+          -@today_meetings.each do |meeting|
+            .meeting{:data => {:link => (url_for meeting)}}
+              .datetime
+                .time= meeting.time if meeting.time
+                .date= meeting.date.to_date if meeting.date
+              .circle
+              %h2.name= meeting.title
+              .location= meeting.request.roomnumber == '' || meeting.request.roomnumber == nil ? "TBA" : meeting.request.roomnumber
 
       .group
-        .title Tomorrow
-        -@tomorrow_meetings.each do |meeting|
-          .meeting{:data => {:link => (url_for meeting)}}
-            .datetime
-              .time= meeting.time if meeting.time
-              .date= meeting.date.to_date if meeting.date
-            .circle
-            %h2.name= meeting.title
-            .location= meeting.request.roomnumber == '' || meeting.request.roomnumber == nil ? "TBA" : meeting.request.roomnumber
+        -if @tomorrow_meetings.length > 0
+          .title Tomorrow
+          -@tomorrow_meetings.each do |meeting|
+            .meeting{:data => {:link => (url_for meeting)}}
+              .datetime
+                .time= meeting.time if meeting.time
+                .date= meeting.date.to_date if meeting.date
+              .circle
+              %h2.name= meeting.title
+              .location= meeting.request.roomnumber == '' || meeting.request.roomnumber == nil ? "TBA" : meeting.request.roomnumber
 
       .group
         .title All
