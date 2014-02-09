@@ -31,8 +31,10 @@ class TasksController < ApplicationController
 	end
 
 	def index
-		# @done_tasks = current_user.get_done_tasks
-		# @pending_tasks = current_user.get_pending_tasks
+		@done_tasks = current_user.get_done_tasks
+		@pending_tasks = current_user.get_pending_tasks
+		@sent_tasks = current_user.get_sent_tasks
+		@tasks = current_user.tasks_responsible_for
 	end
 
 	def sent_tasks
