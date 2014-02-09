@@ -1,68 +1,32 @@
 #tasks
 	.split-main
 		.content.hidden-scroll
-			-#%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
+			%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
 			%h1 Tasks
-			%ul.nav.nav-tabs
-				%li.active
-					%a{:href=> '#Pending', :data=> {:toggle=> 'tab'}} Pending
-				%li
-					%a{:href=> '#Done', :data=> {:toggle=> 'tab'}} Done	
-				%li
-					%a{:href=> '#Sent', :data=> {:toggle=> 'tab'}} Sent	
-
 			%br
+			
+			.group
+				.title Today
 
-			.tab-content
-				#Pending.tab-pane
-					.group
-						.title Today
-						-@pending_tasks.each do |task|	
-							.task{:data => {:link => (url_for task)}}
-								.status=#task.status
-								%h2.name=task.title
-								.date=task.deadline
-					.group
-						.title Today
-						.task
-							.countdown 1:24
-							.status
-							%h2.name Task 1
-							.date 14/2/2014
+				-@pending_tasks.each do |task|	
+					.task{:data => {:link => (url_for task)}}
+						.status=#task.status
+						%h2.name=task.title
+						.date=task.deadline
 
-			.tab-content
-				#Done.tab-pane
-					.group
-						.title Today
-						-@done_tasks.each do |task|	
-							.task{:data => {:link => (url_for task)}}
-								.status=#task.status
-								%h2.name=task.title
-								.date=task.deadline
-					.group
-						.title Today
-						.task
-							.countdown 1:24
-							.status
-							%h2.name Task 1
-							.date 14/2/2014
+				-@done_tasks.each do |task|	
+					.task{:data => {:link => (url_for task)}}
+						.status=#task.status
+						%h2.name=task.title
+						.date=task.deadline
 
-			.tab-content
-				#Sent.tab-pane
-					.group
-						.title Today
-						-@sent_tasks.each do |task|	
-							.task{:data => {:link => (url_for task)}}
-								.status=#task.status
-								%h2.name=task.title
-								.date=task.deadline
-					.group
-						.title Today
-						.task
-							.countdown 1:24
-							.status
-							%h2.name Task 1
-							.date 14/2/2014								
+				-@sent_tasks.each do |task|	
+					.task{:data => {:link => (url_for task)}}
+						.status=#task.status
+						%h2.name=task.title
+						.date=task.deadline
+
+
 
 
 	.split-side
