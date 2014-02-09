@@ -50,7 +50,10 @@
 
     #details.content.hidden-scroll
       / Load the details of the first meeting.
-      = render :partial => 'details', :locals => {:@meeting => @today_meetings.first}
+      -if @today_meetings.first != nil
+        = render :partial => 'details', :locals => {:@meeting => @today_meetings.first}
+      -else
+        = render :partial => 'details', :locals => {:@meeting => @meetings.first}
     
 
     .discussion.content.hidden-scroll

@@ -21,6 +21,10 @@
 		= f.text_field :location
 
 	.form-group
+		.col.col-xs-3= f.label "Notes For Logistics"
+		= f.collection_select :attendee_ids, User.order_by(:name.asc), :id, :name,{},{multiple: true}
+
+	.form-group
 		.col.col-xs-3
 		= f.submit :class => 'button'
 		-if !@meeting.new_record

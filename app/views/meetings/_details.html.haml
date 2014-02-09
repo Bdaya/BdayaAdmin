@@ -46,7 +46,9 @@
 
       .invites
         %h3 Invitees
-        / .pp= image_tag 'pp.png', alt: 'logo'
+        -@meeting.attendees.each do |a|
+          .pp= image_tag 'pp.png', alt: 'logo'
+          =a.name
 
 
 
