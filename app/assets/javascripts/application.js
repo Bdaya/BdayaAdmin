@@ -15,5 +15,7 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require jquery.timepicker.js
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.foundation
 //= require_tree .
 

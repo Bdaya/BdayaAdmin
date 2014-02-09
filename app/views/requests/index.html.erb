@@ -1,11 +1,13 @@
+<div class='container'>
 <h1>Requests</h1>
 	<h2>Room Requests</h2>
-		<table>
+		<table class='datatable'>
 	  		<thead>
       			<tr>
-					<td>Creator</td>
-					<td>Room No. </td>
-					<td>Notes</td>
+					<th>Creator</th>
+					<th>Room No. </th>
+					<th>Notes</th>
+					<th></th>
 				</tr>
 	  		</thead>
 	  		<tbody>
@@ -15,7 +17,7 @@
 	  		</tbody>
 		</table>
 	<h2>Materials Requests</h2>
-		<table>
+		<table class='datatable'>
 	  		<thead>
       			<tr>
 					<td>Creator</td>
@@ -28,9 +30,9 @@
  					<%= render partial: "form", locals: { :@req => req} %>
 				<% end %>
 	  		</tbody>
-		</table>
+		</table><br>
 	<h2>Permissions Requests</h2>
-		<table>
+		<table class='datatable'>
 	  		<thead>
       			<tr>
 					<td>Creator</td>
@@ -44,4 +46,5 @@
 				<% end %>
 	  		</tbody>
 		</table>
+</div>
 	
