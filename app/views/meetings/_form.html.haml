@@ -21,8 +21,8 @@
 		= f.text_field :location
 
 	.form-group
-		.col.col-xs-3= f.label "Notes For Logistics"
-		= f.collection_select :attendee_ids, User.order_by(:name.asc), :id, :name,{},{multiple: true}
+		.col.col-xs-3= f.label "Attendees"
+		= f.collection_select :attendee_ids, User.excludes(:id => current_user.id).order_by(:name.asc), :id, :name,{},{multiple: true}
 
 	.form-group
 		.col.col-xs-3
