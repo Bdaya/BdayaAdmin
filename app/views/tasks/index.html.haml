@@ -1,0 +1,41 @@
+#tasks
+	.split-main
+		.content.hidden-scroll
+			%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
+			%h1 Tasks
+
+			%br
+
+			.group
+				.title Today
+				.task
+					.status
+					%h2.name Task 1
+					.date 14/2/2014
+			.group
+				.title Today
+				.task
+					.countdown 1:24
+					.status
+					%h2.name Task 1
+					.date 14/2/2014
+
+
+	.split-side
+		.topbar
+			%span.back.fa.fa-angle-left.fa-2x.topbarButton
+
+		#details.content.hidden-scroll
+			= render :partial => 'tasks/details'
+
+
+#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+				%h1 Create Task
+			.modal-body
+
+
+

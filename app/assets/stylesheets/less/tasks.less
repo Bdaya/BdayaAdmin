@@ -1,0 +1,71 @@
+#tasks {
+	.content {
+		padding: @padding;
+	}
+
+	.group {
+		margin: 0px -@padding 0px -@padding; //Stritching the width to fill the parent width.
+		.title {
+			background-color: @color2;
+			text-align: center;
+			padding: 5px 0px 5px 0px;
+			color: @color-border;
+			border-bottom: 1px solid;
+			border-color: @color-border;
+
+		}
+		&:first-of-type .title { border-top: 1px solid; } //The task border will take care of the others.
+		
+		.task {
+			position: relative;
+			padding: 15px @padding 15px @padding;
+			border-bottom: 1px solid @color-border;
+
+			.status {
+				position: absolute;
+				top: 0px; bottom: 0px; left: 0px;
+				width: 10px;
+				background-color: @color1;
+			}
+			.name {
+				color: @color2dark;
+				font-weight: 500;
+				font-size: 18px;
+			}
+			.date {
+				color: @color1;
+			}
+			.countdown {
+				float: right;
+				font-weight: 500;
+				font-size: 18px;
+				color: #eb542f;
+			}
+		}
+
+	}
+
+	.split-side {
+		.info {
+			.countdown {
+				float: right;
+				margin-right: 15px;
+				color: #eb542f;
+				font-size: 18px;
+				font-weight: 500;
+			}
+
+			h1 {
+				border-bottom: 1px solid @color-border;
+				padding-bottom: 10px;
+			}
+
+			.item {
+				margin: 15px 0px 15px 0px;
+				p { margin-left: 25px; }
+				span { float: left; }
+				.button { margin-left: 25px; }
+			}
+		}
+	}
+}
