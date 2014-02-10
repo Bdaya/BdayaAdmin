@@ -99,12 +99,50 @@ class User
   belongs_to :vice_of_committee, class_name: 'Committee', inverse_of: :vices
   belongs_to :member_of_committee, class_name: 'Committee', inverse_of: :members
 
-  def get_pending_tasks
-    tasks = self.tasks_responsible_for.where(:status=>"pending").to_a
+  # def get_pending_tasks
+  #   tasks = self.tasks_responsible_for.where(:status=>"pending").to_a
+  # end
+
+  # def get_done_tasks
+  #   tasks = self.tasks_responsible_for.where(:status=>"done").to_a
+  # end
+
+  def get_today_tasks
+    self.tasks_responsible_for.where(:deadline => DateTime.now.to_date).asc(:deadline)
   end
 
-  def get_done_tasks
-    tasks = self.tasks_responsible_for.where(:status=>"done").to_a
+  def get_tomorrow_tasks
+    self.tasks_responsible_for.where(:deadline => DateTime.now.tomorrow.to_date).asc(:deadline)
+  end
+
+  def get_week_tasks
+    tasks = []
+    self.tasks_responsible_for.asc(:deadline).each do |t|
+      if(t.deadline > DateTime.now.tomorrow.to_date && t.deadline <= DateTime.now.end_of_week.to_date - 2)
+        tasks << t
+      end
+    end
+    return tasks
+  end
+
+  def get_later_tasks
+    tasks = []
+    self.tasks_responsible_for.asc(:deadline).each do |t|
+      if(t.deadline > DateTime.now.end_of_week.to_date - 2)
+        tasks << t
+      end
+    end
+    return tasks
+  end
+
+  def get_past_tasks
+    tasks = []
+    self.tasks_responsible_for.asc(:deadline).each do |t|
+      if(t.deadline < DateTime.now.to_date)
+        tasks << t
+      end
+    end
+    return tasks
   end
 
   def get_sent_tasks
