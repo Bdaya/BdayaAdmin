@@ -74,5 +74,6 @@
 		.modal-content
 			.modal-header
 				%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
-				%h1 Create Task
+				%h1 Assign Task
 			.modal-body
+				= render :partial => 'form', :locals => {:@task => Task.new}

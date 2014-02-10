@@ -1,0 +1,27 @@
+= form_for @task, :html => {:role => 'form'} do |f|
+	
+	.form-group
+		.col.col-xs-3= f.label "Task Title"
+		= f.text_field :title
+
+	.form-group
+		.col.col-xs-3= f.label "Task Details"
+		= f.text_area :details
+
+	.form-group
+		.col.col-xs-3= f.label :deadline
+		= f.text_field :deadline, :'data-behaviour' => 'datepicker'
+
+	.form-group
+		.col.col-xs-3= f.label "Task Type"
+		= f.select :type, [['Critical', "critical"], ['Normal', "normal"]]
+
+	.form-group
+		.col.col-xs-3= f.label "Responsible Member"
+		= f.collection_select :responsible_user_id, User.excludes(:id => current_user.id).order_by(:name.asc), :id, :name,{},{multiple: false}
+
+	.form-group
+		.col.col-xs-3
+		= f.submit :class => 'button'
+		-if !@task.new_record
+			.button.red= link_to 'Delete', @task, :method => 'delete'

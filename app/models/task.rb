@@ -2,7 +2,7 @@ class Task
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :feedback, :type => String
+  #field :feedback, :type => String
   field :title, :type => String
   field :details, :type => String
   field :deadline, :type => Date

@@ -4,6 +4,14 @@ class TasksController < ApplicationController
 		@task = Task.new
 	end
 
+	def create
+		@user = User.find(params[:task][:responsible_user_id])
+	    @task = current_user.assign_task(@user, params[:task][:deadline], params[:task][:title], params[:task][:details])
+	    #@task.responsible_user = User.find(params[:task][:user_id])
+	    #@task.save
+	    redirect_to sent_tasks_path
+	end
+
 	def show
 		@task = Task.first
 	end
@@ -40,6 +48,7 @@ class TasksController < ApplicationController
 		# @pending_tasks = current_user.get_pending_tasks
 		# @sent_tasks = current_user.get_sent_tasks
 		# @tasks = current_user.tasks_responsible_for
+		@task = Task.new
 	end
 
 	def sent_tasks
