@@ -1,0 +1,79 @@
+#tasks
+	.split-main
+		.content.hidden-scroll
+			%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
+			%h1 Tasks
+			%br
+			
+			.group
+				-if @today_tasks.length > 0
+					.title Today
+					-@today_tasks.each do |task|	
+						.task{:data => {:link => (url_for task)}}
+							.status=#task.status
+							%h2.name=task.title
+							.date=task.deadline
+
+			.group
+				-if @tomorrow_tasks.length > 0
+					.title Tomorrow
+					-@tomorrow_tasks.each do |task|	
+						.task{:data => {:link => (url_for task)}}
+							.status=#task.status
+							%h2.name=task.title
+							.date=task.deadline			
+
+			.group
+				-if @week_tasks.length > 0
+					.title This Week
+					-@week_tasks.each do |task|	
+						.task{:data => {:link => (url_for task)}}
+							.status=#task.status
+							%h2.name=task.title
+							.date=task.deadline
+							
+			.group
+				-if @later_tasks.length > 0
+					.title Later
+					-@later_tasks.each do |task|	
+						.task{:data => {:link => (url_for task)}}
+							.status=#task.status
+							%h2.name=task.title
+							.date=task.deadline		
+
+			.group
+				-if @past_tasks.length > 0
+					.title Past
+					-@past_tasks.each do |task|	
+						.task{:data => {:link => (url_for task)}}
+							.status=#task.status
+							%h2.name=task.title
+							.date=task.deadline				
+										
+
+	.split-side
+		.topbar
+			%span.back.fa.fa-angle-left.fa-2x.topbarButton
+
+		#details.content.hidden-scroll
+			-if @today_tasks.first != nil
+				= render :partial => 'tasks/details', :locals => {:@task => @today_tasks.first}
+			-elsif @tomorrow_tasks.first != nil
+				= render :partial => 'tasks/details', :locals => {:@task => @tomorrow_tasks.first}
+			-elsif @week_tasks.first != nil
+				= render :partial => 'tasks/details', :locals => {:@task => @week_tasks.first}
+			-elsif @later_tasks.first != nil
+				= render :partial => 'tasks/details', :locals => {:@task => @later_tasks.first}
+			-elsif @past_tasks.first != nil
+				= render :partial => 'tasks/details', :locals => {:@task => @past_tasks.first}			
+					
+
+
+#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+				%h1 Assign Task
+			.modal-body
+				= render :partial => 'form', :locals => {:@task => Task.new}

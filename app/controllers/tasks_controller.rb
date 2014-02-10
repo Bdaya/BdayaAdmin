@@ -52,6 +52,11 @@ class TasksController < ApplicationController
 	end
 
 	def sent_tasks
-		@sent_tasks = current_user.get_sent_tasks
+		@today_tasks = current_user.get_today_sent_tasks
+		@tomorrow_tasks = current_user.get_tomorrow_sent_tasks
+		@week_tasks = current_user.get_week_sent_tasks
+		@later_tasks = current_user.get_later_sent_tasks
+		@past_tasks = current_user.get_past_sent_tasks
+		# @sent_tasks = current_user.get_sent_tasks
 	end
 end

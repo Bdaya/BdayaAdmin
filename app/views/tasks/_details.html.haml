@@ -41,7 +41,7 @@
 				Status:  
 				%strong=@task.status
 
-		-if @task.status == "pending"
+		-if @task.responsible_user.id == current_user.id && @task.status == "pending"
 			.button.green= link_to 'Mark as Done', task_done_path(@task.id), :method => 'post'
 		-if @task.creator.id == current_user.id && @task.status == "done"	
 			.button.green= link_to 'Accept', task_accept_path(@task.id), :method => 'post'
