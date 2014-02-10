@@ -15,10 +15,15 @@
 
 		.item
 			%span.fa.fa-user
-			%p 
-				Task Creator: 
-				%strong=@task.creator.name
-			 
+			-if @task.responsible_user.id == current_user.id
+				%p 
+					Task Creator: 
+					%strong=@task.creator.name
+			-elsif @task.creator.id == current_user.id
+				%p 
+					Assigned Member: 
+					%strong=@task.responsible_user.name
+					 
 						
 				
 		.item

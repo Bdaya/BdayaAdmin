@@ -25,13 +25,13 @@ class TasksController < ApplicationController
 	def reopen
 		@task = Task.find(params[:task_id])
 		current_user.reopen_task(@task)
-		redirect_to action: "index"
+		redirect_to action: "sent_tasks"
 	end
 
 	def accept
 		@task = Task.find(params[:task_id])
 		current_user.accept_task(@task)
-		redirect_to action: "index"
+		redirect_to action: "sent_tasks"
 	end
 
 	def request_extension
@@ -58,5 +58,6 @@ class TasksController < ApplicationController
 		@later_tasks = current_user.get_later_sent_tasks
 		@past_tasks = current_user.get_past_sent_tasks
 		# @sent_tasks = current_user.get_sent_tasks
+		@task = Task.new
 	end
 end
