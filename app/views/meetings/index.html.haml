@@ -76,9 +76,14 @@
       / Load the details of the first meeting.
       -if @today_meetings.first != nil
         = render :partial => 'details', :locals => {:@meeting => @today_meetings.first}
-      -else
-        = render :partial => 'details', :locals => {:@meeting => @meetings.first}
-    
+      -elsif @tomorrow_meetings.first != nil
+        = render :partial => 'details', :locals => {:@meeting => @tomorrow_meetings.first}
+      -elsif @week_meetings.first != nil
+        = render :partial => 'details', :locals => {:@meeting => @week_meetings.first}    
+      -elsif @later_meetings.first != nil
+        = render :partial => 'details', :locals => {:@meeting => @later_meetings.first}
+      -elsif @past_meetings.first != nil
+        = render :partial => 'details', :locals => {:@meeting => @past_meetings.first}  
 
     .discussion.content.hidden-scroll
       .gap
