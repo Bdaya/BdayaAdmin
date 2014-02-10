@@ -31,17 +31,29 @@
               .circle
               %h2.name= meeting.title
               .location= meeting.request.roomnumber == '' || meeting.request.roomnumber == nil ? "TBA" : meeting.request.roomnumber
+      .group
+        -if @week_meetings.length > 0
+          .title This Week
+          -@week_meetings.each do |meeting|
+            .meeting{:data => {:link => (url_for meeting)}}
+              .datetime
+                .time= meeting.time if meeting.time
+                .date= meeting.date.to_date if meeting.date
+              .circle
+              %h2.name= meeting.title
+              .location= meeting.request.roomnumber == '' || meeting.request.roomnumber == nil ? "TBA" : meeting.request.roomnumber        
 
       .group
-        .title All
-        -@meetings.each do |meeting|
-          .meeting{:data => {:link => (url_for meeting)}}
-            .datetime
-              .time= meeting.time if meeting.time
-              .date= meeting.date.to_date if meeting.date
-            .circle
-            %h2.name= meeting.title
-            .location= meeting.request.roomnumber == '' || meeting.request.roomnumber == nil ? "TBA" : meeting.request.roomnumber
+        -if @later_meetings.length > 0
+          .title Later
+          -@later_meetings.each do |meeting|
+            .meeting{:data => {:link => (url_for meeting)}}
+              .datetime
+                .time= meeting.time if meeting.time
+                .date= meeting.date.to_date if meeting.date
+              .circle
+              %h2.name= meeting.title
+              .location= meeting.request.roomnumber == '' || meeting.request.roomnumber == nil ? "TBA" : meeting.request.roomnumber
 
 
   .split-side

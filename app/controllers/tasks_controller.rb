@@ -17,13 +17,13 @@ class TasksController < ApplicationController
 	def reopen
 		@task = Task.find(params[:task_id])
 		current_user.reopen_task(@task)
-		redirect_to action: "sent_tasks"
+		redirect_to action: "index"
 	end
 
 	def accept
 		@task = Task.find(params[:task_id])
 		current_user.accept_task(@task)
-		redirect_to action: "sent_tasks"
+		redirect_to action: "index"
 	end
 
 	def request_extension

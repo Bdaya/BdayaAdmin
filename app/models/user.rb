@@ -177,4 +177,38 @@ class User
     meetings = invited_meetings.concat(created_meetings)
   end
 
+  def get_week_meetings
+    meetings = []
+    self.attending_meetings.each do |m|
+      if (m.date > DateTime.now.tomorrow.to_date && m.date <= DateTime.now.end_of_week.to_date - 2)
+        meetings << m
+      end
+    end  
+
+    self.created_meetings.each do |m|
+      if (m.date > DateTime.now.tomorrow.to_date && m.date <= DateTime.now.end_of_week.to_date - 2)
+        meetings << m
+      end
+    end
+    meetings.sort! { |a,b| a.date <=> b.date }
+    return meetings
+  end
+
+  def get_later_meetings
+    meetings = []
+    self.attending_meetings.each do |m|
+      if (m.date > DateTime.now.end_of_week.to_date - 2)
+        meetings << m
+      end
+    end  
+
+    self.created_meetings.each do |m|
+      if (m.date > DateTime.now.end_of_week.to_date - 2)
+        meetings << m
+      end
+    end
+    meetings.sort! { |a,b| a.date <=> b.date }
+    return meetings
+  end
+
 end

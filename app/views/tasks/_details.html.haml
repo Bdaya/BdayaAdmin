@@ -39,8 +39,12 @@
 				Status:  
 				%strong=@task.status
 
-		.button.green= link_to 'Mark as Done', task_done_path(@task.id), :method => 'post'
-
+		-if @task.status == "pending"
+			.button.green= link_to 'Mark as Done', task_done_path(@task.id), :method => 'post'
+		-if @task.creator.id == current_user.id && @task.status == "done"	
+			.button.green= link_to 'Accept', task_accept_path(@task.id), :method => 'post'
+			.button.red= link_to 'Reopen', task_reopen_path(@task.id), :method => 'post'
+			
 	-if @task.creator.id == current_user.id
 		#updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
 			.modal-dialog
