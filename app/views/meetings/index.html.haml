@@ -55,6 +55,18 @@
               %h2.name= meeting.title
               .location= meeting.request.roomnumber == '' || meeting.request.roomnumber == nil ? "TBA" : meeting.request.roomnumber
 
+      .group
+        -if @past_meetings.length > 0
+          .title Past
+          -@past_meetings.each do |meeting|
+            .meeting{:data => {:link => (url_for meeting)}}
+              .datetime
+                .time= meeting.time if meeting.time
+                .date= meeting.date.to_date if meeting.date
+              .circle
+              %h2.name= meeting.title
+              .location= meeting.request.roomnumber == '' || meeting.request.roomnumber == nil ? "TBA" : meeting.request.roomnumber        
+
 
   .split-side
     .topbar

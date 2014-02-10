@@ -211,4 +211,21 @@ class User
     return meetings
   end
 
+  def get_past_meetings
+    meetings = []
+    self.attending_meetings.each do |m|
+      if (m.date < DateTime.now.to_date)
+        meetings << m
+      end
+    end  
+
+    self.created_meetings.each do |m|
+      if (m.date < DateTime.now.to_date)
+        meetings << m
+      end
+    end
+    meetings.sort! { |a,b| a.date <=> b.date }
+    return meetings
+  end
+
 end

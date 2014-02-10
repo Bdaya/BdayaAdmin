@@ -6,6 +6,7 @@ class MeetingsController < ApplicationController
     @tomorrow_meetings = current_user.get_tomorrow_meetings
     @week_meetings = current_user.get_week_meetings
     @later_meetings = current_user.get_later_meetings
+    @past_meetings = current_user.get_past_meetings
     # The creation of a new model is in index view (inside the modal)
     @meeting = Meeting.new
     @request = Request.new
