@@ -26,6 +26,9 @@ BdayaAdmin::Application.routes.draw do
         get "assign_task"
         post "save_assign_task"
       end
+    collection do
+      get :search
+    end
   end
 
   #matching for oauth only

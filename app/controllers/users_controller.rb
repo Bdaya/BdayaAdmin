@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except=> [:search]
   def home
     client = GOOGLE_CLIENT
     @auth_url = client.auth_code.authorize_url(
@@ -117,4 +117,14 @@ class UsersController < ApplicationController
     redirect_to sent_tasks_path
   end
 
+  def search
+    query = params[:q]
+    users = []
+    if query
+      User.only(:name,:id).where(name: /#{query}/i).all.each do |user|
+        users << {id:user.id,name:user.name}
+      end
+    end
+    render json: users
+  end    
 end
