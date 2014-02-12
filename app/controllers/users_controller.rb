@@ -105,17 +105,17 @@ class UsersController < ApplicationController
     @crit = @user.get_crit
   end
 
-  def assign_task
-    @task = Task.new
-  end
+  # def assign_task
+  #   @task = Task.new
+  # end
 
-  def save_assign_task
-    @user = User.find(params[:task][:user_id])
-    @task = current_user.assign_task(@user, params[:task][:deadline], params[:task][:title], params[:task][:details])
-    #@task.responsible_user = User.find(params[:task][:user_id])
-    #@task.save
-    redirect_to sent_tasks_path
-  end
+  # def save_assign_task
+  #   @user = User.find(params[:task][:user_id])
+  #   @task = current_user.assign_task(@user, params[:task][:deadline], params[:task][:title], params[:task][:details])
+  #   #@task.responsible_user = User.find(params[:task][:user_id])
+  #   #@task.save
+  #   redirect_to sent_tasks_path
+  # end
 
   def search
     query = params[:q]

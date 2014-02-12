@@ -145,9 +145,46 @@ class User
     return tasks
   end
 
-  def get_sent_tasks
-    tasks = self.created_tasks
+  def get_today_sent_tasks
+    self.created_tasks.where(:deadline => DateTime.now.to_date).asc(:deadline)
   end
+
+  def get_tomorrow_sent_tasks
+    self.created_tasks.where(:deadline => DateTime.now.tomorrow.to_date).asc(:deadline)
+  end
+
+  def get_week_sent_tasks
+    tasks = []
+    self.created_tasks.asc(:deadline).each do |t|
+      if(t.deadline > DateTime.now.tomorrow.to_date && t.deadline <= DateTime.now.end_of_week.to_date - 2)
+        tasks << t
+      end
+    end
+    return tasks
+  end
+
+  def get_later_sent_tasks
+    tasks = []
+    self.created_tasks.asc(:deadline).each do |t|
+      if(t.deadline > DateTime.now.end_of_week.to_date - 2)
+        tasks << t
+      end
+    end
+    return tasks
+  end
+
+  def get_past_sent_tasks
+    tasks = []
+    self.created_tasks.asc(:deadline).each do |t|
+      if(t.deadline < DateTime.now.to_date)
+        tasks << t
+      end
+    end
+    return tasks
+  end
+  # def get_sent_tasks
+  #   tasks = self.created_tasks
+  # end
 
   def assign_task(member,deadline,title,details)
     t = Task.new
