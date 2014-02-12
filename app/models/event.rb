@@ -4,20 +4,25 @@ class Event
 
   field :name, :type => String
   field :description, :type => String
-  field :general_info, :type => String
-  field :booth_desgin, :type => String
-  field :poster, :type => String
-  field :teaser, :type => String
+  field :idea, :type => String
+  field :theme, :type => String
+  field :slogan, :type => String
+  field :location, :type => String
+  field :fb_url, :type => String
 
-  field :start_date, :type => DateTime
-  field :end_date, :type => DateTime
+  field :start_date, :type => Date
+  field :start_time, :type => String
+  field :end_date, :type => Date
+  field :end_time, :type => String
+
   field :approved, :type => Boolean
   field :marketing_campaign, :type => Hash
 
   has_and_belongs_to_many :cases
   belongs_to :committee
+  has_one :creator, class_name: 'User', inverse_of: :created_events
   has_one :project_manager, class_name: 'User', inverse_of: :managed_events
-  has_many :members, class_name: 'User', inverse_of: :members_of_events
+  has_and_belongs_to_many :members, class_name: 'User', inverse_of: :member_of_events
   has_many :requests
 
 end

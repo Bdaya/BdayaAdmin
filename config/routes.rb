@@ -4,6 +4,7 @@ BdayaAdmin::Application.routes.draw do
     get :invite_users
   end
   resources :requests
+  resources :events
   #to_be_modified
   get  '/sent_tasks' , to: "tasks#sent_tasks"
   resources :tasks do
