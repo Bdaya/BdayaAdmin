@@ -71,8 +71,9 @@ class User
 
   field :address, :type => String
   # field :progress, :type => Integer
-
-  attr_accessible :semester, :phone, :name, :major, :faculty, :tshirt_size, :address
+  
+  mount_uploader :image, ImageUploader
+  attr_accessible :semester, :phone, :name, :major, :faculty, :tshirt_size, :address, :image, :image_cache
 
   has_and_belongs_to_many :courses
   has_many :teaching_sessions, class_name: 'Session', inverse_of: :tutor

@@ -117,12 +117,24 @@ class UsersController < ApplicationController
   #   redirect_to sent_tasks_path
   # end
 
+  def update_image
+    @user = User.find(params[:id])
+    @user.update_attributes(params[:user])
+    redirect_to root_path
+  end
+
   def search
     query = params[:q]
     users = []
     if query
       User.only(:name,:id).where(name: /#{query}/i).all.each do |user|
-        users << {id:user.id,name:user.name}
+        unless (current_user && (current_user==user))
+          unless (user.image.url == nil)
+            users << {id:user.id,name:user.name, image: user.image.url}
+          else
+            users << {id:user.id,name:user.name, image: nil}
+          end
+        end
       end
     end
     render json: users

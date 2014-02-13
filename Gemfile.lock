@@ -46,6 +46,14 @@ GEM
       bson (~> 1.9.2)
     builder (3.0.4)
     cancan (1.6.10)
+    carrierwave (0.9.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+    carrierwave-mongoid (0.6.3)
+      carrierwave (>= 0.8.0, < 0.10.0)
+      mongoid (>= 3.0, < 5.0)
+      mongoid-grid_fs (~> 1.3)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -101,12 +109,17 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_magick (3.5.0)
+      subexec (~> 0.2.1)
     mini_portile (0.5.2)
     mongoid (3.1.6)
       activemodel (~> 3.2)
       moped (~> 1.4)
       origin (~> 1.0)
       tzinfo (~> 0.3.29)
+    mongoid-grid_fs (1.9.0)
+      mime-types (~> 1.19)
+      mongoid (~> 3.0)
     moped (1.5.1)
     multi_json (1.8.2)
     multi_xml (0.5.5)
@@ -163,6 +176,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    subexec (0.2.3)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
@@ -187,6 +201,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails (~> 1.1.1.11)
   bson_ext
   cancan
+  carrierwave-mongoid
   coffee-rails (~> 3.2.1)
   devise
   devise_invitable
@@ -198,6 +213,7 @@ DEPENDENCIES
   jquery-timepicker-rails
   lazy_high_charts
   less-rails
+  mini_magick (~> 3.5.0)
   mongoid
   omniauth
   rails (= 3.2.11)

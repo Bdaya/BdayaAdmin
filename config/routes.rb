@@ -29,6 +29,9 @@ BdayaAdmin::Application.routes.draw do
     collection do
       get :search
     end
+    member do
+      post :update_image
+    end
   end
 
   #matching for oauth only
