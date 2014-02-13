@@ -18,4 +18,10 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
 //= require_tree .
-
+$(function() {
+  $("#user-search").tokenInput("/users/search.json", {
+    crossDomain: false,
+    prePopulate: $("#user-search").data("pre"),
+    theme: "facebook"
+  });
+});

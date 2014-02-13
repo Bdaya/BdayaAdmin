@@ -22,7 +22,9 @@
 
 	.form-group
 		.col.col-xs-3= f.label "Attendees"
-		= f.collection_select :attendee_ids, User.excludes(:id => current_user.id).order_by(:name.asc), :id, :name,{},{multiple: true}
+		= f.text_field :attendee_ids, :id => 'user-search'
+
+		/ = f.collection_select :attendee_ids, User.excludes(:id => current_user.id).order_by(:name.asc), :id, :name,{},{multiple: true}
 
 	.form-group
 		.col.col-xs-3
