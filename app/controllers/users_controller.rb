@@ -125,18 +125,18 @@ class UsersController < ApplicationController
 
   def search
     query = params[:q]
-    users = []
+    @users = []
     if query
       User.only(:name,:id).where(name: /#{query}/i).all.each do |user|
         unless (current_user && (current_user==user))
           unless (user.image.url == nil)
-            users << {id:user.id,name:user.name, image: user.image.url}
+            @users << {id:user.id,name:user.name, image: user.image.url}
           else
-            users << {id:user.id,name:user.name, image: nil}
+            @users << {id:user.id,name:user.name, image: nil}
           end
         end
       end
     end
-    render json: users
+    render :partial => 'userSearch'
   end    
 end

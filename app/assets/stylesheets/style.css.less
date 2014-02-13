@@ -121,6 +121,7 @@ h3 {
 .row, .col{
 	margin: 0px;
 	padding: 0px;
+	position: relative;
 }
 
 .modal {
@@ -147,4 +148,46 @@ form {
 		max-height: 100px;
 		max-width: 300px;
 	}
+}
+.form-group {
+	margin-bottom: 10px;
+}
+
+
+.user-search-results {
+	position: absolute;
+	top: 30px;
+	left: 0px;
+	list-style-type: none;
+	margin: 0px;
+	padding: 10px;
+	width: 300px;
+	max-height: 200px;
+	z-index: 1000;
+	overflow-y: auto;
+
+	background-color: @color2;
+	border: 1px solid @color-border;
+
+	li {
+		margin: 0px;
+		padding: 0px;
+		display: inline-block;
+		text-align: center;
+
+		&:hover, &.selected {
+			opacity: 0.6;
+		}
+
+		.pp {
+			margin: 5px;
+			display: inline-block;
+			img {
+				width: 50px;
+				height: 50px;
+				border-radius: 50px;
+			}
+		}
+	}
+
 }

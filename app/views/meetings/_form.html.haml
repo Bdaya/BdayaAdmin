@@ -1,33 +1,30 @@
 = form_for @meeting, :html => {:role => 'form'} do |f|
-	
-	.form-group
+
+	.form-group.row
 		.col.col-xs-3= f.label "Meeting Title"
-		= f.text_field :title
+		.col.col-xs-9= f.text_field :title
 
-	.form-group
+	.form-group.row
 		.col.col-xs-3= f.label "Meeting Description"
-		= f.text_area :description
+		.col.col-xs-9= f.text_area :description
 
-	.form-group
+	.form-group.row
 		.col.col-xs-3= f.label :time
-		= f.text_field :time, :'data-behaviour' => 'timepicker'
+		.col.col-xs-9= f.text_field :time, :'data-behaviour' => 'timepicker'
 
-	.form-group
+	.form-group.row
 		.col.col-xs-3= f.label :date
-		= f.text_field :date, :'data-behaviour' => 'datepicker'
+		.col.col-xs-9= f.text_field :date, :'data-behaviour' => 'datepicker'
 
-	.form-group
+	.form-group.row
 		.col.col-xs-3= f.label "Notes For Logistics"
-		= f.text_field :location
+		.col.col-xs-9= f.text_field :location
 
-	.form-group
+	.form-group.row
 		.col.col-xs-3= f.label "Attendees"
-		= f.text_field :attendee_ids, :id => 'user-search'
+		.col.col-xs-9= f.collection_select :attendee_ids, User.order_by(:name.asc), :id, :name,{},{multiple: true, class: 'user-search'}
 
-		/ = f.collection_select :attendee_ids, User.excludes(:id => current_user.id).order_by(:name.asc), :id, :name,{},{multiple: true}
-
-	.form-group
-		.col.col-xs-3
-		= f.submit :class => 'button'
+	.form-group.row
+		.col.col-xs-9= f.submit :class => 'button'
 		-if !@meeting.new_record
 			.button.red= link_to 'Delete', @meeting, :method => 'delete'
