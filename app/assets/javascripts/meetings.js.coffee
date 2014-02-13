@@ -15,6 +15,8 @@ $(document).ready ->
 			url: url
 			success: (data)->
 				$('#details').html data
+				#Load userSearch plugin *****FIX THIS******
+				$('form').find('.user-search').userSearch()
 
 	# Select the clicked meeting.
 	$('#meetings').on 'click touchstart', '.meeting', ->
