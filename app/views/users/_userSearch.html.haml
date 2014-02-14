@@ -1,0 +1,5 @@
+%ul.user-search-results
+	-@users.each do |user|
+		%li.user{:'data-value' => user[:id]}
+			.pp= image_tag 'pp.png', alt: 'logo'
+			.name= user[:name]
