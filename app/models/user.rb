@@ -123,7 +123,7 @@ class User
   def get_week_tasks
     tasks = []
     self.tasks_responsible_for.asc(:deadline).each do |t|
-      if(t.deadline > DateTime.now.tomorrow.to_date && t.deadline <= DateTime.now.end_of_week.to_date - 2)
+      if(t.deadline != DateTime.now.to_date && t.deadline != DateTime.now.tomorrow.to_date && t.deadline > DateTime.now.tomorrow.to_date && t.deadline <= DateTime.now.end_of_week.to_date - 2)
         tasks << t
       end
     end
@@ -133,7 +133,7 @@ class User
   def get_later_tasks
     tasks = []
     self.tasks_responsible_for.asc(:deadline).each do |t|
-      if(t.deadline > DateTime.now.end_of_week.to_date - 2)
+      if(t.deadline != DateTime.now.to_date && t.deadline != DateTime.now.tomorrow.to_date && t.deadline > DateTime.now.end_of_week.to_date - 2)
         tasks << t
       end
     end
@@ -161,7 +161,7 @@ class User
   def get_week_sent_tasks
     tasks = []
     self.created_tasks.asc(:deadline).each do |t|
-      if(t.deadline > DateTime.now.tomorrow.to_date && t.deadline <= DateTime.now.end_of_week.to_date - 2)
+      if(t.deadline != DateTime.now.to_date && t.deadline != DateTime.now.tomorrow.to_date && t.deadline > DateTime.now.tomorrow.to_date && t.deadline <= DateTime.now.end_of_week.to_date - 2)
         tasks << t
       end
     end
@@ -171,7 +171,7 @@ class User
   def get_later_sent_tasks
     tasks = []
     self.created_tasks.asc(:deadline).each do |t|
-      if(t.deadline > DateTime.now.end_of_week.to_date - 2)
+      if(t.deadline != DateTime.now.to_date && t.deadline != DateTime.now.tomorrow.to_date && t.deadline > DateTime.now.end_of_week.to_date - 2)
         tasks << t
       end
     end
@@ -260,13 +260,13 @@ class User
   def get_week_meetings
     meetings = []
     self.attending_meetings.each do |m|
-      if (m.date > DateTime.now.tomorrow.to_date && m.date <= DateTime.now.end_of_week.to_date - 2)
+      if (m.date != DateTime.now.to_date && m.date != DateTime.now.tomorrow.to_date && m.date > DateTime.now.tomorrow.to_date && m.date <= DateTime.now.end_of_week.to_date - 2)
         meetings << m
       end
     end  
 
     self.created_meetings.each do |m|
-      if (m.date > DateTime.now.tomorrow.to_date && m.date <= DateTime.now.end_of_week.to_date - 2)
+      if (m.date != DateTime.now.to_date && m.date != DateTime.now.tomorrow.to_date && m.date > DateTime.now.tomorrow.to_date && m.date <= DateTime.now.end_of_week.to_date - 2)
         meetings << m
       end
     end
@@ -277,13 +277,13 @@ class User
   def get_later_meetings
     meetings = []
     self.attending_meetings.each do |m|
-      if (m.date > DateTime.now.end_of_week.to_date - 2)
+      if (m.date != DateTime.now.to_date && m.date != DateTime.now.tomorrow.to_date && m.date > DateTime.now.end_of_week.to_date - 2)
         meetings << m
       end
     end  
 
     self.created_meetings.each do |m|
-      if (m.date > DateTime.now.end_of_week.to_date - 2)
+      if (m.date != DateTime.now.to_date && m.date != DateTime.now.tomorrow.to_date && m.date > DateTime.now.end_of_week.to_date - 2)
         meetings << m
       end
     end
