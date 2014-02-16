@@ -18,10 +18,14 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
 //= require_tree .
-$(function() {
-  $("#user-search").tokenInput("/users/search.json", {
-    crossDomain: false,
-    prePopulate: $("#user-search").data("pre"),
-    theme: "facebook"
-  });
-});
+
+function showhide(x) {
+  var ele = document.getElementById(x);
+  if (ele.style.display == "none"){
+    $('#'+x).slideDown();
+    // ele.style.display = 'block';
+  }else{
+    $('#'+x).slideUp();
+    // ele.style.display = 'none';
+  }
+}

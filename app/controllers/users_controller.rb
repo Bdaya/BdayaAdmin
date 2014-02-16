@@ -138,5 +138,5 @@ class UsersController < ApplicationController
       end
     end
     render :partial => 'userSearch'
-  end    
+  end
 end

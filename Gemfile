@@ -14,9 +14,8 @@ gem "bootstrap-datepicker-rails", "~> 1.1.1.11"
 gem 'jquery-timepicker-rails'
 gem "haml"
 
-gem "mini_magick", "~> 3.5.0"
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-
+gem 'carrierwave-mongoid', '0.6.0', :require => 'carrierwave/mongoid'
+gem "mini_magick", :require => 'carrierwave/processing/mini_magick'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
