@@ -24,5 +24,5 @@ class Event
   has_one :project_manager, class_name: 'User', inverse_of: :managed_events
   has_and_belongs_to_many :members, class_name: 'User', inverse_of: :member_of_events
   has_many :requests
-
+  has_many :event_images
 end
