@@ -13,6 +13,10 @@ class EventsController < ApplicationController
 		@events = Event.all.to_a
 	end
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
 	def delete
 		
 	end
@@ -23,7 +27,7 @@ class EventsController < ApplicationController
 
   def profile_picture
     event = Event.find(params[:id])
-    image = EventImage.find(params[:event_image_id])
+    image = EventImage.find(params[:image_id])
     EventImage.all.each do |img|
     	img.profile = false
     	img.save
@@ -33,9 +37,9 @@ class EventsController < ApplicationController
     redirect_to event, :notice => "Successfully made the Image the profile picture."
   end
 
-  def profile_picture
+  def cover_picture
     event = Event.find(params[:id])
-    image = EventImage.find(params[:event_image_id])
+    image = EventImage.find(params[:image_id])
     EventImage.all.each do |img|
     	img.cover = false
     	img.save
@@ -47,7 +51,7 @@ class EventsController < ApplicationController
 
   def add_image
     event = Event.find(params[:id])
-    EventImage.create(:img => params[:event][:image], :event => event)
+    EventImage.create(:image => params[:event][:image], :event => event)
     redirect_to event, :notice => "Successfully Added Image."
   end
 

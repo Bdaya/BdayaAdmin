@@ -6,5 +6,4 @@ class EventImage
   field :profile, :type => Boolean, :default => false
   field :cover, :type => Boolean, :default => false
   belongs_to :event
-
 end

@@ -1,1 +1,14 @@
-<%= render 'form' %>
+%h1
+	=@event.name
+%h2
+	="(#{@event.event_images.count} images)"
+= form_for(@event, :url => add_image_event_path(@event), :html => { :method => :post, :multipart => true }) do |f|
+	= f.file_field :image
+	= f.submit "Upload new Image"
+
+
+
+-@event.event_images.each do |img|
+	= image_tag img.image.url,:style =>"length:100px;width:100px;"
+	= link_to "Make Profile", profile_picture_event_path(@event,:image_id => img.id)
+	= link_to "Make Cover", cover_picture_event_path(@event,:image_id => img.id)

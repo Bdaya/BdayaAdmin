@@ -25,4 +25,12 @@ class Event
   has_and_belongs_to_many :members, class_name: 'User', inverse_of: :member_of_events
   has_many :requests
   has_many :event_images
+
+  def profile_pic
+    event_images.where(:profile => true).first
+  end
+
+  def cover_pic
+    event_images.where(:cover => true).first
+  end
 end
