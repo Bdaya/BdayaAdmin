@@ -40,7 +40,7 @@ BdayaAdmin::Application.configure do
     :port               => 587,
     :domain             => 'gmail.com', #you can also use google.com
     :authentication     => :plain,
-    user_name: 'testprez99',
+    user_name: 'testprez99@gmail.com',
     password: 'bd12345678'
   }
   config.action_mailer.default :charset => "utf-8"
