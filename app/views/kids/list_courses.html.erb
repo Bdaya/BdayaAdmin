@@ -1,0 +1,25 @@
+<h1><%= @kid.name + "\'s" %> Courses</h1>
+
+<table border="1">
+	<tr>
+	<th>Week</th>
+<% @courses.each do |course| %>
+	<th><%= link_to course.name, course %></th>
+<% end %>
+</tr>
+
+		
+
+				<% @courses.each do |course,i=1| %>
+				<tr>
+						<td><%= i %></td>	
+		<% course.course_grades.each do |g| %>
+			<td><%= g.grade %></td>
+		<% end %>
+		</tr>
+	<% end %>
+	
+
+	
+
+</table>

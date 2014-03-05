@@ -1,5 +1,14 @@
 BdayaAdmin::Application.routes.draw do
   
+  resources :courses
+
+
+  resources :kids do
+    member do
+      get :list_courses
+    end
+  end
+
   resources :meetings do
     get :invite_users
   end
