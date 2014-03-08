@@ -27,4 +27,14 @@ class Meeting
   # belongs_to :creator, class_name: "Member", inverse_of: :created_meetings
   has_and_belongs_to_many :attendees, class_name: "User", inverse_of: :attending_meetings
   # has_one :request
+
+  has_one :chat, class_name: "Discussion"
+
+  def get_discussion
+    return self.chat
+  end
+
+  def test
+    return self.chat.to_a[0].user_name
+  end
 end 

@@ -10,11 +10,14 @@ class MeetingsController < ApplicationController
     # The creation of a new model is in index view (inside the modal)
     @meeting = Meeting.new
     @request = Request.new
+    @chat = Meeting.first.test
   end
 
   def show
      @meeting = Meeting.find(params[:id])
      @request = Request.find_by(meeting_id: @meeting.id)
+     # @meeting = Meeting.find(params[:id])
+     # @chat = @meeting.test
 
      # Show Page is rendered in details partial
      render :partial => 'details'
@@ -83,6 +86,10 @@ class MeetingsController < ApplicationController
     if @meeting.destroy && @request.destroy
       redirect_to meetings_path
     end
+  end
+
+  def get_messages
+    @lala = "lalalalalalalla"
   end
 end
 
