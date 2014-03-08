@@ -74,7 +74,7 @@ class User
 
   attr_accessible :semester, :phone, :name, :major, :faculty, :tshirt_size, :address
 
-  has_and_belongs_to_many :courses
+  has_and_belongs_to_many :courses , class_name: 'Course', inverse_of: :tutors
   has_many :teaching_sessions, class_name: 'Session', inverse_of: :tutor
 
   has_many :created_notifications, class_name: 'Notification', inverse_of: :creator

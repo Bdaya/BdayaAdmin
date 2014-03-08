@@ -1,0 +1,32 @@
+<%= form_for(@session) do |f| %>
+  <% if @session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@session.errors.count, "error") %> prohibited this session from being saved:</h2>
+
+      <ul>
+      <% @session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="field" >
+<%= f.label :course %><br />
+<%= collection_select(:session, :course, Course.all, :id, :name) %>
+</div>
+<div class="field">
+<%= f.label :tutors %><br />
+<%= collection_select(:session, :tutor, Committee.where(title: "Academics").first.members , :id, :name) %>
+</div>
+
+
+
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+ 
+<% end %>

@@ -1,0 +1,28 @@
+<h1>Sessions</h1>
+
+<br/>
+<table border="1">
+  <tr>
+  <th>Course  </th>
+  <th>Tutor  </th>
+  
+ </tr>
+ <% if (Session.all.size != 0) %>
+ <% for s in Session.all %>
+   <tr>
+     <th><%= s.course.name %></th>
+     <th><%= s.tutor.name %></th>
+    
+     <th><%= link_to 'edit', edit_session_path(s.id) %></th> 
+    
+   </tr>
+   <% end %>
+
+  </table>
+
+<br/>
+<br/>
+<%end%>
+
+
+<%= link_to 'New Session', new_session_path %>

@@ -1,0 +1,2 @@
+module AcademicsHeadProfilesHelper
+end
