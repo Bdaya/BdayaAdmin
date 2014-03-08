@@ -8,10 +8,4 @@ class Discussion
 
   belongs_to :meeting, class_name: 'Meeting'
 
-  def self.post(user, message)
-  	discussion = Discussion.new
-  	discussion.user_name = user
-  	discussion.message = message
-  	discussion.save!
-  end
 end

@@ -28,9 +28,15 @@ class Meeting
   has_and_belongs_to_many :attendees, class_name: "User", inverse_of: :attending_meetings
   # has_one :request
 
-  has_one :chat, class_name: "Discussion"
+  has_many :chat, class_name: "Discussion"
 
-  def get_discussion
+  def post_message(username, message)
+    discussion  = Discussion.create(user_name:username, message:message)
+    self.chat << discussion
+    self.save!
+  end
+
+  def get_messages
     return self.chat
   end
 

@@ -50,6 +50,16 @@
           .pp= image_tag 'pp.png', alt: 'logo'
           =a.name
 
+      .discussion.content.hidden-scroll
+        .gap  
+        %table
+          %tbody
+            -@meeting.chat.each do |msg|
+              %tr
+                %td=msg.user_name
+                %td=":"
+                %td=msg.message
+
 
 
   #updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
