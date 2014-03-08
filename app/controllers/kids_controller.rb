@@ -81,8 +81,21 @@ class KidsController < ApplicationController
     end
   end
 
+  def update_grades
+    @kid = Kid.find(params[:id])
+
+  end
+
   def list_courses
     @kid = Kid.find(params[:id])
     @courses = @kid.courses
+
+    #  @week = 1
+    #time = ((Time.now - @courses.last.course_grades.last.created_at)/(60*60*24)).to_i
+    #if (time > 7)
+    #  @week =+ 1
+    #else
+    #    render(:text => "Evaluation for kids courses is inaccessible right now! Only #{time} day(s) has passed.")
+    #  end
   end
 end

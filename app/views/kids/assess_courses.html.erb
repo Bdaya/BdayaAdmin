@@ -1,18 +1,21 @@
-<h1><%= @kid.name + "\'s" %> Courses</h1>
+<h1><%= @kid.name + "\'s" %> Assessments</h1>
 
+<table border="1">
 
- <table border="1">
 <tr>
+
 <% @courses.each do |course| %>
 	<th><%= link_to course.name, course %></th>
 <% end %>
 </tr>
+
+
 <tr>
 <% @courses.each do |course| %>
 	<% course.course_grades.each do |g| %>
 		<td><form action="~~">
 		<select name="grades">
-			<option value="<%= g.grade %>" selected="selected"><%= g.grade %></option>
+			<option value="<%= g.grade %>" selected><%= g.grade %></option>
 			<option value="" disabled="disabled">---</option>
 			<option value="1">1</option>
 			<option value="2">2</option>
@@ -30,5 +33,5 @@
 <% end %>
 </tr>
 </table>
-	<input type="submit" value="Update" style="margin-left:81px;">
+	<input type="submit" value="Save" style="margin-left:81px;">
 	</form>
