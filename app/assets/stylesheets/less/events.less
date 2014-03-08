@@ -1,0 +1,102 @@
+.event {
+	position: relative;
+	min-height: 100%;
+
+	@cover-height: 200px;
+	.cover {
+		position: relative;
+		height: @cover-height;
+		text-align: center;
+
+		border-bottom: 1px solid @color-border;
+
+		background: url('/assets/event-cover.png') center center;
+		background-size: cover;
+
+		.name {
+			background-color: @color1;
+			display: inline-block;
+			color: white;
+
+			margin-top: 50px;
+
+			padding: 15px 20px 15px 20px;
+
+			font-size: 24px;
+		}
+
+		.slogan {
+			margin: 5px;
+			font-size: 18px;
+		}
+
+		.pp {
+			width: 150px;
+			height: 200px;
+
+			border: 3px solid white;
+			display: inline-block;
+			overflow: hidden;
+
+			background-color: @color2light;
+
+			position: absolute;
+			left: 25px;
+			top: 20px;
+			z-index: 100;
+			
+
+			img {
+				width: 100%;
+			}
+		}
+	}
+
+	@side-width: 200px;
+	.side {
+		position: absolute;
+		text-align: center;
+		width: @side-width;
+
+		overflow-x: hidden;
+
+		left: 0px; top: @cover-height + ; bottom: 0px;
+
+		background-color: @color2light;
+		border-right: 1px solid @color-border;
+
+		.hidden-scroll {
+			padding-top: 20px;
+		}
+
+		.datetime {
+			text-align: left;
+			padding: 13px;
+
+			border-bottom: 1px solid @color-border;
+
+			h5 {
+				margin-bottom: 10px;
+				text-align: center;
+			}
+			.day, .month, .year, .time, .ampm {
+				font-size: 24px;
+				font-weight: 300;
+			}
+			.day, .time {color: @color1;}
+			.month, .ampm {color: @color2dark;}
+			.year {color: #959595;}
+
+			.fa {
+				font-size: 14px;
+				margin: 0px 10px 0px 0px;
+				color: @color2dark;
+			}
+		}
+	}
+
+	.main {
+		padding: @padding;
+		margin-left: @side-width;
+	}
+}

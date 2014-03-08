@@ -1,14 +1,53 @@
-%h1
-	=@event.name
-%h2
-	="(#{@event.event_images.count} images)"
-= form_for(@event, :url => add_image_event_path(@event), :html => { :method => :post, :multipart => true }) do |f|
-	= f.file_field :image
-	= f.submit "Upload new Image"
+.event
+	.cover
+		.name event
+		.slogan slogan
+
+		.pp= image_tag 'event-cover.png', alt: 'logo'
 
 
+	.side
+		.hidden-scroll
+			.datetime.start
+				%h5 Starts
+				.date
+					%span.fa.fa-calendar
+					%span.day Thu 12
+					%span.month Oct
+					%span.year 14
+				.time
+					%span.fa.fa-clock-o
+					%span.time 10:00
+					%span.ampm am
 
--@event.event_images.each do |img|
-	= image_tag img.image.url,:style =>"length:100px;width:100px;"
-	= link_to "Make Profile", profile_picture_event_path(@event,:image_id => img.id)
-	= link_to "Make Cover", cover_picture_event_path(@event,:image_id => img.id)
+			.datetime.ends
+				%h5 Ends
+				.date
+					%span.fa.fa-calendar
+					%span.day Thu 14
+					%span.month Oct
+					%span.year 14
+				.time
+					%span.fa.fa-clock-o
+					%span.time 4:00
+					%span.ampm pm
+	.main
+		%ul.nav.nav-tabs
+			%li.active
+				%a{:href=> '#info', :data=> {:toggle=> 'tab'}} Info
+			%li
+				%a{:href=> '#design', :data=> {:toggle=> 'tab'}} Design
+			%li
+				%a{:href=> "#logistics", :data=> {:toggle=> 'tab'}} Logistics
+			%li
+				%a{:href=> "#log", :data=> {:toggle=> 'tab'}} Log
+
+		.tab-content
+			#info.tab-pane.active
+				= render :partial => 'info'
+			#design.tab-pane
+				= render :partial => 'design'
+			#logistics.tab-pane
+				= render :partial => 'logistics'
+			#log.tab-pane
+				= render :partial => 'log'
