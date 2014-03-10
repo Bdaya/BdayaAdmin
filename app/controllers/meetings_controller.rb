@@ -48,6 +48,9 @@ class MeetingsController < ApplicationController
     @request.roomnumber = @meeting.location
 
     if (@meeting.save && @request.save)
+      @meeting.attendees.each do |a|
+        Attendance.create_attendance(@meeting,a)   
+      end
       redirect_to action: 'index'
     else
       @meeting.destroy
@@ -71,6 +74,11 @@ class MeetingsController < ApplicationController
     end
 
     if (@meeting.update_attributes(params[:meeting]) && @request.save)
+      @meeting.attendees.each do |a|
+        if(!a.has_meeting_attendance(@meeting))
+          Attendance.create_attendance(@meeting,a)
+        end   
+      end
       redirect_to action: 'index', notice: 'Meeting was successfully updated.'
     else
       render action: "edit"
@@ -84,6 +92,13 @@ class MeetingsController < ApplicationController
       redirect_to meetings_path
     end
   end
+end
+
+def set_attendance
+  @user = User.find(params[:user_id])
+  @meeting = Meeting.find(params[:id])
+  @user.set_meeting_attendance(@meeting,params[:attendance_status])
+  redirect_to meetings_path
 end
 
 private #---------------------------------------------------------------------------------
