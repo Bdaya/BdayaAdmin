@@ -57,19 +57,19 @@
             =a.name
             .aten   
               -if(a.is_meeting_attendance(@meeting,"attended"))
-                .attFilledButton.green= link_to 'AT', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "attended", :meeting_id=>@meeting.id
+                .attButton.greenFilled= link_to "AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended")
               -else
-                .attButton.green= link_to 'AT', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "attended", :meeting_id=>@meeting.id
+                .attButton.green= link_to "AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended")
 
               -if(a.is_meeting_attendance(@meeting,"absent"))
-                .attFilledButton.red= link_to 'AB', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "absent", :meeting_id=>@meeting.id
+                .attButton.redFilled= link_to "AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent")
               -else
-                .attButton.red= link_to 'AB', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "absent", :meeting_id=>@meeting.id
+                .attButton.red= link_to "AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent")
                 
               -if(a.is_meeting_attendance(@meeting,"excused"))
-                .attFilledButton.blue= link_to 'EX', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "excused", :meeting_id=>@meeting.id
+                .attButton.orangeFilled= link_to "EX", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused")
               -else
-                .attButton.blue= link_to 'EX', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "excused", :meeting_id=>@meeting.id
+                .attButton.orange= link_to "EX", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused")
                 
 
 

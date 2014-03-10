@@ -70,30 +70,6 @@ h3 {
 	}
 }
 
-.attFilledButton {
-	color: @color1;
-	background-color: @color1;
-	border: 1px solid @color1;
-	font-size: 18px;
-	font-weight: 200;
-	padding: 0px 10px 0px 10px;
-	margin: 0px;
-	display: inline-block;
-	cursor: pointer;
-	vertical-align: middle;
-
-	&:hover {
-		background-color: @color1;
-		color: white;
-		a {
-			color: white;
-		}
-	}
-	a {
-		color: inherit;
-	}
-}
-
 .button {
 	color: @color1;
 	background-color: white;
@@ -125,6 +101,34 @@ h3 {
 		background-color: red;
 	}
 }
+
+.redFilled {
+	color: white;
+	border-color: red;
+	background-color: red;
+
+	&:hover {
+		background-color: red;
+	}
+}
+.orange {
+	color: orange;
+	border-color: orange;
+
+	&:hover {
+		background-color: orange;
+	}
+}
+
+.orangeFilled {
+	color: white;
+	border-color: orange;
+	background-color: orange;
+
+	&:hover {
+		background-color: orange;
+	}
+}
 .green {
 	color: #97bf0d;
 	border-color: #97bf0d;
@@ -133,7 +137,15 @@ h3 {
 		background-color: #97bf0d;
 	}
 }
+.greenFilled {
+	color: white;
+	border-color: #97bf0d;
+	background-color: #97bf0d;
 
+	&:hover {
+		background-color: #97bf0d;
+	}
+}
 .nav-tabs {
 	margin: 0px 0px 10px 0px;
 	padding: 0px;
