@@ -53,6 +53,7 @@
               = image_tag a.image.url
             - else
               = image_tag "logo.png", alt: 'logo'
+              %br
             =a.name
             .aten   
               -if(a.is_meeting_attendance(@meeting,"attended"))
