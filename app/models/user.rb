@@ -1,6 +1,7 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Authority::UserAbilities
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable, :registerable
@@ -306,6 +307,10 @@ class User
     end
     meetings.sort! { |a,b| a.date <=> b.date }
     return meetings
+  end
+
+  def head?
+    head_of_committee != nil
   end
 
 end

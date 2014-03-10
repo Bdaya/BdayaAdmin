@@ -4,18 +4,20 @@ ruby '1.9.3'
 
 gem 'rails', '3.2.11'
 gem 'mongoid'
-gem "cancan"
+gem 'cancan'
 gem 'omniauth'
 gem 'bson_ext'
 gem 'google_drive'
 gem 'devise'
 gem 'devise_invitable'
-gem "bootstrap-datepicker-rails", "~> 1.1.1.11"
+gem 'bootstrap-datepicker-rails', '~> 1.1.1.11'
 gem 'jquery-timepicker-rails'
-gem "haml"
+gem 'haml'
+gem 'authority'
+gem 'rolify'
 
 gem 'carrierwave-mongoid', '0.6.0', :require => 'carrierwave/mongoid'
-gem "mini_magick", :require => 'carrierwave/processing/mini_magick'
+gem 'mini_magick', :require => 'carrierwave/processing/mini_magick'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

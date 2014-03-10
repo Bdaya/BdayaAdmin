@@ -4,4 +4,8 @@ class MeetingAuthorizer < ApplicationAuthorizer
     user.head?
   end
 
+  def self.readable_by?(user)
+    true
+  end
+
 end
