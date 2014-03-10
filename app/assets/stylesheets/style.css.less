@@ -46,6 +46,54 @@ h3 {
 	font-weight: 200;
 }
 
+.attButton {
+	color: @color1;
+	background-color: white;
+	border: 1px solid @color1;
+	font-size: 18px;
+	font-weight: 200;
+	padding: 0px 5px 0px 5px;
+	margin: 0px;
+	display: inline-block;
+	cursor: pointer;
+	vertical-align: middle;
+
+	&:hover {
+		background-color: @color1;
+		color: white;
+		a {
+			color: white;
+		}
+	}
+	a {
+		color: inherit;
+	}
+}
+
+.attFilledButton {
+	color: @color1;
+	background-color: @color1;
+	border: 1px solid @color1;
+	font-size: 18px;
+	font-weight: 200;
+	padding: 0px 10px 0px 10px;
+	margin: 0px;
+	display: inline-block;
+	cursor: pointer;
+	vertical-align: middle;
+
+	&:hover {
+		background-color: @color1;
+		color: white;
+		a {
+			color: white;
+		}
+	}
+	a {
+		color: inherit;
+	}
+}
+
 .button {
 	color: @color1;
 	background-color: white;

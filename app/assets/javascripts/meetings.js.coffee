@@ -24,4 +24,7 @@ $(document).ready ->
 		$('#meetings').find('.meeting.selected').removeClass 'selected'
 		$(this).addClass("selected")
 
+
+	#$('.pp').popover('toggle')
+
 	return

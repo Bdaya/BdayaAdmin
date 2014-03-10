@@ -47,8 +47,29 @@
       .invites
         %h3 Invitees
         -@meeting.attendees.each do |a|
-          .pp= image_tag 'pp.png', alt: 'logo'
-          =a.name
+          .pp
+            /{:data=>{:container=>"body", :toggle=>"popover", :placement=>"top",:animation=>"trigger", :content=>"#{render :partial => 'attendanceForm', :locals => {:@user => current_user}}"}} 
+            - unless a.image.url == nil
+              = image_tag a.image.url
+            - else
+              = image_tag "logo.png", alt: 'logo'
+            =a.name
+            .aten   
+              -if(a.is_meeting_attendance(@meeting,"attended"))
+                .attFilledButton.green= link_to 'AT', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "attended", :meeting_id=>@meeting.id
+              -else
+                .attButton.green= link_to 'AT', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "attended", :meeting_id=>@meeting.id
+
+              -if(a.is_meeting_attendance(@meeting,"absent"))
+                .attFilledButton.red= link_to 'AB', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "absent", :meeting_id=>@meeting.id
+              -else
+                .attButton.red= link_to 'AB', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "absent", :meeting_id=>@meeting.id
+                
+              -if(a.is_meeting_attendance(@meeting,"excused"))
+                .attFilledButton.blue= link_to 'EX', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "excused", :meeting_id=>@meeting.id
+              -else
+                .attButton.blue= link_to 'EX', @meeting, :method => 'set_attendance', :user_id => a.id, :attendance_status => "excused", :meeting_id=>@meeting.id
+                
 
 
 
