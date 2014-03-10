@@ -1,6 +1,7 @@
 class Meeting
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Authority::Abilities
 
 	field :time, :type => DateTime
 	field :location, :type => String
@@ -10,6 +11,9 @@ class Meeting
 	belongs_to :creator, class_name: 'User', inverse_of: :created_meetings
 	# has_and_belongs_to_many :invitees, class_name: 'User', inverse_of: :meetings_invited_to
 	has_one :request
+
+  #Authorizer
+  self.authorizer_name = 'MeetingAuthorizer'
 
 
   # field :title, type: String

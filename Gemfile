@@ -4,14 +4,16 @@ ruby '1.9.3'
 
 gem 'rails', '3.2.11'
 gem 'mongoid'
-gem "cancan"
+gem 'cancan'
 gem 'omniauth'
 gem 'bson_ext'
 gem 'google_drive'
 gem 'devise'
 gem 'devise_invitable'
-gem "bootstrap-datepicker-rails", "~> 1.1.1.11"
-gem "bootstrap-datetimepicker-rails", "~> 0.0.11"
+gem 'bootstrap-datepicker-rails', '~> 1.1.1.11'
+gem 'bootstrap-datetimepicker-rails', '~> 0.0.11'
+gem 'authority'
+gem 'rolify'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
