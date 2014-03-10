@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!, :except=> [:search]
+ # before_filter :authenticate_user!, :except=> [:search]
   def home
     client = GOOGLE_CLIENT
     @auth_url = client.auth_code.authorize_url(
