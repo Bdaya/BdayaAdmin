@@ -83,19 +83,36 @@ class KidsController < ApplicationController
 
   def update_grades
     @kid = Kid.find(params[:id])
+    @courses = @kid.courses
 
+    @courses.each do |course|
+      if(params["#{course.name}"])
+        CourseGrade.create(:course => course, :kid => @kid, :grade => params["#{course.name}"])
+      end
+    end
+
+    redirect_to kids_url
   end
+
+
 
   def list_courses
     @kid = Kid.find(params[:id])
     @courses = @kid.courses
 
-    #  @week = 1
+    @week =  CourseGrade.where(:kid => @kid, :course => @kid.courses.first).count
+
+    @courses.each do |course|
+      if(@week == 0)
+        CourseGrade.create(:course => course, :kid => @kid)
+      end
+    end
+    
     #time = ((Time.now - @courses.last.course_grades.last.created_at)/(60*60*24)).to_i
     #if (time > 7)
-    #  @week =+ 1
+      #@week =+ 1
     #else
-    #    render(:text => "Evaluation for kids courses is inaccessible right now! Only #{time} day(s) has passed.")
-    #  end
+     #   render(:text => "Evaluation for kids courses is inaccessible right now! Only #{time} day(s) has passed.")
+      #end
   end
 end
