@@ -104,8 +104,9 @@ class MeetingsController < ApplicationController
 def send_message
   @meeting = Meeting.find(params[:id])
   @user = current_user.name
-  @message = Meeting.find(params[:message])
+  @message = params[:message]
   @meeting.post_message(@user,@message)
+  redirect_to meetings_path
 end
 
 end
