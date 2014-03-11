@@ -10,9 +10,9 @@
 					- unless current_user.image.url == nil
 						= image_tag current_user.image.url
 					- else
-						= image_tag "pp.png", alt: 'logo'
+						= image_tag "logo.png", alt: 'logo'
 			- else
-				= image_tag "pp.png", alt: 'logo'
+				= image_tag "logo.png", alt: 'logo'
 
 			- if current_user
 				%div{id:'update_image',style:'display:none;'}

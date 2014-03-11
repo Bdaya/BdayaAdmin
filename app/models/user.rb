@@ -86,7 +86,8 @@ class User
   #has_and_belongs_to_many :meetings_invited_to, class_name: 'Meeting', inverse_of: :invitees
   has_and_belongs_to_many :attending_meetings, class_name: "Meeting", inverse_of: :attendees
   has_many :created_meetings, class_name: 'Meeting', inverse_of: :creator
-  
+  has_many :attendances
+
   has_and_belongs_to_many :tasks
 
   has_many :created_requests, class_name: 'Request', inverse_of: :creator
@@ -306,6 +307,21 @@ class User
     end
     meetings.sort! { |a,b| a.date <=> b.date }
     return meetings
+  end
+
+  def is_meeting_attendance(m,s)
+    a = self.attendances.where(:meeting_id => m.id).first
+    return a.status == s
+  end
+
+  def has_meeting_attendance(m)
+   return self.attendances.where(:meeting_id => m.id).count > 0
+  end
+ 
+  def set_meeting_attendance(m,s)
+    a = self.attendances.where(:meeting_id => m.id).first
+    a.status = s
+    a.save
   end
 
 end

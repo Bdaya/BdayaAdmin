@@ -28,6 +28,7 @@ class Meeting
   has_and_belongs_to_many :attendees, class_name: "User", inverse_of: :attending_meetings
   # has_one :request
 
+  has_many :attendances
   has_many :chat, class_name: "Discussion"
 
   def post_message(username, message)
@@ -43,4 +44,5 @@ class Meeting
   def test
     return self.chat.to_a[0].user_name
   end
+
 end 

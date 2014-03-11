@@ -47,8 +47,30 @@
       .invites
         %h3 Invitees
         -@meeting.attendees.each do |a|
-          .pp= image_tag 'pp.png', alt: 'logo'
-          =a.name
+          .pp
+            /{:data=>{:container=>"body", :toggle=>"popover", :placement=>"top",:animation=>"trigger", :content=>"#{render :partial => 'attendanceForm', :locals => {:@user => current_user}}"}} 
+            - unless a.image.url == nil
+              = image_tag a.image.url
+            - else
+              = image_tag "logo.png", alt: 'logo'
+              %br
+            =a.name
+            .aten   
+              -if(a.is_meeting_attendance(@meeting,"attended"))
+                .attButton.greenFilled= link_to "AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended")
+              -else
+                .attButton.green= link_to "AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended")
+
+              -if(a.is_meeting_attendance(@meeting,"absent"))
+                .attButton.redFilled= link_to "AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent")
+              -else
+                .attButton.red= link_to "AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent")
+                
+              -if(a.is_meeting_attendance(@meeting,"excused"))
+                .attButton.orangeFilled= link_to "EX", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused")
+              -else
+                .attButton.orange= link_to "EX", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused")
+                
 
       .discussion.content.hidden-scroll
         .gap  
@@ -59,8 +81,6 @@
                   %td=msg.user_name
                   %td=":"
                   %td=msg.message
-          =form_for @meeting, :url => url_for(:controller => 'meetings_controller', :action => 'send_message')
-
 
 
 

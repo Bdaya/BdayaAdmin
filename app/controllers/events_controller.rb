@@ -5,8 +5,13 @@ class EventsController < ApplicationController
 	end
 
 	def create
-		Event.create!(params[:event])
-		redirect_to action: "index"
+		@event = Event.create!(params[:event])
+
+    if @event.save
+        redirect_to action:'index' , noitce: "Event Created succssfully"
+    else
+        render 'new'
+    end
 	end
 
 	def index
