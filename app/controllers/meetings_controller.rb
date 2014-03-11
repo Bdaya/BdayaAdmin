@@ -92,6 +92,14 @@ class MeetingsController < ApplicationController
   def get_messages
     @lala = "lalalalalalalla"
   end
+
+def send_message
+  @meeting = Meeting.find(params[:id])
+  @user = current_user.name
+  @message = Meeting.find(params[:message])
+  @meeting.post_message(@user,@message)
+end
+
 end
 
 private #---------------------------------------------------------------------------------

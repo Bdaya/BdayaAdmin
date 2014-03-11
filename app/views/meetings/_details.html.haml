@@ -52,13 +52,15 @@
 
       .discussion.content.hidden-scroll
         .gap  
-        %table
-          %tbody
-            -@meeting.chat.each do |msg|
-              %tr
-                %td=msg.user_name
-                %td=":"
-                %td=msg.message
+          %table
+            %tbody
+              -@meeting.chat.each do |msg|
+                %tr
+                  %td=msg.user_name
+                  %td=":"
+                  %td=msg.message
+          =form_for @meeting, :url => url_for(:controller => 'meetings_controller', :action => 'send_message')
+
 
 
 
