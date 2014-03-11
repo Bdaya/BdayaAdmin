@@ -6,6 +6,7 @@ BdayaAdmin::Application.routes.draw do
   resources :kids do
     member do
       get :list_courses
+      post :update_grades
     end
   end
 

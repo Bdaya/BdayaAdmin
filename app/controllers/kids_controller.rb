@@ -106,7 +106,7 @@ class KidsController < ApplicationController
         CourseGrade.create(:course => course, :kid => @kid)
       end
     end
-
+    
     #time = ((Time.now - @courses.last.course_grades.last.created_at)/(60*60*24)).to_i
     #if (time > 7)
       #@week =+ 1
