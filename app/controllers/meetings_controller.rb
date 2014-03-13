@@ -10,11 +10,15 @@ class MeetingsController < ApplicationController
     # The creation of a new model is in index view (inside the modal)
     @meeting = Meeting.new
     @request = Request.new
+    # @chat = Meeting.first.test
   end
 
   def show
      @meeting = Meeting.find(params[:id])
      @request = Request.find_by(meeting_id: @meeting.id)
+     # @meeting = Meeting.find(params[:id])
+     @chat = @meeting.get_messages
+     @items = [[1,  2,  3,  4,  5],[6,  7,  8,  9,  10],[11, 12, 13, 14, 15]]
 
      # Show Page is rendered in details partial
      render :partial => 'details'
@@ -92,6 +96,19 @@ class MeetingsController < ApplicationController
       redirect_to meetings_path
     end
   end
+
+  def get_messages
+    @lala = "lalalalalalalla"
+  end
+
+def send_message
+  @meeting = Meeting.find(params[:id])
+  @user = current_user.name
+  @message = params[:message]
+  @meeting.post_message(@user,@message)
+  redirect_to meetings_path
+end
+
 end
 
 def set_attendance

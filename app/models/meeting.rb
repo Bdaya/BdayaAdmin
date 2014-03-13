@@ -29,4 +29,20 @@ class Meeting
   # has_one :request
 
   has_many :attendances
+  has_many :chat, class_name: "Discussion"
+
+  def post_message(username, message)
+    discussion  = Discussion.create(user_name:username, message:message)
+    self.chat << discussion
+    self.save!
+  end
+
+  def get_messages
+    return self.chat
+  end
+
+  def test
+    return self.chat.to_a[0].user_name
+  end
+
 end 

@@ -72,7 +72,18 @@
                 .attButton.orange= link_to "EX", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused")
                 
 
-
+      .discussion.content.hidden-scroll
+        .gap  
+          %table
+            %tbody
+              -@meeting.chat.each do |msg|
+                %tr
+                  %td=msg.user_name
+                  %td=":"
+                  %td=msg.message
+              = form_tag(send_message_meeting_path(@meeting), method: :post) do
+                = text_area_tag :message, nil, rows: 3, cols: 25
+                = submit_tag "Send"
 
   #updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
     .modal-dialog

@@ -3,6 +3,7 @@ BdayaAdmin::Application.routes.draw do
   resources :meetings do
     get :invite_users
     member do
+      post :send_message
       post :set_attendance
     end
   end
