@@ -3,12 +3,21 @@ class Meeting
   include Mongoid::Timestamps
 
 	field :time, :type => String
+  validates_presence_of :time, :message=> "must be determined"
+
   field :date, :type => Date
+  validates_presence_of :date, :message=> "must be determined"
+
 	field :location, :type => String
 	field :meeting_minuts, :type => String
 	# field :meeting_type, :type => String #*************No need for meeting type
+
+
   field :description, :type => String
+  validates_presence_of :description, :message=> "must be entered"
+
   field :agenda, :type => String
+  
 
 	belongs_to :creator, class_name: 'User', inverse_of: :created_meetings
 	#has_and_belongs_to_many :invitees, class_name: 'User', inverse_of: :meetings_invited_to
@@ -16,7 +25,8 @@ class Meeting
 
 
   field :title, type: String
-
+  validates_presence_of :title, :message=> "must be entered"
+  validates_uniqueness_of :title, :message=> "must be unique"
   # field :meeting_minutes1, type: String
   # field :meeting_minutes2, type: String
   # field :meeting_minutes3, type: String
@@ -26,5 +36,7 @@ class Meeting
 
   # belongs_to :creator, class_name: "Member", inverse_of: :created_meetings
   has_and_belongs_to_many :attendees, class_name: "User", inverse_of: :attending_meetings
+  validates_presence_of :attendees, :message=> "must be choosen"
   # has_one :request
+ 
 end 

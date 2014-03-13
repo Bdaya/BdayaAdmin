@@ -32,7 +32,7 @@ class MeetingsController < ApplicationController
   def create
     #Causing error, no need for invites in creation a new meeting.
     # params[:meeting][:attendee_ids].shift
-    @meeting = Meeting.new(params[:meeting])    
+    @meeting = Meeting.new(params[:meeting])  
     @meeting.creator = current_user
     begin
       Time.parse(@meeting.time)
@@ -52,7 +52,7 @@ class MeetingsController < ApplicationController
     else
       @meeting.destroy
       @request.destroy
-      render action: "index" 
+      render  'new' 
     end
   end
 
