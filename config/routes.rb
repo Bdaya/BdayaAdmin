@@ -2,6 +2,10 @@ BdayaAdmin::Application.routes.draw do
   
   resources :meetings do
     get :invite_users
+    member do
+      post :send_message
+      post :set_attendance
+    end
   end
   resources :requests
   resources :events do
@@ -9,6 +13,9 @@ BdayaAdmin::Application.routes.draw do
       post :add_image
       get :profile_picture
       get :cover_picture
+      get :requests
+      post :new_materials
+      post :new_permissions
     end
   end
   #to_be_modified

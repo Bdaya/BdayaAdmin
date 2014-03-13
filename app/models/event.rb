@@ -33,4 +33,13 @@ class Event
   def cover_pic
     event_images.where(:cover => true).first
   end
+
+  def get_materials_requests
+    self.requests.where(request_type: 'materials').desc(:time).to_a
+  end
+
+  def get_permissions_requests
+    self.requests.where(request_type: 'permissions').desc(:time).to_a
+  end
+
 end
