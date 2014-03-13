@@ -1,44 +1,176 @@
-<p id="notice"><%= notice %></p>
-
+<p id="notice"> <%= notice %> </p>
+<p> <img src= <%= @user.image%> , alt <%= @user.name%> => </p>
 <p>
-  <b>Name:</b>
+  <h5>Name:</h5>
   <%= @user.name%>
 </p>
 
 <p>
-  <b>Phone Number:</b>
+  <h5>Phone Number:</h5>
   <%= @user.phone %>
 </p>
 
 <p>
-  <b>Major:</b>
+  <h5>Major:</h5>
   <%= @user.major %>
 </p>
+
 <p>
-  <b>Faculty:</b>
+  <h5>Faculty:</h5>
   <%= @user.faculty %>
 </p>
+
 <p>
-  <b>Semester:</b>
+  <h5>Semester:</h5>
   <%= @user.semester %>
 </p>
+
 <p>
-  <b>Tshirt size:</b>
+  <h5>Tshirt size:</h5>
   <%= @user.tshirt_size %>
 </p>
+
 <p>
-  <b>Address:</b>
+  <h5>Address:</h5>
   <%= @user.address %>
 </p>
 
 <p>
-<%= link_to "Evaluate",  set_evaluation_user_path(@user.id) %>
+  <h5>Commitee Status: </h5>
+  <% if !@user.head_of_committee.blank? %>
+    <b>Head of: </b> <%= @user.head_of_committee.title%>
+  <% elsif !@user.vice_of_committee.blank? %>
+    <b>Voice of: </b> <%= @user.vice_of_committee.title%>
+  <% elsif !@user.member_of_committee.blank? %>
+    <b>Member of: </b> <%= @user.member_of_committee.title%>
+  <% else %>
+    <p>Unknown</p>
+  <% end %>
 </p>
 
 <p>
-<%= link_to "Show Evaluation", show_evaluation_user_path(@user.id) %>
+  <h5> Courses: </h5>
+    <% if !@user.courses.blank? %>
+      <% for course in @user.courses %>
+        <%= link_to course.name , course_path(course) %> <br>
+      <% end %>
+    <% else %>
+      <b>No Courses assgined</b>
+    <% end %>
 </p>
 
 <p>
-<%= link_to "Assign Task", assign_task_user_path(@user.id) %>
+  <h3>Tasks:</h3>
+    <h5>Created by Me</h5>
+      <% if !@user.tasks.blank? %>
+        <ul>
+          <% for task in @user.tasks %>
+            <li> <%= link_to task.title , task_path(task) %> <br> </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <b>No Tasks Created yet</b>
+      <% end %>
+    <br>
+    <h5>For me</h5>
+      <% if !@user.tasks_responsible_for.blank? %>
+        <% for task in @user.tasks_responsible_for %>
+          <%= link_to task.title , task_path(task) %> <br>
+        <% end %>
+      <% else %>
+        <b>No Tasks to do</b>
+      <% end %>      
 </p>
+
+<p>
+  <h3>Meetings:</h3>
+    <h5>Created by Me</h5>
+      <% if !@user.created_meetings.blank? %>
+        <ul>
+          <% for meeting in @user.created_meetings %>
+            <li> <%= link_to meeting.title , meeting_path(meeting) %> <br> </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <b>No Meetings have been Created yet</b>
+      <% end %>
+    <br>
+    <h5>Invited To</h5>
+      <% if !@user.attending_meetings.blank? %>
+        <ul>
+          <% for meeting in @user.attending_meetings %>
+            <li> <%= link_to meeting.title , meeting_path(meeting) %> <br> </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <b>No Meetings to Go ..</b>
+      <% end %>      
+</p>
+<br>
+<p>
+  <h3>Requests:</h3>
+    <h5>Created by Me</h5>
+      <% if !@user.created_requests.blank? %>
+        <% for request in @user.created_requests %>
+          <%= link_to request.request_type , request_path(request) %> <br>
+        <% end %>
+      <% else %>
+        <b>No requests have been Created yet</b>
+      <% end %>
+    <br>
+    <h5>To me</h5>
+      <% if !@user.requests_responsible_for.blank? %>
+        <% for request in @user.requests_responsible_for %>
+          <%= link_to request.request_type , request_path(request) %> <br>
+        <% end %>
+      <% else %>
+        <b>No Requests to check ..</b>
+      <% end %>      
+</p>
+
+<p>
+  <h3>Events:</h3>
+    <h5>Created by Me</h5>
+      <% if !@user.created_events.blank? %>
+        <ul>
+          <% for event in @user.created_events %>
+            <li> <%= link_to event.title , event_path(event) %> <br> </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <b>No Events have been Created yet</b>
+      <% end %>
+    <br>
+
+    <h5>Managed by Me</h5>
+      <% if !@user.managed_events.blank? %>
+        <ul>
+          <% for event in @user.managed_events %>
+            <li> <%= link_to event.title , event_path(event) %> <br> </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <b>No Events To manage</b>
+      <% end %>
+    <br>
+
+    <h5>Invited To</h5>
+      <% if !@user.member_of_events.blank? %>
+        <ul>
+          <% for event in @user.member_of_events %>
+            <li> <%= link_to event.title , event_path(event) %> <br> </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <b>No Events to Go ..</b>
+      <% end %>      
+</p>
+
+<br>
+<br>
+
+<p> <%= link_to "Evaluate",  set_evaluation_user_path(@user.id) %> </p> <br>
+
+<p> <%= link_to "Show Evaluation", show_evaluation_user_path(@user.id) %> </p> <br>
+
+<p> <%= link_to "Assign Task", assign_task_user_path(@user.id) %> </p>
