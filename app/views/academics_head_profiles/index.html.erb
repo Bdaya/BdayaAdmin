@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script type="text/javascript">
+ 
+
+
+ function tableDisplay(id) {
+  if (id == 't1') {
+  document.getElementById('t2').style.display="none";
+  document.getElementById('t3').style.display="none";
+}
+else{
+if (id == 't2') {
+  document.getElementById('t1').style.display="none";
+  document.getElementById('t3').style.display="none";
+}
+else {
+
+  document.getElementById('t2').style.display="none";
+  document.getElementById('t1').style.display="none";
+
+}
+}
+document.getElementById(id).style.display="table";
+}
+
+ </script>
+ </head>
+
+
+<h1>My Profile</h1>
+
+<body> 
+  <br/>
+  <%= link_to 'Arrange a session' , new_session_path %>
+  <br/>
+  <br/>
+  <%= link_to 'show arranged sessions' , sessions_path %>
+  
+  <br />
+  <br />
+  <button type="button" onclick="tableDisplay('t1')" >view all members</button>
+<br />
+<br />
+<button type="button" onclick="tableDisplay('t2')" >sort members by the courses they teach</button>
+<br />
+<br />
+<button type="button" onclick="tableDisplay('t3')" >sort members by their majors</button>
+  <br />
+<br />
+  <table id="t1" border="1" align="center" style="display: none" >
+    <colgroup>
+   <% for i in 0..2%>
+   <col style="background-color:lightgrey">
+   <%end%>
+  </colgroup>
+  <tr>
+    <th>Name</th>
+    <th>Phone_num</th>
+    <th>Email</th>
+  </tr>
+  <% if @all.size >0 %>
+   <%  for member in @all %>
+   <tr>
+    <th><%= member.name %></th>
+    <th><%= member.phone %></th>
+    <th><%= member.email %></th>
+    </tr>
+    <% end %>
+  <%end%>
+
+  
+
+</table>
+<table id="t2" border="1" align="center" style="display: none" >
+  <colgroup>
+    <% for i in 0..@all_courses.size-1 %>
+    <% if i%2 == 0 %>
+    <col style="background-color:palevioletred">
+    <%else%>
+    <col style="background-color:aqua">
+    <%end%>
+    <%end%>
+  </colgroup>
+  <tr>
+    <% for course in @all_courses %>
+    <th><%= course.name %> </th>
+    <%end%>
+  </tr>
+  
+<%  for i in 0..@maxc-1  %>
+   <tr>
+  <% for course in @all_courses %>
+  <% if course.tutors.size > i %>
+    <th><%= course.tutors[i].name %> </th>
+    <% else %>
+    <th></th>
+    <%end%>
+   <%end%>
+   </tr>
+   <%end%> 
+   
+</table>
+
+<table id="t3" border="1" align="center" style="display: none" >
+  <colgroup>
+ <% for i in 0..@majors.size-1 %>
+    <% if i%2 == 0 %>
+    <col style="background-color:aqua">
+    <%else%>
+    <col style="background-color:palevioletred">
+    <%end%>
+    <%end%>
+  </colgroup>
+
+<tr>
+    <% for i in 0..@majors.size-1 %>
+    <th><%= @majors[i] %> </th>
+    <%end%>
+  </tr>
+
+<%  for i in 0..@maxm-1  %>
+   <tr>
+  <% for j in 0..@majors.size-1 %>
+  <% if @all.where(major: @majors[j]).size > i %>
+    <th><%= @all.where(major: @majors[j])[i].name %> </th>
+    <% else %>
+    <th></th>
+    <%end%>
+   <%end%>
+   </tr>
+   <%end%>
+
+</table>
+
+ </body>
+</html>
+

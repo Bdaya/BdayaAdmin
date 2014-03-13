@@ -2,6 +2,10 @@ BdayaAdmin::Application.routes.draw do
   
   resources :courses
 
+resources :sessions
+
+
+  resources :academics_head_profiles
 
   resources :kids do
     member do
