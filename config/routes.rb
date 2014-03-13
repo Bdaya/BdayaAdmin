@@ -12,6 +12,9 @@ BdayaAdmin::Application.routes.draw do
       post :add_image
       get :profile_picture
       get :cover_picture
+      get :requests
+      post :new_materials
+      post :new_permissions
     end
   end
   #to_be_modified
