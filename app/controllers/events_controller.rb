@@ -64,7 +64,7 @@ class EventsController < ApplicationController
   def profile_picture
     event = Event.find(params[:id])
     image = EventImage.find(params[:image_id])
-    EventImage.all.each do |img|
+    EventImage.where(event: event).each do |img|
     	img.profile = false
     	img.save
     end
@@ -76,7 +76,7 @@ class EventsController < ApplicationController
   def cover_picture
     event = Event.find(params[:id])
     image = EventImage.find(params[:image_id])
-    EventImage.all.each do |img|
+    EventImage.where(event: event).each do |img|
     	img.cover = false
     	img.save
     end
