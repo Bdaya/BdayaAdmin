@@ -9,6 +9,7 @@ class Event
   field :slogan, :type => String
   field :location, :type => String
   field :fb_url, :type => String
+  field :tags, :type => String
 
   field :start_date, :type => Date
   field :start_time, :type => String
@@ -25,12 +26,13 @@ class Event
   has_and_belongs_to_many :members, class_name: 'User', inverse_of: :member_of_events
   has_many :requests
   has_many :event_images
+  has_many :event_logs
 
   def profile_pic
-    event_images.where(:profile => true).first
+    img = event_images.where(profile: true).first
   end
 
   def cover_pic
-    event_images.where(:cover => true).first
+    img = event_images.where(cover: true).first
   end
 end

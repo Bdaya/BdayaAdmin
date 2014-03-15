@@ -7,6 +7,7 @@ BdayaAdmin::Application.routes.draw do
   resources :events do
     member do
       post :add_image
+      post :rate_image
       get :profile_picture
       get :cover_picture
     end

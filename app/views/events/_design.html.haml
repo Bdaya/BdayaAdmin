@@ -1,1 +1,20 @@
-design
+%h2
+= form_for(@event, :url => add_image_event_path(@event), :html => { :method => :post, :multipart => true }) do |f|
+	= f.file_field :image
+	= f.submit "Add Image",class: 'btn btn-sm'
+%hr
+
+-@event.event_images.each do |img|
+	= image_tag img.image.url,:style =>"length:100px;width:100px;"
+	%br
+	= "Current Rating: #{img.rating}"
+	= link_to('<i class="glyphicon glyphicon-star-empty">1</i>'.html_safe, rate_image_event_path(@event,image_id:img.id,rating: 1), method: :post)
+	= link_to('<i class="glyphicon glyphicon-star-empty">2</i>'.html_safe,rate_image_event_path(@event,image_id:img.id,rating: 2), method: :post)
+	= link_to('<i class="glyphicon glyphicon-star-empty">3</i>'.html_safe,rate_image_event_path(@event,image_id:img.id,rating: 3), method: :post)
+	= link_to('<i class="glyphicon glyphicon-star-empty">4</i>'.html_safe,rate_image_event_path(@event,image_id:img.id,rating: 4), method: :post)
+	= link_to('<i class="glyphicon glyphicon-star-empty">5</i>'.html_safe,rate_image_event_path(@event,image_id:img.id,rating: 5), method: :post)
+	%br
+	= link_to "Make Profile", profile_picture_event_path(@event,:image_id => img.id)
+	%br
+	= link_to "Make Cover", cover_picture_event_path(@event,:image_id => img.id)
+	%hr

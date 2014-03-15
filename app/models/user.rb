@@ -104,6 +104,7 @@ class User
   has_many :managed_events, class_name: 'Event', inverse_of: :project_manager
   has_and_belongs_to_many :member_of_events, class_name: 'Event', inverse_of: :members
   has_many :created_events, class_name: 'Event', inverse_of: :creator
+  has_many :created_logs, class_name: 'EventLog', inverse_of: :creator
 
   # def get_pending_tasks
   #   tasks = self.tasks_responsible_for.where(:status=>"pending").to_a

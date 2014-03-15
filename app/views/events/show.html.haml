@@ -1,10 +1,23 @@
 .event
 	.cover
-		.name event
-		.slogan slogan
+		-if @event.name
+			.name=@event.name
+			%h4{"data-target" => "#addName", "data-toggle" => "modal"}= link_to "Edit Name"
 
-		.pp= image_tag 'event-cover.png', alt: 'logo'
+		-else
+			.name{"data-target" => "#addName", "data-toggle" => "modal"}= link_to "Add Name"
 
+		-if @event.slogan
+			.slogan=@event.slogan
+			%h4{"data-target" => "#addSlogan", "data-toggle" => "modal"}= link_to "Edit Slogan"
+
+		-else
+			.slogan{"data-target" => "#addSlogan", "data-toggle" => "modal"}= link_to "Add Slogan"
+
+		-if @event.profile_pic
+			.pp= image_tag @event.profile_pic.image, alt: 'logo'
+		-else
+			.pp= image_tag 'event-cover.png', alt: 'logo'
 
 	.side
 		.hidden-scroll
@@ -12,31 +25,41 @@
 				%h5 Starts
 				.date
 					%span.fa.fa-calendar
-					%span.day Thu 12
-					%span.month Oct
-					%span.year 14
+					%span.day=@event.start_date.strftime("%A %e")
+					%span.month=@event.start_date.strftime("%B")
+					%span.year=@event.start_date.strftime("%y")
 				.time
 					%span.fa.fa-clock-o
-					%span.time 10:00
-					%span.ampm am
+					-if @event.start_time.include?("am")
+						%span.time=@event.start_time.split("am").first
+						%span.ampm am
+					-else
+						%span.time=@event.start_time.split("pm").first
+						%span.ampm pm
+
 
 			.datetime.ends
 				%h5 Ends
 				.date
 					%span.fa.fa-calendar
-					%span.day Thu 14
-					%span.month Oct
-					%span.year 14
+					%span.day=@event.end_date.strftime("%A %e")
+					%span.month=@event.end_date.strftime("%B")
+					%span.year=@event.end_date.strftime("%y")
 				.time
 					%span.fa.fa-clock-o
-					%span.time 4:00
-					%span.ampm pm
+					-if @event.end_time.include?("am")
+						%span.time=@event.end_time.split("am").first
+						%span.ampm am
+					-else
+						%span.time=@event.end_time.split("pm").first
+						%span.ampm pm
+						
 	.main
 		%ul.nav.nav-tabs
 			%li.active
 				%a{:href=> '#info', :data=> {:toggle=> 'tab'}} Info
 			%li
-				%a{:href=> '#design', :data=> {:toggle=> 'tab'}} Design
+				%a{:href=> '#design', :data=> {:toggle=> 'tab'}} Design (#{@event.event_images.count})
 			%li
 				%a{:href=> "#logistics", :data=> {:toggle=> 'tab'}} Logistics
 			%li
@@ -51,3 +74,145 @@
 				= render :partial => 'logistics'
 			#log.tab-pane
 				= render :partial => 'log'
+
+#addName.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+				%h4#myModalLabel.modal-title Event Name
+			.modal-body
+				= form_for(@event) do |f|
+					-if @event.name
+						= f.text_area :name, value: "#{@event.name}", :rows=>'2', :class=>'input-xxlarge'
+					-else
+						= f.text_area :name, :placeholder=>"Enter Name..", :rows=>'2', :class=>'input-xxlarge'
+					.modal-footer
+						%button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+						= f.submit "Save", :class=>"btn btn-primary"
+
+#addSlogan.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+				%h4#myModalLabel.modal-title Event Slogan
+			.modal-body
+				= form_for(@event) do |f|
+					-if @event.slogan
+						= f.text_area :slogan, value: "#{@event.slogan}", :rows=>'2', :class=>'input-xxlarge'
+					-else
+						= f.text_area :slogan, :placeholder=>"Enter Slogan..", :rows=>'2', :class=>'input-xxlarge'
+					.modal-footer
+						%button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+						= f.submit "Save", :class=>"btn btn-primary"
+
+#addLocation.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+				%h4#myModalLabel.modal-title Event Location
+			.modal-body
+				= form_for(@event) do |f|
+					-if @event.location
+						= f.text_area :location, value: "#{@event.location}", :rows=>'2', :class=>'input-xxlarge'
+					-else
+						= f.text_area :location, :placeholder=>"Enter Location..", :rows=>'2', :class=>'input-xxlarge'
+					.modal-footer
+						%button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+						= f.submit "Save", :class=>"btn btn-primary"
+
+#addFBpage.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+				%h4#myModalLabel.modal-title Event FB Page
+			.modal-body
+				= form_for(@event) do |f|
+					-if @event.fb_url
+						= f.text_area :fb_url, value: "#{@event.fb_url}", :rows=>'2', :class=>'input-xxlarge'
+					-else
+						= f.text_area :fb_url, :placeholder=>"Enter Facebook event URL..", :rows=>'2', :class=>'input-xxlarge'
+					.modal-footer
+						%button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+						= f.submit "Save", :class=>"btn btn-primary"
+
+#addHashTage.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+				%h4#myModalLabel.modal-title Event #HashTags
+			.modal-body
+				= form_for(@event) do |f|
+					-if @event.tags
+						= f.text_area :tags, value: "#{@event.tags}", :rows=>'2', :class=>'input-xxlarge'
+					-else
+						= f.text_area :tags, :placeholder=>"Enter #HashTags..", :rows=>'2', :class=>'input-xxlarge'
+					.modal-footer
+						%button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+						= f.submit "Save", :class=>"btn btn-primary"
+
+#addDescription.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+				%h4#myModalLabel.modal-title Event Description
+			.modal-body
+				= form_for(@event) do |f|
+					-if @event.description
+						= f.text_area :description, value: "#{@event.description}", :rows=>'2', :class=>'input-xxlarge'
+					-else
+						= f.text_area :description, :placeholder=>"Enter Description..", :rows=>'2', :class=>'input-xxlarge'
+					.modal-footer
+						%button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+						= f.submit "Save", :class=>"btn btn-primary"
+
+#addIdea.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+				%h4#myModalLabel.modal-title Event Idea
+			.modal-body
+				= form_for(@event) do |f|
+					-if @event.idea
+						= f.text_area :idea, value: "#{@event.idea}", :rows=>'2', :class=>'input-xxlarge'
+					-else
+						= f.text_area :idea, :placeholder=>"Enter Idea..", :rows=>'2', :class=>'input-xxlarge'
+					.modal-footer
+						%button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+						= f.submit "Save", :class=>"btn btn-primary"
+
+#addTheme.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+				%h4#myModalLabel.modal-title Event Theme
+			.modal-body
+				= form_for(@event) do |f|
+					-if @event.theme
+						= f.text_area :theme, value: "#{@event.theme}", :rows=>'2', :class=>'input-xxlarge'
+					-else
+						= f.text_area :theme, :placeholder=>"Enter Theme..", :rows=>'2', :class=>'input-xxlarge'
+					.modal-footer
+						%button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+						= f.submit "Save", :class=>"btn btn-primary"
+
+#addMembers.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+				%h4#myModalLabel.modal-title Add Members
+			.modal-body
+				= form_for(@event) do |f|
+					= f.label "Members"
+					= f.collection_select :member_ids, User.order_by(:name.asc), :id, :name,{},{multiple: true, class: 'user-search'}
+					.modal-footer
+						%button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+						= f.submit "Save", :class=>"btn btn-primary"

@@ -22,37 +22,48 @@ class EventsController < ApplicationController
 	end
 
 	def update
-		
+		@event = Event.find(params[:id])
+    @event.update_attributes(params[:event])
+    redirect_to @event
 	end
 
   def profile_picture
     event = Event.find(params[:id])
     image = EventImage.find(params[:image_id])
-    EventImage.all.each do |img|
-    	img.profile = false
-    	img.save
+    if(event.profile_pic!=image)
+      EventImage.where(event: event).update_all(profile: false)
+      image.update_attribute(:profile, true)
+      redirect_to event, :notice => "Successfully made the Image the profile picture."
+    else
+      redirect_to event, :notice => "This Image is already the profile picture."
     end
-    image.profile = true
-   	image.save
-    redirect_to event, :notice => "Successfully made the Image the profile picture."
   end
 
   def cover_picture
     event = Event.find(params[:id])
     image = EventImage.find(params[:image_id])
-    EventImage.all.each do |img|
-    	img.cover = false
-    	img.save
+    if(event.cover_pic!=image)
+      EventImage.where(event:event).update_all(cover: false)
+      image.update_attribute(:cover, true)
+      redirect_to event, :notice => "Successfully made the Image the Cover picture."
+    else
+      redirect_to event, :notice => "This Image is already the Cover picture."
     end
-    image.cover = true
-   	image.save
-    redirect_to event, :notice => "Successfully made the Image the Cover picture."
   end
 
   def add_image
     event = Event.find(params[:id])
     EventImage.create(:image => params[:event][:image], :event => event)
     redirect_to event, :notice => "Successfully Added Image."
+  end
+
+  def rate_image
+    event = Event.find(params[:id])
+    image = EventImage.find(params[:image_id])
+    image.raters = image.raters+1
+    image.rating = ((image.rating+(params[:rating].to_i))/image.raters).round(1)
+    image.save
+    redirect_to event, :notice => "Successfully Rated Image."
   end
 
 end
