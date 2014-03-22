@@ -1,5 +1,10 @@
 BdayaAdmin::Application.routes.draw do
   
+  resources :ideas
+
+
+  get "committee/new"
+
   resources :meetings do
     get :invite_users
     member do
