@@ -1,0 +1,15 @@
+= form_for @committee, :html => {:role => 'form'} do |f|
+	
+	.form-group
+		.col.col-xs-3= f.label "Committee Name"
+		= f.text_field :title
+
+	.form-group
+		.col.col-xs-3= f.label "Assign Head"
+		/.col.col-xs-9= f.collection_select :head, User.order_by(:name.asc), :id, :name,{},{multiple: false}
+		.col.col-xs-9=f.collection_select(:committee, :head_id, User.all, :id, :name, prompt: true)
+	.form-group
+		.col.col-xs-3
+		= f.submit :class => 'button'
+		-if !@committee.new_record
+			.button.red= link_to 'Delete', @committee, :method => 'delete'

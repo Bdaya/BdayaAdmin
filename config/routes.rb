@@ -18,6 +18,8 @@ BdayaAdmin::Application.routes.draw do
       post :new_permissions
     end
   end
+  resources :committees do
+  end
   #to_be_modified
   get  '/sent_tasks' , to: "tasks#sent_tasks"
   resources :tasks do

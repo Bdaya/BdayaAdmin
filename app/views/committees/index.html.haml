@@ -1,0 +1,11 @@
+%h1 Listing Committees
+%table
+  %tr
+    %th name 
+    %th link
+  - @committee.each do |com|
+    %tr
+      %td= com.title
+      %td= com.head.name
+
+%p= link_to 'Create Committee', new_committee_path

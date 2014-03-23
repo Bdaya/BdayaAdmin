@@ -12,12 +12,6 @@
 		= f.text_field :end_time, :'data-behaviour' => 'timepicker'
 
 	.form-group
-		.col.col-xs-3= f.label "Project Manager"
-		/ = f.text_field :attendee_ids, :id => 'user-search'
-		/= f.collection_select :project_manager, User.excludes(:id => current_user.id).order_by(:name.asc), /:id, :name,{}, {multiple: false}
-		= collection_select(:project_manager, :user_id, User.all, :id, :name, {multiple: false})
-		
-	.form-group
 		.col.col-xs-3
 		= f.submit :class => 'button'
 		-if !@event.new_record

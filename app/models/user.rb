@@ -324,4 +324,8 @@ class User
     a.save
   end
 
+  def get_name
+    self.name
+  end
+
 end
