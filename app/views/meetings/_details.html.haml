@@ -64,18 +64,20 @@
               -else
                 .attButton.orange= link_to("Ex", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused"), method: :post)
 
-    .discussion.content.hidden-scroll
-      .gap  
-        %table
-          %tbody
-            -@meeting.discussions.each do |msg|
-              %tr
-                %td=msg.user_name
-                %td=":"
-                %td=msg.message
-            = form_tag(send_message_meeting_path(@meeting), method: :post) do
-              = text_area_tag :message, nil, rows: 3, cols: 25
-              = submit_tag "Send"
+
+    .gap-discussion
+      Discussion
+    .discussion
+      .hidden-scroll
+        -@meeting.discussions.each do |msg|
+          .msg
+            .name=msg.user_name
+            .msg-body=msg.message
+
+        .form
+          = form_tag(send_message_meeting_path(@meeting), method: :post) do
+            = text_area_tag :message, nil
+            = submit_tag "Send", :class => 'button'
 
 
   #updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}

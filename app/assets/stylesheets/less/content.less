@@ -89,6 +89,76 @@
 
 #leftbar-button {display: none;}
 
+.gap-discussion {
+	background-color: white;
+	border-top: 1px solid @color-border;
+	border-bottom: 1px solid @color-border;
+
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+
+	color: @color2dark;
+	padding: 5px;
+	text-align: center;
+
+	width: 100%;
+
+	z-index: 10;
+
+	cursor: pointer;
+}
+
+.discussion {
+	background-color: @color2;
+	overflow-x: hidden;
+
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	top: 0px;
+
+	display: none;
+
+	.hidden-scroll { padding: @padding; }
+
+	.msg {
+		margin: 5px;
+
+		.name {
+			color: @color1;
+			margin-bottom: 3px;
+		}
+		.msg-body {
+			border-radius: 5px;
+			background-color: white;
+			border: 1px solid @color-border;
+			padding: 10px 15px 10px 15px;
+			font-size: 14px;
+			display: inline-block;
+		}
+	}
+	.form {
+		position: absolute;
+		background-color: @color2;
+		padding-top: 5px;
+		bottom: 40px;
+
+		textarea {
+			border: 1px solid @color-border;
+			border-radius: 5px;
+			height: 30px;
+			width: 500px;
+
+			&:hover, &:focus {
+				border-color: @color1;
+			}
+		}
+	}
+	
+}
+
 
 /************************************************************/
 /* Tablet Screens

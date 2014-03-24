@@ -4,6 +4,10 @@ $(document).ready ->
 
 	$('form').find('.user-search').userSearch()
 
+
+	$('#content .gap-discussion').click ->
+		$(this).next('.discussion').toggle()
+
 	return
 
 
