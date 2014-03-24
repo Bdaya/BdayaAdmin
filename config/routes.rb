@@ -4,6 +4,7 @@ BdayaAdmin::Application.routes.draw do
     get :invite_users
     member do
       post :set_attendance
+      post :send_message
     end
   end
   
