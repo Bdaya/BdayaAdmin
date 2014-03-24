@@ -1,0 +1,58 @@
+<div id='requests'>
+<div class='container hidden-scroll'>
+<h1>Requests</h1>
+
+		<h2>Materials Requests</h2>
+		<table class='datatable'>
+	  		<thead>
+      			<tr>
+					<td>Materials</td>
+					<td>Notes</td>
+					<td>Status</td>
+				</tr>
+				</thead>
+	  		<tbody>
+	  		<tr>
+				<%= form_for @request, url: new_materials_event_path(@event) do |f| %>
+				<td><%= f.text_field :materials %></td>
+				<td><%= f.text_field :notes %></td>
+				<td><%= f.submit %></td>
+				<% end %>
+				</tr>
+				<% @materials_requests.each do |req| %>
+				<tr>
+ 					<td><%= req.materials %></td>
+ 					<td><%= req.notes %></td>
+ 					<td><%= req.status %></td>
+ 					</tr>
+				<% end %>
+	  		</tbody>
+		</table><br>
+	<h2>Permissions Requests</h2>
+		<table class='datatable'>
+	  		<thead>
+      			<tr>
+					<td>Permissions</td>
+					<td>Notes</td>
+					<td>Status</td>
+				</tr>
+	  		</thead>
+	  		<tbody>
+	  		<tr>
+				<%= form_for @request, url: new_permissions_event_path(@event) do |f| %>
+				<td><%= f.text_field :permissions %></td>
+				<td><%= f.text_field :notes %></td>
+				<td><%= f.submit %></td>
+				<% end %>
+				</tr>
+				<% @permissions_requests.each do |req| %>
+ 					<tr>
+ 					<td><%= req.permissions %></td>
+ 					<td><%= req.notes %></td>
+ 					<td><%= req.status %></td>
+ 					</tr>
+				<% end %>
+	  		</tbody>
+		</table>
+</div>
+</div>

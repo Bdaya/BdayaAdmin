@@ -1,16 +1,5 @@
 = form_for @event, :html => {:role => 'form'} do |f|
-	
-	.form-group
-		.col.col-xs-3= f.label "Event Name"
-		= f.text_field :name
 
-	.form-group
-		.col.col-xs-3= f.label "Event Description"
-		= f.text_area :description
-
-	.form-group
-		.col.col-xs-3= f.label "Event Slogan"
-		= f.text_field :slogan	
 
 	.form-group
 		.col.col-xs-3= f.label "Event Start"
@@ -23,22 +12,10 @@
 		= f.text_field :end_time, :'data-behaviour' => 'timepicker'
 
 	.form-group
-		.col.col-xs-3= f.label "Event Idea"
-		= f.text_area :idea
-
-	.form-group
-		.col.col-xs-3= f.label "Event Theme"
-		= f.text_area :theme	
-
-	.form-group
 		.col.col-xs-3= f.label "Project Manager"
 		/ = f.text_field :attendee_ids, :id => 'user-search'
-		= f.collection_select :project_manager, User.excludes(:id => current_user.id).order_by(:name.asc), :id, :name,{},{multiple: false}
-
-	.form-group
-		.col.col-xs-3= f.label "Event Members"
-		/ = f.text_field :attendee_ids, :id => 'user-search'
-		= f.collection_select :member_ids, User.excludes(:id => current_user.id).order_by(:name.asc), :id, :name,{},{multiple: true}	
+		/= f.collection_select :project_manager, User.excludes(:id => current_user.id).order_by(:name.asc), /:id, :name,{}, {multiple: false}
+		= f.collection_select(:project_manager_id, @project_managers, :id, :name, {multiple: false})
 
 	.form-group
 		.col.col-xs-3

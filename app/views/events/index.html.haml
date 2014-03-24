@@ -1,9 +1,11 @@
 %h1 Listing events
 %table
   %tr
-    %th name
+    %th name 
     %th link
   - @events.each do |event|
     %tr
       %td= event.name
       %td= link_to 'Show', event
+
+%p= link_to 'Create Event', new_event_path
