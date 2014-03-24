@@ -52,6 +52,30 @@ h5 {
 	color: @color1;
 }
 
+.attButton {
+	color: @color1;
+	background-color: white;
+	border: 1px solid @color1;
+	font-size: 13px;
+	font-weight: 200;
+	padding: 0px 5px 0px 5px;
+	margin: 0px;
+	display: inline-block;
+	cursor: pointer;
+	vertical-align: middle;
+
+	&:hover {
+		background-color: @color1;
+		color: white;
+		a {
+			color: white;
+		}
+	}
+	a {
+		color: inherit;
+	}
+}
+
 .button {
 	color: @color1;
 	background-color: white;
@@ -83,9 +107,45 @@ h5 {
 		background-color: red;
 	}
 }
+.redFilled {
+	color: white;
+	border-color: red;
+	background-color: red;
+
+	&:hover {
+		background-color: red;
+	}
+}
+.orange {
+	color: orange;
+	border-color: orange;
+
+	&:hover {
+		background-color: orange;
+	}
+}
+
+.orangeFilled {
+	color: white;
+	border-color: orange;
+	background-color: orange;
+
+	&:hover {
+		background-color: orange;
+	}
+}
 .green {
 	color: #97bf0d;
 	border-color: #97bf0d;
+
+	&:hover {
+		background-color: #97bf0d;
+	}
+}
+.greenFilled {
+	color: white;
+	border-color: #97bf0d;
+	background-color: #97bf0d;
 
 	&:hover {
 		background-color: #97bf0d;

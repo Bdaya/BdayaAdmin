@@ -97,8 +97,8 @@ class MeetingsController < ApplicationController
 
   def set_attendance
   @user = User.find(params[:user_id])
-  @meeting = Meeting.find(params[:meeting_id])
-  @user.set_meeting_attendance(@meeting,params[:status])
+  @meeting = Meeting.find(params[:id])
+  @user.set_meeting_attendance(@meeting,params[:attendance_status])
   redirect_to meetings_path
   end
 
