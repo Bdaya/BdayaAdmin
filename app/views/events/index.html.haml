@@ -1,11 +1,24 @@
-%h1 Listing events
-%table
-  %tr
-    %th name 
-    %th link
-  - @events.each do |event|
-    %tr
-      %td= event.name
-      %td= link_to 'Show', event
+#events
+	%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
 
-%p= link_to 'Create Event', new_event_path
+	%h1 Events List
+	%table
+		%tr
+			%th name 
+			%th link
+	- @events.each do |event|
+		%tr
+			%td= event.name
+			%td= link_to 'Show', event
+
+	%p= link_to 'Create Event', new_event_path
+
+
+#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+				%h1 Create Meeting
+			.modal-body
+				= render :partial => 'form', :locals => {:@event => Event.new, :@project_managers => User.all}
