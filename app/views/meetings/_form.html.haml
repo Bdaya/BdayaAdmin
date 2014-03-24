@@ -1,38 +1,29 @@
 = form_for(@meeting) do |f|
-  - if @meeting.errors.any?
-    #error_explanation
-      .alert.alert-info You must  fill  the form to create a new  meeting
-      %ul
-        - @meeting.errors.full_messages.each do |msg|
-          / %li= msg
-          .alert.alert-danger= msg
+	.form-group.row
+		.col.col-xs-3= f.label "Meeting Title"
+		.col.col-xs-9= f.text_field :title
 
-  .form-group.row
-    .col.col-xs-3= f.label "Meeting Title"
-    .col.col-xs-9= f.text_field :title
+	.form-group.row
+		.col.col-xs-3= f.label "Meeting Description"
+		.col.col-xs-9= f.text_area :description
 
-  .form-group.row
-    .col.col-xs-3= f.label "Meeting Description"
-    .col.col-xs-9= f.text_area :description
+	.form-group.row
+		.col.col-xs-3= f.label :time
+		.col.col-xs-9= f.text_field :time, :'data-behaviour' => 'timepicker'
 
-  .form-group.row
-    .col.col-xs-3= f.label :time
-    .col.col-xs-9= f.text_field :time, :'data-behaviour' => 'timepicker'
+	.form-group.row
+		.col.col-xs-3= f.label :date
+		.col.col-xs-9= f.text_field :date, :'data-behaviour' => 'datepicker'
 
-  .form-group.row
-    .col.col-xs-3= f.label :date
-    .col.col-xs-9= f.text_field :date, :'data-behaviour' => 'datepicker'
+	.form-group.row
+		.col.col-xs-3= f.label "Notes For Logistics"
+		.col.col-xs-9= f.text_field :logistics_notes
 
+	.form-group.row
+		.col.col-xs-3= f.label "Attendees"
+		.col.col-xs-9= f.collection_select :attendee_ids, User.order_by(:name.asc), :id, :name,{},{multiple: true, class: 'user-search'}
 
-  .form-group.row
-	.col.col-xs-3= f.label "Notes For Logistics"
-	.col.col-xs-9= f.text_field :logistics_notes
-
-  .form-group.row
-    .col.col-xs-3= f.label "Attendees"
-    .col.col-xs-9= f.collection_select :attendee_ids, User.order_by(:name.asc), :id, :name,{},{multiple: true, class: 'user-search'}
-
-  .form-group.row
-    .col.col-xs-9= f.submit :class => 'button'
-    -if !@meeting.new_record
-      .button.red= link_to 'Delete', @meeting, :method => 'delete'
+	.form-group.row
+		.col.col-xs-9= f.submit :class => 'button'
+		-if !@meeting.new_record
+			.button.red= link_to 'Delete', @meeting, :method => 'delete'
