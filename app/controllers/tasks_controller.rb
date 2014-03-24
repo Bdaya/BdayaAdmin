@@ -13,7 +13,10 @@ class TasksController < ApplicationController
 	end
 
 	def show
-		@task = Task.first
+		@task = Task.find(params[:id])
+
+		# Show Page is rendered in details partial
+		render :partial => 'details'
 	end
 
 	def done
