@@ -30,7 +30,7 @@
       %h2= @meeting.title
       .row
         .col.col-xs-5
-          .location= @meeting.location != '' ? @meeting.location : "TBA"
+          .location= @meeting.request.roomnumber != '' ? @meeting.request.roomnumber : "TBA"
           .time= @meeting.date.to_date if @meeting.date
           .date= @meeting.time if @meeting.time
         .col.col-xs-6.col-xs-offset-1
@@ -45,25 +45,24 @@
               = image_tag a.image.url
             - else
               = image_tag "logo.png", alt: 'logo'
-              %br
+            %br  
             =a.name
             .aten   
               -if(a.is_meeting_attendance(@meeting,"attended"))
-                .attButton.greenFilled= link_to "AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended")
+                .attButton.greenFilled= link_to("AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended"), method: :post)
               -else
-                .attButton.green= link_to "AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended")
+                .attButton.green= link_to("AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended"), method: :post)
 
               -if(a.is_meeting_attendance(@meeting,"absent"))
-                .attButton.redFilled= link_to "AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent")
+                .attButton.redFilled= link_to("AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent"), method: :post)
+
               -else
-                .attButton.red= link_to "AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent")
+                .attButton.red= link_to("AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent"), method: :post)
                 
               -if(a.is_meeting_attendance(@meeting,"excused"))
-                .attButton.orangeFilled= link_to "EX", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused")
+                .attButton.orangeFilled= link_to("Ex", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused"), method: :post)
               -else
-                .attButton.orange= link_to "EX", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused")
-          %br      
-          =a.name
+                .attButton.orange= link_to("Ex", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused"), method: :post)
 
 
     .gap-discussion
@@ -79,8 +78,6 @@
           = form_tag(send_message_meeting_path(@meeting), method: :post) do
             = text_area_tag :message, nil
             = submit_tag "Send", :class => 'button'
-
-
 
 
   #updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
