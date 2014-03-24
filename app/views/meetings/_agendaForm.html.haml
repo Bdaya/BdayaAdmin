@@ -1,0 +1,7 @@
+= form_for @meeting, :html => {:role => 'form'} do |f|
+	.form-group
+		= f.label :agenda
+	.form-group
+		= f.text_area :agenda
+	.form-group
+		= f.submit :class => 'button'

@@ -11,30 +11,23 @@
 
   .tab-content
     #agenda.tab-pane
+      %h2="Agenda"
+      %span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#agendaModal'}}
       -if @meeting.agenda == nil
-        = form_for @meeting, :html => {:role => 'form'} do |f|
-
-          .form-group
-            = f.text_area :agenda
-
-          .form-group
-            = f.submit :class => 'button'
+        ="You haven't entered an Agenda yet!!"
       -else
         =@meeting.agenda
 
     #minutes.tab-pane
+      %h2="Meeting Minutes"
+      %span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#minsModal'}}
       -if @meeting.meeting_minuts == nil
-        = form_for @meeting, :html => {:role => 'form'} do |f|
-
-          .form-group
-            = f.text_area :meeting_minuts
-
-          .form-group
-            = f.submit :class => 'button'
+        ="You haven't entered meeting minutes yet!!"
       -else
         =@meeting.meeting_minuts      
 
     #info.tab-pane.active
+      %span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#updateModal'}}
       %h2= @meeting.title
       .row
         .col.col-xs-5
@@ -85,3 +78,22 @@
           %h1 Update Meeting
         .modal-body
           = render :partial => 'form', :locals => {:@meeting => @meeting}
+
+  #agendaModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+          %h1 Update Meeting
+        .modal-body
+          = render :partial => 'agendaForm', :locals => {:@meeting => @meeting}
+
+  #minsModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+          %h1 Update Meeting
+        .modal-body
+          = render :partial => 'minsForm', :locals => {:@meeting => @meeting}
+                  
