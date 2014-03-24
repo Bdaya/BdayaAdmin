@@ -57,7 +57,7 @@ class MeetingsController < ApplicationController
     else
       @meeting.destroy
       @request.destroy
-      render action: "index" 
+      render  'new' 
     end
   end
 
