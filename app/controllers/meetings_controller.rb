@@ -45,7 +45,8 @@ class MeetingsController < ApplicationController
     @request.notes = params[:meeting][:logistics_notes]
     @request.creator = @meeting.creator
     @request.meeting = @meeting
-    @request.time = @meeting.date
+    @request.time = @meeting.time
+    @request.date = @meeting.date
     @request.request_type = "room"
 
     if (@meeting.save && @request.save)
