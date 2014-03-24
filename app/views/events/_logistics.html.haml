@@ -1,1 +1,52 @@
-logistics
+.container.hidden-scroll
+%h1 Requests
+%h2 Materials Requests
+%table.datatable
+  %thead
+    %tr
+      %td Materials
+      %td Notes
+      %td Date
+      %td Time
+      %td Status
+  %tbody
+    %tr
+      = form_for @request, url: new_materials_event_path(@event) do |f|
+        %td= f.text_field :materials
+        %td= f.text_field :notes
+        %td= f.text_field :date, :'data-behaviour' => 'datepicker'
+        %td= f.text_field :time, :'data-behaviour' => 'timepicker'
+        %td= f.submit
+    - @materials_requests.each do |req|
+      %tr
+        %td= req.materials
+        %td= req.notes
+        %td= req.date
+        %td= req.time
+        %td= req.status
+%h2 Permissions Requests
+%table.datatable
+  %thead
+    %tr
+      %td Permissions
+      %td Notes
+      %td Date
+      %td Time
+      %td Status
+      
+  %tbody
+    %tr
+      = form_for @request, url: new_permissions_event_path(@event) do |f|
+        %td= f.text_field :permissions
+        %td= f.text_field :notes
+        %td= f.text_field :date, :'data-behaviour' => 'datepicker'
+        %td= f.text_field :time, :'data-behaviour' => 'timepicker'
+        %td= f.submit
+    - @permissions_requests.each do |req|
+      %tr
+        %td= req.permissions
+        %td= req.notes
+        %td= req.date
+        %td= req.time
+        %td= req.status
+        
