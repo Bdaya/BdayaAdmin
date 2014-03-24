@@ -1,11 +1,11 @@
 = form_for(@meeting) do |f|
   - if @meeting.errors.any?
     #error_explanation
-      %h2
-        You must  fill  the form to create a new  meeting  
+      .alert.alert-info You must  fill  the form to create a new  meeting
       %ul
         - @meeting.errors.full_messages.each do |msg|
-          %li= msg
+          / %li= msg
+          .alert.alert-danger= msg
 
   .form-group.row
     .col.col-xs-3= f.label "Meeting Title"
