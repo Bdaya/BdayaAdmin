@@ -2,6 +2,7 @@ class EventsController < ApplicationController
 
 	def new
 		@event = Event.new
+    @project_managers = User.all
 	end
 
   def requests
@@ -39,7 +40,7 @@ class EventsController < ApplicationController
 		@event = Event.create!(params[:event])
 
     if @event.save
-        redirect_to action:'index' , noitce: "Event Created succssfully"
+        redirect_to action:'index' , notice: "Event Created succssfully"
     else
         render 'new'
     end

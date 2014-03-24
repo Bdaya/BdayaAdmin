@@ -5,7 +5,7 @@
     %th link
   - @committee.each do |com|
     %tr
-      %td= com.title
+      %td= link_to com.title, com
       %td= com.head.name
 
 %p= link_to 'Create Committee', new_committee_path

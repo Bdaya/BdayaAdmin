@@ -97,14 +97,15 @@ class User
   has_many :tasks_responsible_for, class_name: 'Task', inverse_of: :responsible_user
   has_many :evaluations
 
-  belongs_to :head_of_committee, class_name: 'Committee', inverse_of: :head
+  has_one :head_of_committee, class_name: 'Committee', inverse_of: :head
   belongs_to :vice_of_committee, class_name: 'Committee', inverse_of: :vices
   belongs_to :member_of_committee, class_name: 'Committee', inverse_of: :members
 
   has_many :managed_events, class_name: 'Event', inverse_of: :project_manager
   has_and_belongs_to_many :member_of_events, class_name: 'Event', inverse_of: :members
   has_many :created_events, class_name: 'Event', inverse_of: :creator
-
+  
+  has_many :ideas , class_name: 'Idea' , inverse_of: :member
   # def get_pending_tasks
   #   tasks = self.tasks_responsible_for.where(:status=>"pending").to_a
   # end
@@ -323,9 +324,4 @@ class User
     a.status = s
     a.save
   end
-
-  def get_name
-    self.name
-  end
-
 end

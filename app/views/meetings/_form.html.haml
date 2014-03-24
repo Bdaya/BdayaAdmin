@@ -5,11 +5,12 @@
         You must  fill  the form to create a new  meeting  
       %ul
         - @meeting.errors.full_messages.each do |msg|
-          %li= msg
+          %li.alert.alert-danger= msg
 
   .form-group.row
     .col.col-xs-3= f.label "Meeting Title"
     .col.col-xs-9= f.text_field :title
+    
 
   .form-group.row
     .col.col-xs-3= f.label "Meeting Description"

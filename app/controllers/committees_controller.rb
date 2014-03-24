@@ -13,4 +13,8 @@ class CommitteesController < ApplicationController
 	def index
 		@committee = Committee.all.to_a
 	end
+
+	def show
+		@committee = Committee.find(params[:id])
+	end
 end

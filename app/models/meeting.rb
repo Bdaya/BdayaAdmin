@@ -36,7 +36,7 @@ class Meeting
 
   # belongs_to :creator, class_name: "Member", inverse_of: :created_meetings
   has_and_belongs_to_many :attendees, class_name: "User", inverse_of: :attending_meetings
-  validates_presence_of :attendees, :message=> "must be choosen"
+  
   # has_one :request
 
 
