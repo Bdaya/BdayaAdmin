@@ -28,6 +28,13 @@ class Event
   has_many :event_images
   has_many :event_logs
 
+
+  validates_presence_of :start_date, :message=> "Cannot Be Blank"
+  validates_presence_of :start_time, :message=> "Cannot Be Blank"
+  validates_presence_of :end_date, :message=> "Cannot Be Blank"
+  validates_presence_of :end_time, :message=> "Cannot Be Blank"
+  validates_presence_of :end_time, :message=> "Cannot Be Blank"
+
   def profile_pic
     img = event_images.where(profile: true).first
   end

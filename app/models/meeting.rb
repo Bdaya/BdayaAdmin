@@ -24,11 +24,11 @@ class Meeting
 
 
 
-  validates_presence_of :time, :message=> "Time Cannot Be Blank"
-  validates_presence_of :date, :message=> "Date Cannot Be Blank"
-  validates_presence_of :description, :message=> "Description Cannot Be Blank"
-  validates_presence_of :title, :message=> "Title Cannot Be Blank"
-  validates_uniqueness_of :title, :message=> "Title Must Be Unique"
+  validates_presence_of :time, :message=> "Cannot Be Blank"
+  validates_presence_of :date, :message=> "Cannot Be Blank"
+  validates_presence_of :description, :message=> "Cannot Be Blank"
+  validates_presence_of :title, :message=> "Cannot Be Blank"
+  validates_uniqueness_of :title, :message=> "Must Be Unique"
 
   def post_message(username, message)
     discussion  = Discussion.create(user_name:username, message:message)

@@ -2,6 +2,15 @@
 	%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
 
 	%h1 Events List
+
+	%br
+	- if @ERROR.length != 0
+		#error_explanation
+		.alert.alert-info You must  fill  the form to create a new  meeting
+		- @ERROR.each do |msg|
+			.alert.alert-danger= msg
+		- Rails.cache.write("ERROR","")
+		
 	%table
 		%tr
 			%th name 
