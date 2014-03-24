@@ -1,4 +1,5 @@
 Authority.configure do |config|
+  # config.user_method = :current_or_null_user
 
   # USER_METHOD
   # ===========

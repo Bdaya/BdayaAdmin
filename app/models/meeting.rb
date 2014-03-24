@@ -34,4 +34,12 @@ class Meeting
   # has_one :request
   has_many :attendances
 
+  has_many :discussions
+
+  def post_message(username, message)
+    discussion  = Discussion.create(user_name:username, message:message)
+    self.discussions << discussion
+    self.save
+  end
+  
 end 
