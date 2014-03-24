@@ -67,16 +67,16 @@
 
     .discussion.content.hidden-scroll
       .gap  
-          %table
-            %tbody
-              -@meeting.discussions.each do |msg|
-                %tr
-                  %td=msg.user_name
-                  %td=":"
-                  %td=msg.message
-              = form_tag(send_message_meeting_path(@meeting), method: :post) do
-                = text_area_tag :message, nil, rows: 3, cols: 25
-                = submit_tag "Send"
+        %table
+          %tbody
+            -@meeting.discussions.each do |msg|
+              %tr
+                %td=msg.user_name
+                %td=":"
+                %td=msg.message
+            = form_tag(send_message_meeting_path(@meeting), method: :post) do
+              = text_area_tag :message, nil, rows: 3, cols: 25
+              = submit_tag "Send"
 
 
 

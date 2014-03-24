@@ -1,6 +1,6 @@
 class MeetingsController < ApplicationController
 
-  authorize_actions_for Meeting
+  # authorize_actions_for Meeting
   
   def index
     @meetings = Meeting.desc(:date).all.to_a
