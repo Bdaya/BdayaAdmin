@@ -5,11 +5,13 @@ class Meeting
 
 	field :time, :type => String
   field :date, :type => Date
-	field :location, :type => String
+	#field :location, :type => String
 	field :meeting_minuts, :type => String
 	# field :meeting_type, :type => String #*************No need for meeting type
   field :description, :type => String
   field :agenda, :type => String
+
+  attr_accessor :logistics_notes
 
 	belongs_to :creator, class_name: 'User', inverse_of: :created_meetings
 	#has_and_belongs_to_many :invitees, class_name: 'User', inverse_of: :meetings_invited_to
@@ -31,5 +33,5 @@ class Meeting
   has_and_belongs_to_many :attendees, class_name: "User", inverse_of: :attending_meetings
   # has_one :request
   has_many :attendances
-  
+
 end 

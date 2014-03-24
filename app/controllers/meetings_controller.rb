@@ -1,6 +1,6 @@
 class MeetingsController < ApplicationController
 
-  authorize_actions_for Meeting
+  #authorize_actions_for Meeting
   
   def index
     @meetings = Meeting.desc(:date).all.to_a
@@ -42,12 +42,11 @@ class MeetingsController < ApplicationController
       @meeting.time = "12:00pm" #default time
     end
     @request = Request.new
-    @request.notes = params[:notes]
+    @request.notes = params[:meeting][:logistics_notes]
     @request.creator = @meeting.creator
     @request.meeting = @meeting
     @request.time = @meeting.date
     @request.request_type = "room"
-    @request.roomnumber = @meeting.location
 
     if (@meeting.save && @request.save)
       @meeting.attendees.each do |a|
@@ -64,7 +63,7 @@ class MeetingsController < ApplicationController
   def update
     @meeting = Meeting.find(params[:id])
     @request = @meeting.request
-    @request.notes = params[:notes]
+    @request.notes = params[:meeting][:logistics_notes]
     @request.time = params[:meeting][:date]
     @request.request_type = "room"
 
