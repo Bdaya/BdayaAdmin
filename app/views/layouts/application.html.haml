@@ -6,8 +6,9 @@
     = csrf_meta_tags
     %meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0, user-scalable=0"}
   %body
-    #rightbar
-    = render :partial => 'layouts/leftbar'
+    - if current_user
+      #rightbar
+        = render :partial => 'layouts/leftbar'
 
     #content
       #topbar
