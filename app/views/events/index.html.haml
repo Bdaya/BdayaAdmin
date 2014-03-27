@@ -11,16 +11,13 @@
 			.alert.alert-danger= msg
 		- Rails.cache.write("ERROR","")
 		
-	%table
-		%tr
-			%th name 
-			%th link
-	- @events.each do |event|
-		%tr
-			%td= event.name
-			%td= link_to 'Show', event
 
-	%p= link_to 'Create Event', new_event_path
+	.event-list
+		- @events.each do |event|
+			= link_to event do
+				.event
+					.event-name.well.well-sm= event.name ? event.name : "Name N/A"
+
 
 
 #createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
@@ -28,6 +25,6 @@
 		.modal-content
 			.modal-header
 				%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
-				%h1 Create Meeting
+				%h1 Create Event
 			.modal-body
 				= render :partial => 'form', :locals => {:@event => Event.new, :@project_managers => User.all}
