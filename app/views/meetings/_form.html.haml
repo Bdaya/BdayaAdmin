@@ -25,7 +25,7 @@
 
 	.form-group.row
 		.col.col-xs-3= f.label "Attendees"
-		.col.col-xs-9= f.collection_select :attendee_ids, User.order_by(:name.asc), :id, :name,{},{multiple: true, class: 'user-search'}
+		.col.col-xs-9= f.collection_select :attendee_ids, User.excludes(:id => current_user.id).order_by(:name.asc), :id, :name,{},{multiple: true, class: 'user-search'}
 
 	.form-group.row
 		.col.col-xs-9= f.submit :class => 'button'

@@ -101,7 +101,8 @@ class User
   has_one :head_of_committee, class_name: 'Committee', inverse_of: :head
   belongs_to :vice_of_committee, class_name: 'Committee', inverse_of: :vices
   belongs_to :member_of_committee, class_name: 'Committee', inverse_of: :members
-
+  field :president, :type => Boolean
+  field :upper_board, :type => Boolean
   has_many :managed_events, class_name: 'Event', inverse_of: :project_manager
   has_and_belongs_to_many :member_of_events, class_name: 'Event', inverse_of: :members
   has_many :created_events, class_name: 'Event', inverse_of: :creator

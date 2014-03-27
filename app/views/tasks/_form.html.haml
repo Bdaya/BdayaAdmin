@@ -22,7 +22,7 @@
 
 	.form-group
 		.col.col-xs-3= f.label "Responsible Member"
-		= f.collection_select :responsible_user_id, User.excludes(:id => current_user.id).order_by(:name.asc), :id, :name,{},{multiple: false}
+		= f.collection_select :responsible_user_id, User.excludes(:id => current_user.id).order_by(:name.asc), :id, :name,{},{multiple: false, class: 'user-search'}
 
 	.form-group
 		.col.col-xs-3

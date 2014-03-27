@@ -17,6 +17,7 @@
 //= require jquery.timepicker.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
+//= require chosen-jquery
 //= require_tree .
 
 function showhide(x) {
