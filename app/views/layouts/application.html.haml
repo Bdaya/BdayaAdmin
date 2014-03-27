@@ -5,7 +5,6 @@
     = stylesheet_link_tag "application", :media => "all"
     = csrf_meta_tags
     %meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0, user-scalable=0"}
-
   %body
     #rightbar
     = render :partial => 'layouts/leftbar'
@@ -17,9 +16,17 @@
         %span#search
           %span(class='fa fa-search fa-2x')
           %input(placeholder='Search')
+          -if flash[:notice]
+            .alert.alert-success
+              = simple_format flash[:notice]
 
       = yield
 
 
   / Javascript files are loaded at the end of 'body', to not cause blocking
   = javascript_include_tag "application"
+  -if flash[:alert]
+    :javascript
+      $(document).ready(function(){
+        $(".button[data-toggle='modal']").click();
+      });

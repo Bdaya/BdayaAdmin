@@ -9,7 +9,7 @@ class Meeting
   field :description, :type => String
   field :agenda, :type => String
   field :title, type: String
-  field :attendance, type: Array, default: [] 
+  #field :attendance, type: Array, default: [] 
     #Will be Entered as Array of 2D arrays in the form of [[Member,attendance_status],[Member,attendance_status],..]
 
   attr_accessor :logistics_notes

@@ -1,3 +1,7 @@
+-if flash[:alert]
+	.alert.alert-danger
+		= simple_format flash[:alert]
+
 = form_for @task, :html => {:role => 'form'} do |f|
 	
 	.form-group

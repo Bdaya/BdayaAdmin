@@ -5,11 +5,18 @@ class TasksController < ApplicationController
 	end
 
 	def create
-		@user = User.find(params[:task][:responsible_user_id])
-	    @task = current_user.assign_task(@user, params[:task][:deadline], params[:task][:title], params[:task][:details])
-	    #@task.responsible_user = User.find(params[:task][:user_id])
-	    #@task.save
-	    redirect_to sent_tasks_path
+		#@user = User.find(params[:task][:responsible_user_id])
+		@task = Task.new params[:task]
+		@task.creator = current_user
+		if @task.save
+			redirect_to sent_tasks_path
+		else
+			redirect_to :back, alert: @task.errors.full_messages.join("\n")
+		end
+    #@task = current_user.assign_task(@user, params[:task][:deadline], params[:task][:title], params[:task][:details])
+    #@task.responsible_user = User.find(params[:task][:user_id])
+    #@task.save
+    #redirect_to sent_tasks_path
 	end
 
 	def show
