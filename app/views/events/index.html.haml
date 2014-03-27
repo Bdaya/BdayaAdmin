@@ -15,8 +15,7 @@
 	.event-list
 		- @events.each do |event|
 			= link_to event do
-				.event
-					.event-name.well.well-sm= event.name ? event.name : "Name N/A"
+				.event-name.well.well-sm= event.name ? event.name : "Name N/A"
 
 
 
