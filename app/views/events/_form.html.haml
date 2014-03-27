@@ -15,7 +15,7 @@
 
 	.form-group.row
 		.col.col-xs-3= f.label "Project Manager"
-		.col.col-xs-9= f.collection_select(:project_manager_id, @project_managers, :id, :name, {multiple: false})
+		.col.col-xs-9= f.collection_select(:project_manager_id, @project_managers, :id, :name, {}, {multiple: false, class: 'user-search'})
 
 	.form-group.row
 		.col.col-xs-3

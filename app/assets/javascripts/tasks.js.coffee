@@ -10,7 +10,7 @@ $(document).ready ->
 			success: (data)->
 				$('#details').html data
 				#Load userSearch plugin *****FIX THIS******
-				$('form').find('.user-search').userSearch()
+				# $('form').find('.user-search').userSearch()
 
 	# Select the clicked meeting.
 	$('#tasks').on 'click touchstart', '.task', ->
