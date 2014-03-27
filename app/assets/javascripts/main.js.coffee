@@ -10,7 +10,7 @@ $(document).ready ->
 		width: '280px'
 		display_selected_options: false
 
-	$('#content .gap-discussion').click ->
+	$('#content').on "click", ".gap-discussion", ->
 		$(this).next('.discussion').toggle()
 
 	return
