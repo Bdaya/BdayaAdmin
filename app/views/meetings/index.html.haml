@@ -10,7 +10,7 @@
         .alert.alert-info You must  fill  the form to create a new  meeting
         %ul
         - @ERROR.each do |msg|
-          .alert.alert-danger = msg
+          .alert.alert-danger= msg
         - Rails.cache.write("ERROR","")
 
       .vertical-line
