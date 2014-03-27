@@ -13,11 +13,11 @@
         = @req.permissions
     - if @req.request_type == "room"
       %td
-        - if@req.status || !(@req.request_type.eql?'room')
+        - if @req.status || !(@req.request_type.eql?'room')
           = @req.roomnumber
         - else
           = f.text_field :roomnumber , placeholder: "Enter Room No."
     %td= @req.notes
     %td= @req.date
     %td= @req.time
-    %td= @req.status ? "Submitted" : f.submit("Submit Request")  
+    %td= @req.status ? "Submitted" : f.submit("Submit Request")
