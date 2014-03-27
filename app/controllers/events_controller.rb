@@ -9,26 +9,14 @@ class EventsController < ApplicationController
 		@event = Event.new(params[:event])
 
     if @event.save
-        redirect_to action:'index' , notice: "Event Created succssfully"
+        redirect_to events_path , notice: "Event Created succssfully"
     else
-      @ERROR = []
-      @event.errors.full_messages.each do |msg|
-        @ERROR << msg
-      end      
-      Rails.cache.write("ERROR", @ERROR)
-      @event.destroy
-      redirect_to action: 'index'
+      redirect_to events_path, alert: @event.errors.full_messages.join("\n")
     end
 
 	end
 
 	def index
-    if Rails.cache.read("ERROR").nil?
-      @ERROR = []
-      Rails.cache.write("ERROR","[]")
-    else
-      @ERROR = Rails.cache.read("ERROR")
-    end
 		@events = Event.all.to_a
 	end
 
