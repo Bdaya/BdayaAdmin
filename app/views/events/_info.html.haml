@@ -1,40 +1,34 @@
-%h1
-	Description
--if @event.description
-	%h4
-		.name{"data-target" => "#addDescription", "data-toggle" => "modal"}= link_to "Edit Description"
-	=@event.description
--else
-	.name{"data-target" => "#addDescription", "data-toggle" => "modal"}= link_to "Add Description"
+.panel.panel-default
+	.panel-heading{"data-target" => "#addDescription", "data-toggle" => "modal"}
+		%h1 Description
+	.panel-body
+		=@event.description
 
-%h1
-	Idea
--if @event.idea
-	%h4
-		.name{"data-target" => "#addIdea", "data-toggle" => "modal"}= link_to "Edit Idea"
-	=@event.idea
--else
-	.name{"data-target" => "#addIdea", "data-toggle" => "modal"}= link_to "Add Idea"
 
-%h1
-	Theme
--if @event.theme
-	%h4
-		.name{"data-target" => "#addTheme", "data-toggle" => "modal"}= link_to "Edit Theme"
-	=@event.theme
--else
-	.name{"data-target" => "#addTheme", "data-toggle" => "modal"}= link_to "Add Theme"
+.panel.panel-default
+	.panel-heading{"data-target" => "#addIdea", "data-toggle" => "modal"}
+		%h1 Idea
+	.panel-body
+		=@event.idea
 
-%h1
-	Manager
--if @event.project_manager
-	=@event.project_manager.name
+.panel.panel-default
+	.panel-heading{"data-target" => "#addTheme", "data-toggle" => "modal"}
+		%h1 Theme
+	.panel-body
+		=@event.theme
 
-%h1
-	Members
--if @event.members
-	.name{"data-target" => "#addMembers", "data-toggle" => "modal"}= link_to "Add Members"
-	-@event.members.each do |member|
-		-link_to member.name, member
--else
-	.name{"data-target" => "#addMembers", "data-toggle" => "modal"}= link_to "Add Members"
+.panel.panel-default
+	.panel-heading
+		%h1 Manager
+	.panel-body
+		-if @event.project_manager
+			=@event.project_manager.name
+
+.panel.panel-default
+	.panel-heading{"data-target" => "#addMembers", "data-toggle" => "modal"}
+		%h1 Members
+	.panel-body
+		-if @event.members
+			-@event.members.each do |member|
+				=link_to member.name, member
+

@@ -1,18 +1,18 @@
 .event
 	.cover
 		-if @event.name
-			.name=@event.name
-			%h4{"data-target" => "#addName", "data-toggle" => "modal"}= link_to "Edit Name"
+			.name{"data-target" => "#addName", "data-toggle" => "modal"}=@event.name
 
 		-else
-			.name{"data-target" => "#addName", "data-toggle" => "modal"}= link_to "Add Name"
+			.name{"data-target" => "#addName", "data-toggle" => "modal"}
+				Add Name
 
 		-if @event.slogan
-			.slogan=@event.slogan
-			%h4{"data-target" => "#addSlogan", "data-toggle" => "modal"}= link_to "Edit Slogan"
+			.slogan{"data-target" => "#addSlogan", "data-toggle" => "modal"}=@event.slogan
 
 		-else
-			.slogan{"data-target" => "#addSlogan", "data-toggle" => "modal"}= link_to "Add Slogan"
+			.slogan{"data-target" => "#addSlogan", "data-toggle" => "modal"}
+				Add Slogan
 
 		-if @event.profile_pic
 			.pp= image_tag @event.profile_pic.image, alt: 'logo'
@@ -55,25 +55,26 @@
 						%span.ampm pm
 						
 	.main
-		%ul.nav.nav-tabs
-			%li.active
-				%a{:href=> '#info', :data=> {:toggle=> 'tab'}} Info
-			%li
-				%a{:href=> '#design', :data=> {:toggle=> 'tab'}} Design (#{@event.event_images.count})
-			%li
-				%a{:href=> "#logistics", :data=> {:toggle=> 'tab'}} Logistics
-			%li
-				%a{:href=> "#log", :data=> {:toggle=> 'tab'}} Log
+		.hidden-scroll
+			%ul.nav.nav-tabs
+				%li.active
+					%a{:href=> '#info', :data=> {:toggle=> 'tab'}} Info
+				%li
+					%a{:href=> '#design', :data=> {:toggle=> 'tab'}} Design (#{@event.event_images.count})
+				%li
+					%a{:href=> "#logistics", :data=> {:toggle=> 'tab'}} Logistics
+				%li
+					%a{:href=> "#log", :data=> {:toggle=> 'tab'}} Log
 
-		.tab-content
-			#info.tab-pane.active
-				= render :partial => 'info'
-			#design.tab-pane
-				= render :partial => 'design'
-			#logistics.tab-pane
-				= render :partial => 'logistics'
-			#log.tab-pane
-				= render :partial => 'log'
+			.tab-content
+				#info.tab-pane.active
+					= render :partial => 'info'
+				#design.tab-pane
+					= render :partial => 'design'
+				#logistics.tab-pane
+					= render :partial => 'logistics'
+				#log.tab-pane
+					= render :partial => 'log'
 
 #addName.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
 	.modal-dialog

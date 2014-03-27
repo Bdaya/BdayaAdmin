@@ -3,8 +3,8 @@
 }
 
 .event {
-	position: relative;
-	min-height: 100%;
+	position: absolute;
+	top: @topbar-height; left: 0px; right: 0px; bottom: 0px;
 
 	@cover-height: 200px;
 	.cover {
@@ -64,7 +64,7 @@
 
 		overflow-x: hidden;
 
-		left: 0px; top: @cover-height + ; bottom: 0px;
+		left: 0px; top: @cover-height ; bottom: 0px;
 
 		background-color: @color2light;
 		border-right: 1px solid @color-border;
@@ -100,7 +100,13 @@
 	}
 
 	.main {
+		position: absolute;
+		top: @cover-height; left: 20px; right: 0px; bottom: 0px;
 		padding: @padding;
 		margin-left: @side-width;
+
+		.hidden-scroll {
+			padding-top: 20px;
+		}
 	}
 }
