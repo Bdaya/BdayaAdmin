@@ -11,6 +11,8 @@ class Task
   belongs_to :creator, class_name: 'User', inverse_of: :created_tasks
   belongs_to :responsible_user, class_name: 'User', inverse_of: :tasks_responsible_for
 
-
+  validates_presence_of :deadline
+  validates_presence_of :title
+  validates_presence_of :type
 
 end

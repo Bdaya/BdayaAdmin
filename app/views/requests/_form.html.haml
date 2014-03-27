@@ -1,0 +1,23 @@
+-if flash[:alert]
+  .alert.alert-danger
+    = simple_format flash[:alert]
+
+= form_for @req , :url => {:action => "update", :id => @req.id }  do |f|
+  %tr
+    %td= @req.creator.try(:name)
+    - if @req.request_type == "materials"
+      %td
+        = @req.materials
+    - if @req.request_type == "permissions"
+      %td
+        = @req.permissions
+    - if @req.request_type == "room"
+      %td
+        - if@req.status || !(@req.request_type.eql?'room')
+          = @req.roomnumber
+        - else
+          = f.text_field :roomnumber , placeholder: "Enter Room No."
+    %td= @req.notes
+    %td= @req.date
+    %td= @req.time
+    %td= @req.status ? "Submitted" : f.submit("Submit Request")  

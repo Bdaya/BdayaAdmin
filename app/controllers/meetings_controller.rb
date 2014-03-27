@@ -3,12 +3,12 @@ class MeetingsController < ApplicationController
   # authorize_actions_for Meeting  
 
   def index
-    if Rails.cache.read("ERROR").nil?
+    #if Rails.cache.read("ERROR").nil?
       @ERROR = []
-      Rails.cache.write("ERROR","[]")
-    else
-      @ERROR = Rails.cache.read("ERROR")
-    end
+      #Rails.cache.write("ERROR","[]")
+    #else
+      #@ERROR = Rails.cache.read("ERROR")
+    #end
     @meetings = Meeting.desc(:date).all.to_a
     @today_meetings = current_user.get_today_meetings
     @tomorrow_meetings = current_user.get_tomorrow_meetings
@@ -59,16 +59,16 @@ class MeetingsController < ApplicationController
         @meeting.attendees.each do |a|
           Attendance.create_attendance(@meeting,a)   
     end
-      redirect_to action: 'index'
+      redirect_to meetings_path
     else
       @ERROR = []
       @meeting.errors.full_messages.each do |msg|
         @ERROR << msg
       end      
-      Rails.cache.write("ERROR", @ERROR)
+      #Rails.cache.write("ERROR", @ERROR)
       @meeting.destroy
       @request.destroy
-      redirect_to action: 'index'
+      redirect_to meetings_path, alert: @meeting.errors.full_messages.join("\n")
     end
   end
 
