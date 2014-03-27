@@ -2,6 +2,7 @@
 	.split-main
 		.content.hidden-scroll
 			%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
+			%span.button.orange.right= link_to("Sent Tasks", sent_tasks_path(), method: :get)
 			%h1 Tasks
 			%br
 			
