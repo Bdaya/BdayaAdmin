@@ -49,7 +49,9 @@ BdayaAdmin::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   config.assets.paths << "#{Rails.root}/app/assets/images"
-  
+
+  #config.assets.precompile += %w( faye.js admin.js staff.js bootstrap.min.js )
+
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 

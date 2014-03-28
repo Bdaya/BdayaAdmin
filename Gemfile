@@ -40,7 +40,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'execjs'
+#gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
 gem 'lazy_high_charts'
 # To use ActiveModel has_secure_password
