@@ -1,5 +1,5 @@
 #leftbar
-	#logo
+	#logoo
 		= image_tag 'logo.png', alt: 'logo'
 		%span <strong>Bdaya</strong> System
 
@@ -56,3 +56,8 @@
 		%a{href:'/requests'}
 			%li
 				%span.fa.fa-check-square-o Requests
+
+	%ul.menu
+		=link_to destroy_user_session_path, method: 'delete' do
+			%li.danger
+				%span.fa.fa-sign-out Logout

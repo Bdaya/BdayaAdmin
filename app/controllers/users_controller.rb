@@ -9,6 +9,8 @@ class UsersController < ApplicationController
         "https://docs.google.com/feeds/ " +
         "https://docs.googleusercontent.com/ " +
         "https://spreadsheets.google.com/feeds/")
+
+    redirect_to meetings_path
   end
 
   def index 

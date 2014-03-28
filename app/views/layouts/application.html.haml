@@ -7,7 +7,8 @@
     %meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0, user-scalable=0"}
   %body
     #rightbar
-    = render :partial => 'layouts/leftbar'
+    -if current_user
+      = render :partial => 'layouts/leftbar'
 
     #content
       #topbar
@@ -29,9 +30,4 @@
     :javascript
       $(document).ready(function(){
         $(".button[data-toggle='modal']").click();
-      });
-  :javascript
-    $(document).ready(function(){
-        var img = $("#user-info .pp img").attr("src");
-        $("#user-info .pp-bg").css("background-image", "url("+img+")");
       });
