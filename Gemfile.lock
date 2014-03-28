@@ -42,6 +42,7 @@ GEM
       activesupport (>= 3.0.0)
       rake (>= 0.8.7)
     bcrypt-ruby (3.1.2)
+    bootstrap (0.0.1)
     bootstrap-datepicker-rails (1.1.1.11)
       railties (>= 3.0)
     bson (1.9.2)
@@ -206,6 +207,7 @@ PLATFORMS
 
 DEPENDENCIES
   authority
+  bootstrap
   bootstrap-datepicker-rails (~> 1.1.1.11)
   bson_ext
   cancan
@@ -214,7 +216,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   devise_invitable
-  execjs
   google_drive
   haml
   jquery-datatables-rails!
