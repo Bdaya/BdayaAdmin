@@ -31,3 +31,8 @@
       $(document).ready(function(){
         $(".button[data-toggle='modal']").click();
       });
+  :javascript
+      $(document).ready(function(){
+        var img = $("#user-info .pp img").attr("src");
+        $("#user-info .pp-bg").css("background-image", "url("+img+")")
+      });
