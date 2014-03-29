@@ -14,7 +14,7 @@ $(document).ready ->
 
 	# Select the clicked meeting.
 	$('#tasks').on 'click touchstart', '.task', ->
-		$(".split-side").css "margin": "0px"
+		# $(".split-side").css "margin": "0px"
 		$('#tasks').find('.task.selected').removeClass 'selected'
 		$(this).addClass("selected")
 

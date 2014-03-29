@@ -5,31 +5,46 @@
 @topbar-height: 50px;
 
 #content {
-	position: absolute;
-	top: 0px; left: @leftbar-width; right: 0px; bottom: 0px;
+	position: relative;
 	background-color: white;
+	margin-left: @leftbar-width+1;
+	padding-top: @topbar-height;
+	
+	min-height: 100%;
+
 	.transition(margin 0.5s);
-	overflow: hidden;
 	
 	&.show-rightbar {
-		margin-left: -@leftbar-width;
+		margin-left: 0px;
 		margin-right: @rightbar-width;
+
+		#topbar, .topbar {
+			margin-left: -@leftbar-width;
+			margin-right: @rightbar-width;
+		}
 	}
 
 	.split-main {
-		position: absolute;
-		top: @topbar-height; left: 0px; bottom: 0px;
+		// display: none;
+		// position: absolute;
+		// left: 0px; bottom: 0px; top: @topbar-height;
+		// display: inline-block;
 		width: 50%;
-		overflow: hidden;
+		// background-color: red;
+		min-height: 100%;
+
+		padding: @padding;
 	}
 	.split-side {
+		// display: none;
 		position: absolute;
-		top: @topbar-height; right: 0px; bottom: 0px;
+		// display: inline-block;
+		right: 0px; top: @topbar-height; bottom: 0px;
 		width: 50%;
+
 		background: @color2light;
 		.box-sizing(); //Make border inside
 		border-left: 1px solid @color-border;
-		overflow: hidden;
 
 		.topbar {
 			position: absolute;
@@ -39,8 +54,13 @@
 		}
 
 	}
+}
 
-	.hidden-scroll {
+.hidden-scroll {
+	overflow-x: hidden;
+	height: 100%;
+
+	.scroll {
 		position: absolute;
 		top: 0px; left: 0px; bottom: 0px;
 		right: -15px; //Hide Scrollbar
@@ -55,6 +75,11 @@
 	background-color: white;
 	color: #cecece;
 	overflow: hidden;
+	position: fixed;
+	top: 0px; right: 0px; left: @leftbar-width;
+	z-index: 100;
+
+	.transition(margin 0.5s);
 
 	span {
 		margin: 14px 20px 14px 0px;
@@ -96,13 +121,12 @@
 
 	position: absolute;
 	bottom: 0px;
+	right: 0px;
 	left: 0px;
 
 	color: @color2dark;
 	padding: 5px;
 	text-align: center;
-
-	width: 100%;
 
 	z-index: 10;
 
@@ -168,15 +192,32 @@
 	    margin-left: 0px;
 	    margin-right: 0px;
 	    left: 0px;
+
+	    .split-side {
+	    	margin: 0px;
+	    }
 	    
 	    &.show-rightbar {
 			margin-left: -@leftbar-width;
 			margin-right: @rightbar-width;
+
+			#topbar, .topbar {
+				margin-left: -@leftbar-width;
+				margin-right: @rightbar-width;
+			}
 		}
 		&.show-leftbar {
 			margin-left: @leftbar-width;
 			margin-right: -@rightbar-width;
+
+			#topbar, .topbar {
+				margin-left: @leftbar-width;
+				margin-right: -@rightbar-width;
+			}
 		}
+	}
+	#topbar, .topbar {
+		left: 0px;
 	}
 	#leftbar-button {display: inline-block;}
 }
@@ -187,31 +228,47 @@
 /************************************************************/
 @media only screen and (max-width : 480px) {
 	#content {
-	    margin-left: 0px;
-	    margin-right: 0px;
-	    left: 0px;
-	    
+		overflow-x: hidden;
+		overflow-y: auto;
+
 	    &.show-rightbar {
 			margin-left: -100% + 15px;
 			margin-right: 100% - 15px;
+
+			#topbar, .topbar {
+				margin-left: -100% + 15px;
+				margin-right: 100% - 15px;
+			}
 		}
 		&.show-leftbar {
 			margin-left: 100% - 15px;
 			margin-right: -100% + 15px;
+
+			#topbar, .topbar {
+				margin-left: 100% - 15px;
+				margin-right: -100% + 15px;
+			}
 		}
 
 		.split-main {
 			width: 100%;
 		}
 		.split-side {
+			overflow-x: hidden;
+			overflow-y: auto;
 			top: 0px;
 			width: 100%;
 			margin-right: -100%;
 			border-left: none;
 			.transition(margin 0.5s);
 
+			&.show {
+				margin: 0px;
+				.topbar { position: fixed;}
+			}
+
 			.content { padding-top: @topbar-height + @padding; }
-			.topbar { display: block; }
+			.topbar { display: block;}
 		}
 	}
 	#leftbarButton {display: inline-block;}

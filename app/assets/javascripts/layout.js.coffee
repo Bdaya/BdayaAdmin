@@ -13,6 +13,8 @@ $(document).ready ->
 		$("#content").toggleClass('show-rightbar')
 
 	$(".split-side .back").click ->
-		$(".split-side").css "margin-right": "-100%"
+		$(".split-side").removeClass('show')
+	$("#content").on "click touchstart", ".show-side", ->
+		$(".split-side").addClass('show')
 
 	return

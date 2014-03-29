@@ -9,10 +9,13 @@
 	background-color: @color2light;
 	width: @leftbar-width;
 	.box-sizing(); //Make border inside
-	border-right: 1px solid @color-border;
 	z-index: 0;
 	
 	&.show { z-index: 0; }
+
+	#menus {
+		border-right: 1px solid @color-border;
+	}
 
 	ul.menu {
 		list-style: none;
@@ -46,7 +49,7 @@
 }
 
 #logoo {
-	width: 100% + 1px; //hide right border
+	width: 100%;
 	
 	img {
 		float: left;
@@ -66,7 +69,7 @@
 }
 
 #user-info {
-	width: 100% + 1px; //hide right border
+	width: 100%;
 	background-color: @color2dark;
 	position: relative;
 	z-index: -2;

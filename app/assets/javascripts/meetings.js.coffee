@@ -20,7 +20,7 @@ $(document).ready ->
 
 	# Select the clicked meeting.
 	$('#meetings').on 'click touchstart', '.meeting', ->
-		$(".split-side").css "margin": "0px"
+		# $(".split-side").css "margin": "0px"
 		$('#meetings').find('.meeting.selected').removeClass 'selected'
 		$(this).addClass("selected")
 

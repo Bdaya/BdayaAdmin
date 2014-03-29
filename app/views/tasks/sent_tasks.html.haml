@@ -1,54 +1,53 @@
 #tasks
 	.split-main
-		.content.hidden-scroll
-			%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
-			%h1 Sent Tasks
-			%br
-			
-			.group
-				-if @today_tasks.length > 0
-					.title Today
-					-@today_tasks.each do |task|	
-						.task{:data => {:link => (url_for task)}}
-							.status=#task.status
-							%h2.name=task.title
-							.date=task.deadline
+		%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
+		%h1 Sent Tasks
+		%br
+		
+		.group
+			-if @today_tasks.length > 0
+				.title Today
+				-@today_tasks.each do |task|	
+					.task.show-side{:data => {:link => (url_for task)}}
+						.status=#task.status
+						%h2.name=task.title
+						.date=task.deadline
 
-			.group
-				-if @tomorrow_tasks.length > 0
-					.title Tomorrow
-					-@tomorrow_tasks.each do |task|	
-						.task{:data => {:link => (url_for task)}}
-							.status=#task.status
-							%h2.name=task.title
-							.date=task.deadline			
+		.group
+			-if @tomorrow_tasks.length > 0
+				.title Tomorrow
+				-@tomorrow_tasks.each do |task|	
+					.task.show-side{:data => {:link => (url_for task)}}
+						.status=#task.status
+						%h2.name=task.title
+						.date=task.deadline			
 
-			.group
-				-if @week_tasks.length > 0
-					.title This Week
-					-@week_tasks.each do |task|	
-						.task{:data => {:link => (url_for task)}}
-							.status=#task.status
-							%h2.name=task.title
-							.date=task.deadline
-							
-			.group
-				-if @later_tasks.length > 0
-					.title Later
-					-@later_tasks.each do |task|	
-						.task{:data => {:link => (url_for task)}}
-							.status=#task.status
-							%h2.name=task.title
-							.date=task.deadline		
+		.group
+			-if @week_tasks.length > 0
+				.title This Week
+				-@week_tasks.each do |task|	
+					.task.show-side{:data => {:link => (url_for task)}}
+						.status=#task.status
+						%h2.name=task.title
+						.date=task.deadline
+						
+		.group
+			-if @later_tasks.length > 0
+				.title Later
+				-@later_tasks.each do |task|	
+					.task.show-side{:data => {:link => (url_for task)}}
+						.status=#task.status
+						%h2.name=task.title
+						.date=task.deadline		
 
-			.group
-				-if @past_tasks.length > 0
-					.title Past
-					-@past_tasks.each do |task|	
-						.task{:data => {:link => (url_for task)}}
-							.status=#task.status
-							%h2.name=task.title
-							.date=task.deadline				
+		.group
+			-if @past_tasks.length > 0
+				.title Past
+				-@past_tasks.each do |task|	
+					.task.show-side{:data => {:link => (url_for task)}}
+						.status=#task.status
+						%h2.name=task.title
+						.date=task.deadline				
 										
 
 	.split-side

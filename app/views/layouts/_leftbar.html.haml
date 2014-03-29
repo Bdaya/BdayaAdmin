@@ -1,63 +1,65 @@
-#leftbar
-	#logoo
-		= image_tag 'logo.png', alt: 'logo'
-		%span <strong>Bdaya</strong> System
+#leftbar.hidden-scroll
+	.scroll
+		#logoo
+			= image_tag 'logo.png', alt: 'logo'
+			%span <strong>Bdaya</strong> System
 
-	#user-info
-		.pp-bg
-		.pp
-			- if current_user 
-				%div{onclick: "showhide('update_image')"}
-					- unless current_user.try(:image) == nil
-						= image_tag current_user.image.url
-					- else
-						= image_tag "logo.png", alt: 'logo'
-			- else
-				= image_tag "logo.png", alt: 'logo'
+		#user-info
+			.pp-bg
+			.pp
+				- if current_user 
+					%div{onclick: "showhide('update_image')"}
+						- unless current_user.try(:image) == nil
+							= image_tag current_user.image.url
+						- else
+							= image_tag "logo.png", alt: 'logo'
+				- else
+					= image_tag "logo.png", alt: 'logo'
 
-			- if current_user
-				%div{id:'update_image',style:'display:none;'}
-					= form_for(current_user, :url => update_image_user_path(current_user), :html => { :method => :post, :multipart => true }) do |f|
-						= f.file_field :image
-						= f.submit "Upload new Avatar"
-				%h1
-					=current_user.name
-				%h2
-					-if(current_user.president)
-						="Bdaya President"
-					-elsif(current_user.upper_board)
-						="Bdaya Upper Board"	
-					-elsif (current_user.head_of_committee?)
-						="Bdaya " + current_user.head_of_committee.name + " Head"
-					-elsif (current_user.vice_of_committee?)
-						="Bdaya " + current_user.vice_of_committee.name + " Vice Head"
-					-elsif (current_user.member_of_committee?)
-						="Bdaya " + current_user.member_of_committee.name + " Member"
+				- if current_user
+					%div{id:'update_image',style:'display:none;'}
+						= form_for(current_user, :url => update_image_user_path(current_user), :html => { :method => :post, :multipart => true }) do |f|
+							= f.file_field :image
+							= f.submit "Upload new Avatar"
+					%h1
+						=current_user.name
+					%h2
+						-if(current_user.president)
+							="Bdaya President"
+						-elsif(current_user.upper_board)
+							="Bdaya Upper Board"	
+						-elsif (current_user.head_of_committee?)
+							="Bdaya " + current_user.head_of_committee.name + " Head"
+						-elsif (current_user.vice_of_committee?)
+							="Bdaya " + current_user.vice_of_committee.name + " Vice Head"
+						-elsif (current_user.member_of_committee?)
+							="Bdaya " + current_user.member_of_committee.name + " Member"
 
-	%ul.menu
-		%a{href:'/'}
-			%li
-				%span.fa.fa-home Home
-		
-		%a{href:'/tasks'}
-			%li
-				%span.fa.fa-tasks Tasks
-		
-		%a{href:'/meetings'}
-			%li
-				%span.fa.fa-users Meetings
+		#menus
+			%ul.menu
+				%a{href:'/'}
+					%li
+						%span.fa.fa-home Home
+				
+				%a{href:'/tasks'}
+					%li
+						%span.fa.fa-tasks Tasks
+				
+				%a{href:'/meetings'}
+					%li
+						%span.fa.fa-users Meetings
 
 
-	%ul.menu
-		%a{href:'/events'}
-			%li
-				%span.fa.fa-bullhorn Events
-		
-		%a{href:'/requests'}
-			%li
-				%span.fa.fa-check-square-o Requests
+			%ul.menu
+				%a{href:'/events'}
+					%li
+						%span.fa.fa-bullhorn Events
+				
+				%a{href:'/requests'}
+					%li
+						%span.fa.fa-check-square-o Requests
 
-	%ul.menu
-		=link_to destroy_user_session_path, method: 'delete' do
-			%li.danger
-				%span.fa.fa-sign-out Logout
+			%ul.menu
+				=link_to destroy_user_session_path, method: 'delete' do
+					%li.danger
+						%span.fa.fa-sign-out Logout
