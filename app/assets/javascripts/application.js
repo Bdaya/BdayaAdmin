@@ -18,6 +18,7 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
 //= require chosen-jquery
+//= require masonry/jquery.masonry
 //= require_tree .
 
 function showhide(x) {

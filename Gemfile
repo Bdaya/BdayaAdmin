@@ -17,6 +17,7 @@ gem 'authority'
 gem 'rolify'
 gem 'chosen-rails'
 gem 'bootstrap'
+gem 'masonry-rails'
 
 gem 'carrierwave-mongoid', '0.6.0', :require => 'carrierwave/mongoid'
 gem 'mini_magick', :require => 'carrierwave/processing/mini_magick'

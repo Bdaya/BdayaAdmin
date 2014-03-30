@@ -8,6 +8,7 @@
 }
 
 .event {
+	margin-left: -1px; //Fixes annoying white space!
 
 	@cover-height: 196px;
 	.cover {
@@ -105,4 +106,33 @@
 		padding: @padding;
 		margin-left: @side-width;
 	}
+}
+
+#logistics {
+	overflow-x: auto;
+}
+
+#designs-list {
+	.item {
+		// margin: 1px;
+		// width: 200px;
+		margin-bottom: 5px;
+		border-radius: 5px;
+		border: 1px solid @color-border;
+		padding: 10px;
+		text-align: center;
+		img {
+			width: 200px;
+		}
+
+		.button {
+			display: inline-block;
+			font-size: 14px;
+			margin-bottom: 3px;
+		}
+	}
+}
+
+#add-design-form {
+	display: none;
 }
