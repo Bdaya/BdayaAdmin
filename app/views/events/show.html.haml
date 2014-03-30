@@ -20,61 +20,59 @@
 			.pp= image_tag 'event-cover.png', alt: 'logo'
 
 	.side
-		.hidden-scroll
-			.datetime.start
-				%h5 Starts
-				.date
-					%span.fa.fa-calendar
-					%span.day=@event.start_date.strftime("%A %e")
-					%span.month=@event.start_date.strftime("%B")
-					%span.year=@event.start_date.strftime("%y")
-				.time
-					%span.fa.fa-clock-o
-					-if @event.start_time.include?("am")
-						%span.time=@event.start_time.split("am").first
-						%span.ampm am
-					-else
-						%span.time=@event.start_time.split("pm").first
-						%span.ampm pm
+		.datetime.start
+			%h5 Starts
+			.date
+				%span.fa.fa-calendar
+				%span.day=@event.start_date.strftime("%A %e")
+				%span.month=@event.start_date.strftime("%B")
+				%span.year=@event.start_date.strftime("%y")
+			.time
+				%span.fa.fa-clock-o
+				-if @event.start_time.include?("am")
+					%span.time=@event.start_time.split("am").first
+					%span.ampm am
+				-else
+					%span.time=@event.start_time.split("pm").first
+					%span.ampm pm
 
 
-			.datetime.ends
-				%h5 Ends
-				.date
-					%span.fa.fa-calendar
-					%span.day=@event.end_date.strftime("%A %e")
-					%span.month=@event.end_date.strftime("%B")
-					%span.year=@event.end_date.strftime("%y")
-				.time
-					%span.fa.fa-clock-o
-					-if @event.end_time.include?("am")
-						%span.time=@event.end_time.split("am").first
-						%span.ampm am
-					-else
-						%span.time=@event.end_time.split("pm").first
-						%span.ampm pm
+		.datetime.ends
+			%h5 Ends
+			.date
+				%span.fa.fa-calendar
+				%span.day=@event.end_date.strftime("%A %e")
+				%span.month=@event.end_date.strftime("%B")
+				%span.year=@event.end_date.strftime("%y")
+			.time
+				%span.fa.fa-clock-o
+				-if @event.end_time.include?("am")
+					%span.time=@event.end_time.split("am").first
+					%span.ampm am
+				-else
+					%span.time=@event.end_time.split("pm").first
+					%span.ampm pm
 						
 	.main
-		.hidden-scroll
-			%ul.nav.nav-tabs
-				%li.active
-					%a{:href=> '#info', :data=> {:toggle=> 'tab'}} Info
-				%li
-					%a{:href=> '#design', :data=> {:toggle=> 'tab'}} Design (#{@event.event_images.count})
-				%li
-					%a{:href=> "#logistics", :data=> {:toggle=> 'tab'}} Logistics
-				%li
-					%a{:href=> "#log", :data=> {:toggle=> 'tab'}} Log
+		%ul.nav.nav-tabs
+			%li.active
+				%a{:href=> '#info', :data=> {:toggle=> 'tab'}} Info
+			%li
+				%a{:href=> '#design', :data=> {:toggle=> 'tab'}} Design (#{@event.event_images.count})
+			%li
+				%a{:href=> "#logistics", :data=> {:toggle=> 'tab'}} Logistics
+			%li
+				%a{:href=> "#log", :data=> {:toggle=> 'tab'}} Log
 
-			.tab-content
-				#info.tab-pane.active
-					= render :partial => 'info'
-				#design.tab-pane
-					= render :partial => 'design'
-				#logistics.tab-pane
-					= render :partial => 'logistics'
-				#log.tab-pane
-					= render :partial => 'log'
+		.tab-content
+			#info.tab-pane.active
+				= render :partial => 'info'
+			#design.tab-pane
+				= render :partial => 'design'
+			#logistics.tab-pane
+				= render :partial => 'logistics'
+			#log.tab-pane
+				= render :partial => 'log'
 
 #addName.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
 	.modal-dialog

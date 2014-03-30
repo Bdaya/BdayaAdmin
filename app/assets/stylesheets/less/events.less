@@ -8,10 +8,8 @@
 }
 
 .event {
-	position: absolute;
-	top: @topbar-height; left: 0px; right: 0px; bottom: 0px;
 
-	@cover-height: 200px;
+	@cover-height: 196px;
 	.cover {
 		position: relative;
 		height: @cover-height;
@@ -52,7 +50,7 @@
 			position: absolute;
 			left: 25px;
 			top: 20px;
-			z-index: 100;
+			z-index: 10;
 			
 
 			img {
@@ -69,14 +67,13 @@
 
 		overflow-x: hidden;
 
-		left: 0px; top: @cover-height ; bottom: 0px;
+		left: 0px; top: @cover-height+@topbar-height; bottom: 0px;
 
 		background-color: @color2light;
 		border-right: 1px solid @color-border;
 
-		.hidden-scroll {
-			padding-top: 20px;
-		}
+		
+		padding-top: 20px;
 
 		.datetime {
 			text-align: left;
@@ -89,8 +86,8 @@
 				text-align: center;
 			}
 			.day, .month, .year, .time, .ampm {
-				font-size: 24px;
-				font-weight: 300;
+				font-size: 14px;
+				font-weight: bold;
 			}
 			.day, .time {color: @color1;}
 			.month, .ampm {color: @color2dark;}
@@ -105,13 +102,7 @@
 	}
 
 	.main {
-		position: absolute;
-		top: @cover-height; left: 20px; right: 0px; bottom: 0px;
 		padding: @padding;
 		margin-left: @side-width;
-
-		.hidden-scroll {
-			padding-top: 20px;
-		}
 	}
 }
