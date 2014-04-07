@@ -2,20 +2,20 @@
 	.panel-heading{"data-target" => "#addDescription", "data-toggle" => "modal"}
 		%h1 Description
 	.panel-body
-		=@event.description
+		=simple_format(@event.description)
 
 
 .panel.panel-default
 	.panel-heading{"data-target" => "#addIdea", "data-toggle" => "modal"}
 		%h1 Idea
 	.panel-body
-		=@event.idea
+		=simple_format(@event.idea)
 
 .panel.panel-default
 	.panel-heading{"data-target" => "#addTheme", "data-toggle" => "modal"}
 		%h1 Theme
 	.panel-body
-		=@event.theme
+		=simple_format(@event.theme)
 
 .panel.panel-default
 	.panel-heading

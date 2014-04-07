@@ -15,7 +15,7 @@
       -if @meeting.agenda == nil
         ="You haven't entered an Agenda yet!!"
       -else
-        =@meeting.agenda
+        =simple_format(@meeting.agenda)
 
     #minutes.tab-pane
       %h2="Meeting Minutes"
@@ -23,7 +23,7 @@
       -if @meeting.meeting_minuts == nil
         ="You haven't entered meeting minutes yet!!"
       -else
-        =@meeting.meeting_minuts      
+        =simple_format(@meeting.meeting_minuts)
 
     #info.tab-pane.active
       %span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#updateModal'}}
@@ -34,7 +34,7 @@
           .time= @meeting.date.to_date if @meeting.date
           .date= @meeting.time if @meeting.time
         .col.col-xs-6.col-xs-offset-1
-          %p= @meeting.description
+          %p=simple_format(@meeting.description)
 
       .invites
         %h3 Invitees
