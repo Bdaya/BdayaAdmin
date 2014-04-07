@@ -108,6 +108,9 @@ class User
   has_many :created_events, class_name: 'Event', inverse_of: :creator
   has_many :created_logs, class_name: 'EventLog', inverse_of: :creator
 
+
+  has_many :feedbacks
+  
   # def get_pending_tasks
   #   tasks = self.tasks_responsible_for.where(:status=>"pending").to_a
   # end

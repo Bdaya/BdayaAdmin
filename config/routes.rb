@@ -8,6 +8,7 @@ BdayaAdmin::Application.routes.draw do
     end
   end
   
+  resources :feedbacks
   resources :requests
   resources :events do
     member do

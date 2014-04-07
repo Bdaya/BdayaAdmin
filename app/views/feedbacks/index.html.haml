@@ -1,0 +1,22 @@
+#feedbacks
+	.split-main
+		
+		%h1 Feedbacks
+		%br
+		
+
+		-@feedbacks.each do |f|	
+			.feedback.show-side{:data => {:link => (url_for f)}}
+				.status=#task.status
+				%h2.name=f.title
+				.date=f.created_at
+										
+
+	.split-side
+		.topbar
+			%span.back.fa.fa-angle-left.fa-2x.topbarButton
+
+		#details.content.hidden-scroll
+			-if @feedbacks.first != nil
+				= render :partial => 'feedbacks/details', :locals => {:@feedback => @feedbacks.first}			
+					
