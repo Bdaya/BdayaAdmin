@@ -1,16 +1,19 @@
-#feedbacks
+#tasks
 	.split-main
-		
+		%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Send Feedback
+
 		%h1 Feedbacks
 		%br
 		
 
-		-@feedbacks.each do |f|	
-			.feedback.show-side{:data => {:link => (url_for f)}}
-				.status=#task.status
-				%h2.name=f.title
-				.date=f.created_at
-										
+		.group
+			-if @feedbacks.length > 0
+				.title
+				-@feedbacks.each do |fb|	
+					.task.show-side{:data => {:link => (url_for fb)}}
+						.status=#task.status
+						%h2.name=fb.title
+						.date=fb.created_at.to_date	
 
 	.split-side
 		.topbar
@@ -19,4 +22,13 @@
 		#details.content.hidden-scroll
 			-if @feedbacks.first != nil
 				= render :partial => 'feedbacks/details', :locals => {:@feedback => @feedbacks.first}			
+
+#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+				%h1 Send Feedback
+			.modal-body
+				= render :partial => 'form', :locals => {:@feedback => Feedback.new}
 					

@@ -6,7 +6,7 @@ class Feedback
   field :content, type: String
 
   belongs_to :user
-  validates_presence_of :title, :message =>"Must include a title"
-  validates_presence_of :content, :message =>"Must include a content"
+  validates_presence_of :title, :message =>"must be included"
+  validates_presence_of :content, :message =>"must be included"
   
 end
