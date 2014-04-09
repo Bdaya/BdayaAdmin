@@ -1,0 +1,35 @@
+-if @idea != nil
+	.info
+		-if @idea.user.id == current_user.id
+			%span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#updateModal'}}
+
+		%h1 
+			=@idea.title
+
+		.item
+			%span.fa.fa-user
+			%p 
+				Written By: 
+				%strong=@idea.user.name
+
+		.item
+			%span.fa.fa-calendar-o
+			%p  
+				On
+				%strong=@idea.created_at.to_date
+
+		.item
+			%span.fa.fa-exclamation-circle
+			%p
+				=simple_format(@idea.content)
+
+		
+	-if @idea.user.id == current_user.id
+		#updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+			.modal-dialog
+				.modal-content
+					.modal-header
+						%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+						%h1 Update
+					.modal-body
+						= render :partial => 'form', :locals => {:@idea => @idea, :@t => @idea.type}

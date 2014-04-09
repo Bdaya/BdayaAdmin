@@ -110,6 +110,8 @@ class User
 
 
   has_many :feedbacks
+
+  has_many :ideas
   
   # def get_pending_tasks
   #   tasks = self.tasks_responsible_for.where(:status=>"pending").to_a

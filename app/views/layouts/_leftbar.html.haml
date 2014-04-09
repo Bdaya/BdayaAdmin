@@ -49,21 +49,28 @@
 					%li
 						%span.fa.fa-users Meetings
 
-
-			%ul.menu
 				%a{href:'/events'}
 					%li
 						%span.fa.fa-bullhorn Events
 				
 				%a{href:'/requests'}
 					%li
-						%span.fa.fa-check-square-o Requests
+						%span.fa.fa-check-square-o Requests	
+				
+
+			%ul.menu
+				%a{href:'/ideas'}
+					%li
+						%span.fa.fa-key Ideas Bag
+				
+				%a{href:'/gowanyat'}
+					%li
+						%span.fa.fa-heart جوانيات			
 
 			%ul.menu
 				=link_to destroy_user_session_path, method: 'delete' do
 					%li.danger
 						%span.fa.fa-sign-out Logout
-			%ul.menu
 				%a{href:'/feedbacks'}
 					%li
-						%span.fa.fa-bullhorn Feedback
+						%span.fa.fa-bell Feedback

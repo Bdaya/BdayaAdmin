@@ -9,6 +9,8 @@ BdayaAdmin::Application.routes.draw do
   end
   
   resources :feedbacks
+get '/gowanyat' , to: "ideas#gowanyat"
+  resources :ideas
   resources :requests
   resources :events do
     member do

@@ -1,0 +1,23 @@
+-if flash[:alert]
+  .alert.alert-danger
+    = simple_format flash[:alert]
+
+= form_for @idea, :html => {:role => 'form'} do |f|  
+  .form-group.row
+    .col.col-xs-3= f.label "Title"
+    .col.col-xs-9= f.text_field :title
+    
+
+  .form-group.row
+    .col.col-xs-3= f.label "Content"
+    .col.col-xs-9= f.text_area :content
+
+
+  .form-group.row
+    .col.col-xs-9= f.hidden_field :type, value: @t
+
+
+  .form-group.row
+    .col.col-xs-9= f.submit "Post", :class => 'button'
+    -if !@idea.new_record
+      .button.red= link_to 'Delete', @idea, :method => 'delete'
