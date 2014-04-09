@@ -19,6 +19,15 @@ class TasksController < ApplicationController
     #redirect_to sent_tasks_path
 	end
 
+	def update
+		@task = Task.find(params[:id])
+		if @task.update_attributes!(params[:task])
+			redirect_to sent_tasks_path
+		else
+			redirect_to :back, alert: @task.errors.full_messages.join("\n")
+		end
+	end
+
 	def show
 		@task = Task.find(params[:id])
 

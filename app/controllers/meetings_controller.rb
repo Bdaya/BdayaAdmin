@@ -94,7 +94,7 @@ class MeetingsController < ApplicationController
       end
       redirect_to action: 'index', notice: 'Meeting was successfully updated.'
     else
-      render action: "edit"
+      redirect_to meetings_path, alert: @meeting.errors.full_messages.join("\n")
     end
   end
 

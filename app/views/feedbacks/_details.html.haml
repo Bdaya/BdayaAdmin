@@ -1,18 +1,24 @@
 -if @feedback != nil
 	.info
-		/ .countdown 12:22
-
+		
 		%h1 
 			=@feedback.title
-
-		.item
-			%span.fa.fa-exclamation-circle
-			%p
-				=simple_format(@feedback.content)
 
 		.item
 			%span.fa.fa-user
 			%p 
 				Sent By: 
 				%strong=@feedback.user.name
+
+		.item
+			%span.fa.fa-calendar-o
+			%p  
+				%strong=@feedback.created_at.to_date
+
+		.item
+			%span.fa.fa-exclamation-circle
+			%p
+				=simple_format(@feedback.content)
+
+		
 			

@@ -1,7 +1,0 @@
-<h2>Edit Meeting</h2>
-
-<% if(DateTime.now.end_of_day < @meeting.time) %>
-	<%= render 'form' %>
-<% else %>
-	<%= render 'form2' %>
-<% end %>
