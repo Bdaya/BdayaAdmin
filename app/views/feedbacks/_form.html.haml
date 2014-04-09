@@ -1,0 +1,18 @@
+-if flash[:alert]
+	.alert.alert-danger
+		= simple_format flash[:alert]
+
+= form_for @feedback, :html => {:role => 'form'} do |f|
+	
+	.form-group
+		.col.col-xs-3= f.label "Title"
+		= f.text_field :title
+
+	.form-group
+		.col.col-xs-3= f.label "Content"
+		= f.text_area :content
+
+	.form-group
+		.col.col-xs-3
+		= f.submit :class => 'button'
+		
