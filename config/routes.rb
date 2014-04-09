@@ -1,9 +1,14 @@
 BdayaAdmin::Application.routes.draw do
   
-  resources :ideas
+  resources :ideas do
+    collection do
+    get "gowanyat"
+  end
+  end
 
 
   get "committee/new"
+  #get "ideas/up_vote" => "ideas#up_vote"
 
   resources :meetings do
     get :invite_users

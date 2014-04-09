@@ -2,14 +2,25 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.all
+    @ideas = Idea.where(type: 'idea')
+   
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @ideas }
+      
+    end
+  end
+  def new_idea
+    
+  end
+  def gowanyat
+    @ideas = Idea.where(type: 'gowanyah')
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @ideas }
     end
-  end
-
+  end  
   # GET /ideas/1
   # GET /ideas/1.json
   def show
@@ -42,14 +53,12 @@ class IdeasController < ApplicationController
   def create
     @idea = Idea.new(params[:idea])
 
-    respond_to do |format|
-      if @idea.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
-        format.json { render json: @idea, status: :created, location: @idea }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
-      end
+     if (@idea.save && @idea.type == "idea")
+      redirect_to action: 'index'
+    elsif (@idea.save)
+      redirect_to action: 'gowanyat'
+    else  
+      render 'new'
     end
   end
 
@@ -80,4 +89,11 @@ class IdeasController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def up_vote (i)
+   @idea = i 
+   @idea.no_of_upvotes = @idea.no_of_upvotes + 1
+   @idea.save
+   redirect_to action: 'index'
+  end  
+
 end

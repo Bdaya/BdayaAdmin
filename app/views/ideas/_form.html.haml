@@ -1,0 +1,26 @@
+= form_for(@idea) do |f|
+  - if @idea.errors.any?
+    #error_explanation
+      %ul
+        - @idea.errors.full_messages.each do |msg|
+          %li.alert.alert-danger= msg
+  
+
+  .form-group.row
+    .col.col-xs-3= f.label "Title"
+    .col.col-xs-9= f.text_field :title
+    
+
+  .form-group.row
+    .col.col-xs-3= f.label "Content"
+    .col.col-xs-9= f.text_area :content
+
+
+  .form-group.row
+    .col.col-xs-9= f.hidden_field :type, value: @t
+
+
+  .form-group.row
+    .col.col-xs-9= f.submit "Post", :class => 'button'
+    -if !@idea.new_record
+      .button.red= link_to 'Delete', @idea, :method => 'delete'

@@ -1,0 +1,27 @@
+#ideas
+  %span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Post
+  %h1 Gowanyat Bdaya
+
+  %br
+  %br
+  %br
+       
+  .group
+    -if @ideas.length > 0
+      -@ideas.each do |idea|  
+        %h2.name=idea.title
+        .well
+          = idea.content
+          
+
+
+
+
+#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+        %h1 Post your gowanyat
+      .modal-body
+        = render :partial => 'form', :locals => {:@idea => Idea.new ,:@t => "gowanyah"}          
