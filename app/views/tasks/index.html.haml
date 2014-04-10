@@ -1,7 +1,8 @@
 #tasks
 	.split-main
-		%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
-		%span.button.orange.right= link_to("Sent Tasks", sent_tasks_path(), method: :get)
+		-if(current_user.head? || current_user.vice_head? || current_user.upper_board? || current_user.president?)
+			%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
+			%span.button.orange.right= link_to("Sent Tasks", sent_tasks_path(), method: :get)
 		%h1 Tasks
 		%br
 		
@@ -69,12 +70,13 @@
 					
 
 
-#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
-	.modal-dialog
-		.modal-content
-			.modal-header
-				%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
-				%h1 Assign Task
-			.modal-body
-				= render :partial => 'form', :locals => {:@task => Task.new}
-				
+-if(current_user.head? || current_user.vice_head? || current_user.upper_board? || current_user.president?)
+	#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+		.modal-dialog
+			.modal-content
+				.modal-header
+					%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+					%h1 Assign Task
+				.modal-body
+					= render :partial => 'form', :locals => {:@task => Task.new}
+					

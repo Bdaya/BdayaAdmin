@@ -10,23 +10,26 @@
 
   .tab-content
     #agenda.tab-pane
+      -if @meeting.creator.id == current_user.id  
+        %span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#agendaModal'}}
       %h2="Agenda"
-      %span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#agendaModal'}}
       -if @meeting.agenda == nil
         ="You haven't entered an Agenda yet!!"
       -else
         =simple_format(@meeting.agenda)
 
     #minutes.tab-pane
+      -if @meeting.creator.id == current_user.id 
+        %span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#minsModal'}}
       %h2="Meeting Minutes"
-      %span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#minsModal'}}
       -if @meeting.meeting_minuts == nil
         ="You haven't entered meeting minutes yet!!"
       -else
         =simple_format(@meeting.meeting_minuts)
 
     #info.tab-pane.active
-      %span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#updateModal'}}
+      -if @meeting.creator.id == current_user.id 
+        %span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#updateModal'}}
       %h2= @meeting.title
       .row
         .col.col-xs-5
@@ -48,21 +51,22 @@
             %br  
             =a.name
             .aten   
-              -if(a.is_meeting_attendance(@meeting,"attended"))
-                .attButton.greenFilled= link_to("AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended"), method: :post)
-              -else
-                .attButton.green= link_to("AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended"), method: :post)
+              -if @meeting.creator.id == current_user.id
+                -if(a.is_meeting_attendance(@meeting,"attended"))
+                  .attButton.greenFilled= link_to("AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended"), method: :post)
+                -else
+                  .attButton.green= link_to("AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended"), method: :post)
 
-              -if(a.is_meeting_attendance(@meeting,"absent"))
-                .attButton.redFilled= link_to("AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent"), method: :post)
+                -if(a.is_meeting_attendance(@meeting,"absent"))
+                  .attButton.redFilled= link_to("AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent"), method: :post)
 
-              -else
-                .attButton.red= link_to("AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent"), method: :post)
-                
-              -if(a.is_meeting_attendance(@meeting,"excused"))
-                .attButton.orangeFilled= link_to("Ex", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused"), method: :post)
-              -else
-                .attButton.orange= link_to("Ex", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused"), method: :post)
+                -else
+                  .attButton.red= link_to("AB", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "absent"), method: :post)
+                  
+                -if(a.is_meeting_attendance(@meeting,"excused"))
+                  .attButton.orangeFilled= link_to("Ex", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused"), method: :post)
+                -else
+                  .attButton.orange= link_to("Ex", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "excused"), method: :post)
 
 
     .gap-discussion
@@ -79,15 +83,15 @@
             = text_area_tag :message, nil
             = submit_tag "Send", :class => 'button'
 
-
-  #updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
-    .modal-dialog
-      .modal-content
-        .modal-header
-          %span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
-          %h1 Update Meeting
-        .modal-body
-          = render :partial => 'form', :locals => {:@meeting => @meeting}
+  -if @meeting.creator.id == current_user.id
+    #updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+            %h1 Update Meeting
+          .modal-body
+            = render :partial => 'form', :locals => {:@meeting => @meeting}
 
   #agendaModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
     .modal-dialog

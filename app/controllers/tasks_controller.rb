@@ -7,6 +7,7 @@ class TasksController < ApplicationController
 	def create
 		#@user = User.find(params[:task][:responsible_user_id])
 		@task = Task.new params[:task]
+		@task.status = "pending"
 		@task.creator = current_user
 		if @task.save
 			redirect_to sent_tasks_path
@@ -21,6 +22,7 @@ class TasksController < ApplicationController
 
 	def update
 		@task = Task.find(params[:id])
+		@task.status = "pending"
 		if @task.update_attributes!(params[:task])
 			redirect_to sent_tasks_path
 		else

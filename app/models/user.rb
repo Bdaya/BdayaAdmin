@@ -321,6 +321,18 @@ class User
     head_of_committee != nil
   end
 
+  def vice_head?
+    vice_of_committee != nil
+  end
+
+  def upper_board?
+    return upper_board == true
+  end
+
+  def president?
+    return president == true
+  end
+
   def is_meeting_attendance(m,s)
     a = self.attendances.where(:meeting_id => m.id).first
     return a.status == s
