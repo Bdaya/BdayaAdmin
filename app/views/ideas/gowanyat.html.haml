@@ -1,6 +1,9 @@
 #tasks
   .split-main
-    %span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Write your thoughts
+    %span.right
+      .attButton.orange= link_to("Top", gowanyat_top_path(), method: :get)
+      .attButton.orange= link_to("Recent", gowanyat_path(), method: :get)
+      .button{:data => {:toggle => 'modal', :target => '#createModal'}} Write your thoughts
 
     %h1 Bdaya جوانيات
     %br
@@ -10,6 +13,11 @@
         .title
         -@ideas.each do |idea|  
           .task.show-side{:data => {:link => (url_for idea)}}
+            -if(idea.upvoters.include?(current_user))
+              .attButton.greenFilled.right= link_to("Unvote", upvote_idea_path(idea), method: :post)
+            -else
+              .attButton.green.right= link_to("Upvote", upvote_idea_path(idea), method: :post)
+            %strong.green= idea.upvotes
             .status=#task.status
             %h2.name=idea.title
             .date=idea.created_at.to_date 

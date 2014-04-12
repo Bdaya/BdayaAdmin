@@ -9,8 +9,14 @@ BdayaAdmin::Application.routes.draw do
   end
   
   resources :feedbacks
-get '/gowanyat' , to: "ideas#gowanyat"
-  resources :ideas
+  get '/gowanyat' , to: "ideas#gowanyat"
+  get 'ideas/top' , to: "ideas#top"
+  get 'gowanyat/top' , to: "ideas#top_gowanyat"
+  resources :ideas do
+    member do
+      post :upvote
+    end
+  end
   resources :requests
   resources :events do
     member do

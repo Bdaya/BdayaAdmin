@@ -5,6 +5,16 @@ class IdeasController < ApplicationController
     @ideas = Idea.where(type: 'idea').desc(:created_at).to_a
   end
 
+  def top
+    @ideas = Idea.where(type: 'idea').desc(:upvotes).to_a
+    render 'index'
+  end
+
+  def top_gowanyat
+    @ideas = Idea.where(type: 'gowanyah').desc(:upvotes).to_a
+    render 'gowanyat'
+  end
+
   def gowanyat
     @ideas = Idea.where(type: 'gowanyah').desc(:created_at).to_a
   end  
@@ -16,7 +26,8 @@ class IdeasController < ApplicationController
 
   def create
     @idea = Idea.new(params[:idea])
-    @idea.user = current_user
+    @idea.creator = current_user
+    @idea.upvotes = 0
 
      if (@idea.save)
 	    if (@idea.type == "idea")
@@ -54,11 +65,24 @@ class IdeasController < ApplicationController
       end  
   end
 
-  def up_vote (i)
-   @idea = i 
-   @idea.no_of_upvotes = @idea.no_of_upvotes + 1
-   @idea.save
-   redirect_to action: 'index'
+  def upvote
+   @idea = Idea.find(params[:id])
+   if(@idea.upvoters.include?(current_user))
+     @idea.upvotes = @idea.upvotes - 1
+     @idea.save
+     @idea.upvoters.delete(current_user)
+   else
+    @idea.upvotes = @idea.upvotes + 1
+    @idea.save
+    @idea.upvoters << current_user
+     
+   end 
+   itype = @idea.type
+   if (itype == "idea")
+        redirect_to ideas_path
+      elsif (itype == "gowanyah")
+        redirect_to gowanyat_path
+      end  
   end  
 
 end

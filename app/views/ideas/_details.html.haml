@@ -1,6 +1,6 @@
 -if @idea != nil
 	.info
-		-if @idea.user.id == current_user.id
+		-if @idea.creator.id == current_user.id
 			%span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#updateModal'}}
 
 		%h1 
@@ -10,7 +10,7 @@
 			%span.fa.fa-user
 			%p 
 				Written By: 
-				%strong=@idea.user.name
+				%strong=@idea.creator.name
 
 		.item
 			%span.fa.fa-calendar-o
@@ -24,7 +24,7 @@
 				=simple_format(@idea.content)
 
 		
-	-if @idea.user.id == current_user.id
+	-if @idea.creator.id == current_user.id
 		#updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
 			.modal-dialog
 				.modal-content
