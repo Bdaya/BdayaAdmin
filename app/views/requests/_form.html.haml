@@ -16,8 +16,14 @@
         - if @req.status || !(@req.request_type.eql?'room')
           = @req.roomnumber
         - else
-          = f.text_field :roomnumber , placeholder: "Enter Room No."
+          -if(current_user.in_committee?("Logistics"))
+            = f.text_field :roomnumber , placeholder: "Enter Room No."
+          -else
+            ="TBA"
     %td= @req.notes
     %td= @req.date
     %td= @req.time
-    %td= @req.status ? "Submitted" : f.submit("Submit Request")
+    -if(current_user.in_committee?("Logistics"))
+      %td= @req.status ? "Submitted" : f.submit("Submit Request")
+    -else
+      %td= @req.status ? "Submitted" : "TBA" 
