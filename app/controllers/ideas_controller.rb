@@ -85,4 +85,17 @@ class IdeasController < ApplicationController
       end  
   end  
 
+  def send_message
+      @idea = Idea.find(params[:id])
+      @user = current_user.name
+      @message = params[:message]
+      @idea.post_message(@user,@message)
+      itype = @idea.type
+     if (itype == "idea")
+          redirect_to ideas_path
+        elsif (itype == "gowanyah")
+          redirect_to gowanyat_path
+        end 
+  end
+
 end

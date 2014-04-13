@@ -12,5 +12,12 @@ class Idea
 
   belongs_to :creator, class_name: 'User', inverse_of: :created_ideas
   has_and_belongs_to_many :upvoters, class_name: 'User', inverse_of: :upvoted_ideas
+  has_many :discussions
 
+  def post_message(username, message)
+    discussion  = Discussion.create(user_name:username, message:message)
+    self.discussions << discussion
+    self.save
+  end
+  
 end

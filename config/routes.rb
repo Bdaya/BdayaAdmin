@@ -15,6 +15,7 @@ BdayaAdmin::Application.routes.draw do
   resources :ideas do
     member do
       post :upvote
+      post :send_message
     end
   end
   resources :requests

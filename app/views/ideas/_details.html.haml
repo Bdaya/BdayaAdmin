@@ -23,6 +23,18 @@
 			%p
 				=simple_format(@idea.content)
 
+		.gap-discussion
+			Discussion
+		.discussion
+			.hidden-scroll
+				-@idea.discussions.each do |msg|
+					.msg
+						.name=msg.user_name
+						.msg-body=msg.message
+				.form
+					= form_tag(send_message_idea_path(@idea), method: :post) do
+						= text_area_tag :message, nil
+						= submit_tag "Send", :class => 'button'
 		
 	-if @idea.creator.id == current_user.id
 		#updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}

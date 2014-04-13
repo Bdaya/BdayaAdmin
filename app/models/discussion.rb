@@ -9,5 +9,6 @@ class Discussion
 
   belongs_to :meeting, class_name: 'Meeting'
   belongs_to :task
+  belongs_to :idea
   
 end
