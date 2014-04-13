@@ -96,11 +96,11 @@
 
 -if(current_user.head? || current_user.vice_head? || current_user.upper_board? || current_user.president?)
   #createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
-        %h1 Create Meeting
-      .modal-body
-        = render :partial => 'form', :locals => {:@meeting => Meeting.new}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+          %h1 Create Meeting
+        .modal-body
+          = render :partial => 'form', :locals => {:@meeting => Meeting.new}
 

@@ -51,7 +51,19 @@
 		-if @task.creator.id == current_user.id && @task.status == "done"	
 			.button.green= link_to 'Accept', task_accept_path(@task.id), :method => 'post'
 			.button.red= link_to 'Reopen', task_reopen_path(@task.id), :method => 'post'
-			
+		.gap-discussion
+			Discussion
+		.discussion
+			.hidden-scroll
+				-@task.discussions.each do |msg|
+					.msg
+						.name=msg.user_name
+						.msg-body=msg.message
+				.form
+					= form_tag(send_message_task_path(@task), method: :post) do
+						= text_area_tag :message, nil
+						= submit_tag "Send", :class => 'button'
+      			
 	-if @task.creator.id == current_user.id
 		#updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
 			.modal-dialog

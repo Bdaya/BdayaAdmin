@@ -35,6 +35,9 @@ BdayaAdmin::Application.routes.draw do
     post :done
     post :reopen
     post :accept
+    member do
+      post :send_message
+    end
   end
 
   resources :notifications

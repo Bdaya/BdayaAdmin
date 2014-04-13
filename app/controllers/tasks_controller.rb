@@ -81,4 +81,13 @@ class TasksController < ApplicationController
 		# @sent_tasks = current_user.get_sent_tasks
 		@task = Task.new
 	end
+
+	def send_message
+	    @task = Task.find(params[:id])
+	    @user = current_user.name
+	    @message = params[:message]
+	    @task.post_message(@user,@message)
+	    redirect_to tasks_path
+	end
+
 end
