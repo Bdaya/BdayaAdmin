@@ -211,7 +211,7 @@
 			.modal-body
 				= form_for(@event) do |f|
 					= f.label "Members"
-					= f.collection_select :member_ids, User.order_by(:name.asc), :id, :name,{},{multiple: true, class: 'user-search'}
+					= f.collection_select :member_ids, User.excludes(:id => @event.project_manager.id).order_by(:name.asc), :id, :name,{},{multiple: true, class: 'user-search'}
 					.modal-footer
 						%button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
 						= f.submit "Save", :class=>"btn btn-primary"

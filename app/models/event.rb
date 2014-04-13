@@ -51,4 +51,16 @@ class Event
     self.requests.where(request_type: 'permissions').desc(:time).to_a
   end
 
+  def is_creator?(user)
+    return creator.id == user.id
+  end
+
+  def is_manager?(user)
+    return project_manager.id == user.id
+  end
+
+  def is_member(user)
+    return members.include?(user)  
+  end
+
 end

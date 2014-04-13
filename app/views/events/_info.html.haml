@@ -1,19 +1,31 @@
 .panel.panel-default
-	.panel-heading{"data-target" => "#addDescription", "data-toggle" => "modal"}
-		%h1 Description
+	-if(@event.is_manager?(current_user) || @event.is_creator?(current_user))	
+		.panel-heading{"data-target" => "#addDescription", "data-toggle" => "modal"}
+			%h1 Description
+	-else
+		.panel-heading	
+			%h1 Description
 	.panel-body
 		=simple_format(@event.description)
 
 
 .panel.panel-default
-	.panel-heading{"data-target" => "#addIdea", "data-toggle" => "modal"}
-		%h1 Idea
+	-if(@event.is_manager?(current_user) || @event.is_creator?(current_user))
+		.panel-heading{"data-target" => "#addIdea", "data-toggle" => "modal"}
+			%h1 Idea
+	-else
+		.panel-heading
+			%h1 Idea
 	.panel-body
 		=simple_format(@event.idea)
 
 .panel.panel-default
-	.panel-heading{"data-target" => "#addTheme", "data-toggle" => "modal"}
-		%h1 Theme
+	-if(@event.is_manager?(current_user) || @event.is_creator?(current_user))
+		.panel-heading{"data-target" => "#addTheme", "data-toggle" => "modal"}
+			%h1 Theme
+	-else
+		.panel-heading
+			%h1 Theme
 	.panel-body
 		=simple_format(@event.theme)
 
@@ -25,8 +37,12 @@
 			=@event.project_manager.name
 
 .panel.panel-default
-	.panel-heading{"data-target" => "#addMembers", "data-toggle" => "modal"}
-		%h1 Members
+	-if(@event.is_manager?(current_user) || @event.is_creator?(current_user))
+		.panel-heading{"data-target" => "#addMembers", "data-toggle" => "modal"}
+			%h1 Members
+	-else
+		.panel-heading
+			%h1 Members
 	.panel-body
 		-if @event.members
 			-@event.members.each do |member|

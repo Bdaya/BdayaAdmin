@@ -1,5 +1,6 @@
 #events
-	%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
+	-if(current_user.head? || current_user.vice_head? || current_user.upper_board? || current_user.president?)
+		%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
 
 	%h1 Events List
 	%br
@@ -13,11 +14,12 @@
 
 
 
-#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
-	.modal-dialog
-		.modal-content
-			.modal-header
-				%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
-				%h1 Create Event
-			.modal-body
-				= render :partial => 'form', :locals => {:@event => Event.new, :@project_managers => User.all}
+-if(current_user.head? || current_user.vice_head? || current_user.upper_board? || current_user.president?)
+	#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+		.modal-dialog
+			.modal-content
+				.modal-header
+					%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+					%h1 Create Event
+				.modal-body
+					= render :partial => 'form', :locals => {:@event => Event.new, :@project_managers => User.all}

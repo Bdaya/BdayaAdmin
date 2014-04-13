@@ -11,12 +11,13 @@
       %td Status
   %tbody
     %tr
-      = form_for @request, url: new_materials_event_path(@event) do |f|
-        %td= f.text_field :materials
-        %td= f.text_field :notes
-        %td= f.text_field :date, :'data-behaviour' => 'datepicker'
-        %td= f.text_field :time, :'data-behaviour' => 'timepicker'
-        %td= f.submit
+      -if(@event.is_manager?(current_user) || @event.is_creator?(current_user) || @event.is_member(current_user))
+        = form_for @request, url: new_materials_event_path(@event) do |f|
+          %td= f.text_field :materials
+          %td= f.text_field :notes
+          %td= f.text_field :date, :'data-behaviour' => 'datepicker'
+          %td= f.text_field :time, :'data-behaviour' => 'timepicker'
+          %td= f.submit
     - @materials_requests.each do |req|
       %tr
         %td= req.materials
@@ -36,12 +37,13 @@
       
   %tbody
     %tr
-      = form_for @request, url: new_permissions_event_path(@event) do |f|
-        %td= f.text_field :permissions
-        %td= f.text_field :notes
-        %td= f.text_field :date, :'data-behaviour' => 'datepicker'
-        %td= f.text_field :time, :'data-behaviour' => 'timepicker'
-        %td= f.submit
+      -if(@event.is_manager?(current_user) || @event.is_creator?(current_user) || @event.is_member(current_user))
+        = form_for @request, url: new_permissions_event_path(@event) do |f|
+          %td= f.text_field :permissions
+          %td= f.text_field :notes
+          %td= f.text_field :date, :'data-behaviour' => 'datepicker'
+          %td= f.text_field :time, :'data-behaviour' => 'timepicker'
+          %td= f.submit
     - @permissions_requests.each do |req|
       %tr
         %td= req.permissions
