@@ -334,6 +334,10 @@ class User
     return president == true
   end
 
+  def in_committee?(com_name)
+    return member_of_committee.name == com_name
+  end  
+
   def is_meeting_attendance(m,s)
     a = self.attendances.where(:meeting_id => m.id).first
     return a.status == s

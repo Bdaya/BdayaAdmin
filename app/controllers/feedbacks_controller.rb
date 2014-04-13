@@ -1,7 +1,13 @@
 class FeedbacksController < ApplicationController
 
 	def index
-		@feedbacks = Feedback.all.to_a
+		
+		if(current_user.in_committee?("IT"))
+			@feedbacks = Feedback.all.to_a
+		else
+			@feedbacks = current_user.feedbacks.to_a
+		end
+
 	end
 
 	def show
