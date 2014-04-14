@@ -10,6 +10,12 @@ $(document).ready ->
 		width: '280px'
 		display_selected_options: false
 
+	$('#content').find(".user-search").chosen
+		allow_single_deselect: true
+		no_results_text: 'No results matched'
+		width: '280px'
+		display_selected_options: false
+
 	$('#content').on "click", ".gap-discussion", ->
 		$(this).next('.discussion').toggle()
 
