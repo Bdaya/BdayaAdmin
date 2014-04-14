@@ -72,7 +72,7 @@
 	width: 100%;
 	background-color: @color2dark;
 	position: relative;
-	z-index: -2;
+	z-index: 0;
 	
 	.pp-bg {
 		// content: '';
@@ -95,6 +95,15 @@
 			border: 2px solid white;
 			margin: 20px;
 			.border-radius(100px);
+			cursor: pointer;
+
+			&:hover {
+				// -webkit-transition: all 0.5s; /* For Safari 3.1 to 6.0 */
+				// transition: all 0.5s;
+				// -ms-transform: scale(1.1); /* IE 9 */
+				// -webkit-transform: scale(1.1); /* Chrome, Safari, Opera */
+				// transform: scale(1.1);
+			}
 		}
 		h1 {
 			color: white;
