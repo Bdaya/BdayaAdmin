@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Bdaya Admin
+    = stylesheet_link_tag "application", :media => "all"
+    = csrf_meta_tags
+    %meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0, user-scalable=0"}
+  %body
+
+    =link_to 'Committees', admin_committees_path, class: 'btn btn-primary'
+
+    #content
+      #topbar
+        %span#leftbar-button(class='fa fa-bars fa-2x topbar-button')
+        %span#rightbar-button(class='fa fa-list fa-2x topbar-button right')
+        %span#search
+          %span(class='fa fa-search fa-2x')
+          %input(placeholder='Search')
+          -if flash[:notice]
+            .alert.alert-success
+              = simple_format flash[:notice]
+      = yield
+
+
+  / Javascript files are loaded at the end of 'body', to not cause blocking
+  = javascript_include_tag "application"
+  -if flash[:alert]
+    :javascript
+      $(document).ready(function(){
+        $(".button[data-toggle='modal']").click();
+      });
+  :javascript
+      $(document).ready(function(){
+        var img = $("#user-info .pp img").attr("src");
+        $("#user-info .pp-bg").css("background-image", "url("+img+")");
+        $("#user-info .pp .image").css("background-image", "url("+img+")");
+        $('[data-behaviour~=datepicker]').datepicker();
+        $('[data-behaviour~=timepicker]').timepicker();
+        $('.datatable').dataTable();
+        $('.user-search').chosen({
+            allow_single_deselect: true,
+            no_results_text: 'No results matched',
+            width: '280px',
+            display_selected_options: false
+          });
+      });

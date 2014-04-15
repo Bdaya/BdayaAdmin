@@ -1,6 +1,4 @@
-class Admin::UsersController < ApplicationController
-  
-  before_filter :authenticate_admin!
+class Admin::UsersController < AdminController
 
   before_filter :init_user, except: [:index, :new, :create]
 

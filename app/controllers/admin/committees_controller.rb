@@ -1,6 +1,4 @@
-class Admin::CommitteesController < ApplicationController
-  
-  before_filter :authenticate_admin!
+class Admin::CommitteesController < AdminController
 
   before_filter :init_committee, except: [:index, :new, :create]
 
