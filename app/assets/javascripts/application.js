@@ -13,7 +13,8 @@
 //= require jquery-1.10.2.min.js
 //= require jquery_ujs
 //= require bootstrap
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.en.js
 //= require jquery.timepicker.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
