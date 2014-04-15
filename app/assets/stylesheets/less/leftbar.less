@@ -13,10 +13,6 @@
 	
 	&.show { z-index: 0; }
 
-	#menus {
-		border-right: 1px solid @color-border;
-	}
-
 	ul.menu {
 		list-style: none;
 		margin: 0px 0px 20px 0px;
@@ -39,6 +35,8 @@
 			&:hover {
 				background-color: @color2dark;
 				color: white;
+
+				margin-right: -1px;
 			}
 			//Spacing between icon and text.
 			span:before {
@@ -49,7 +47,10 @@
 }
 
 #logoo {
-	width: 100%;
+	position: absolute;
+	height: 50px;
+	left: 0px; right: 0px;
+	z-index: 100;
 	
 	img {
 		float: left;
@@ -67,29 +68,46 @@
 		strong {font-weight: 400;}
 	}
 }
+#menus {
+	z-index: 100;
+	// position: absolute;
+	right: 0px; left: 0px;
+	border-right: 1px solid @color-border;
+}
 
 #user-info {
 	width: 100%;
 	background-color: @color2dark;
 	position: relative;
 	z-index: 0;
-	
+	margin-top: 50px;
+	overflow: hidden;
+
 	.pp-bg {
 		// content: '';
 		position: absolute;
-		z-index: -1;
+		z-index: -10;
 		background-position: center center;
 		background-size: cover;
-		width: 100%;
-		height: 100%;
 		opacity: 0.4;
 		.filter(blur(7px));
+
+		width: 100%; height: 100%;
+
+		-ms-transform: scale(1.1); /* IE 9 */
+		-webkit-transform: scale(1.1); /* Chrome, Safari, Opera */
+		transform: scale(1.1);
 	}
+
+
 
 	.pp {
 		text-align: center;
 		padding-bottom: 20px;
-		img {
+		.image {
+			display: inline-block;
+			background-size: cover;
+			background-position: center center;
 			width: 100px;
 			height: 100px;
 			border: 2px solid white;
@@ -105,6 +123,7 @@
 				// transform: scale(1.1);
 			}
 		}
+		img { display: none;}
 		h1 {
 			color: white;
 			font-weight: 400;
