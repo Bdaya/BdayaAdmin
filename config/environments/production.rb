@@ -52,10 +52,21 @@ BdayaAdmin::Application.configure do
 
   config.assets.paths << "#{Rails.root}/app/assets/images"
 
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,  
+    :address            => 'smtp.gmail.com',
+    :port               => 587,
+    :domain             => 'gmail.com', #you can also use google.com
+    :authentication     => :plain,
+    user_name: 'testprez99@gmail.com',
+    password: 'bdaya123456'
+  }
+
+
   #config.assets.precompile += %w( faye.js admin.js staff.js bootstrap.min.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+   config.action_mailer.raise_delivery_errors = true
 
   # Enable threaded mode
   # config.threadsafe!

@@ -37,4 +37,10 @@
         $('[data-behaviour~=datepicker]').datepicker();
         $('[data-behaviour~=timepicker]').timepicker();
         $('.datatable').dataTable();
+        $('.user-search').chosen({
+            allow_single_deselect: true,
+            no_results_text: 'No results matched',
+            width: '280px',
+            display_selected_options: false
+          });
       });

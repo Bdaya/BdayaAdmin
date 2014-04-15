@@ -50,7 +50,7 @@
               = image_tag "logo.png", alt: 'logo'
             %br  
             =a.name
-            .aten   
+            .aten
               -if @meeting.creator.id == current_user.id
                 -if(a.is_meeting_attendance(@meeting,"attended"))
                   .attButton.greenFilled= link_to("AT", set_attendance_meeting_path(@meeting, :user_id => a.id, :attendance_status => "attended"), method: :post)

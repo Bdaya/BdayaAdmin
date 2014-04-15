@@ -1,0 +1,25 @@
+%h1
+  =@committee.name
+
+%h4 Head
+-head = @committee.head
+-if head
+  =link_to head.name, admin_user_path(head)
+-else
+  %p
+    No head!
+%h4 Vices
+%p
+  ='No vices' unless @committee.vices.any?
+-@committee.vices.each do |mem|
+  =link_to mem.name, admin_user_path(mem)
+  %br
+
+%h4 Members
+%p
+  ='No members' unless @committee.members.any?
+-@committee.members.each do |mem|
+  =link_to mem.name, admin_user_path(mem)
+  %br
+
+=link_to 'Edit', edit_admin_committee_path(@committee), class: 'btn btn-success '

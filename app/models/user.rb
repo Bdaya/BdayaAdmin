@@ -317,7 +317,7 @@ class User
     meetings.sort! { |a,b| a.date <=> b.date }
     return meetings
   end
-
+p
   def head?
     head_of_committee != nil
   end

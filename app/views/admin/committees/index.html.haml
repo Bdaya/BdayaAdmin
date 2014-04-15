@@ -1,0 +1,4 @@
+%h2 Committees
+-@committees.each do |com|
+  =link_to com.name, admin_committee_path(com), class: 'btn'
+  %br

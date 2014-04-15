@@ -1,0 +1,38 @@
+-if flash[:alert]
+  .alert.alert-danger
+    = simple_format flash[:alert]
+
+= form_for([:admin, @committee]) do |f|
+  .form-group.row
+    .col.col-xs-3= f.label "Name"
+    .col.col-xs-9= f.text_field :name
+
+  -unless @committee.new_record?
+    .form-group.row
+      .col.col-xs-3= f.label "Head"
+      .col.col-xs-9= f.collection_select :head_id, User.order_by(:email.asc), :id, :email,{},{multiple: false, class: 'user-search'}
+
+    .form-group.row
+      .col.col-xs-3= f.label "Vices"
+      .col.col-xs-9= f.collection_select :vice_ids, User.order_by(:email.asc), :id, :email,{},{multiple: true, class: 'user-search'}
+
+    .form-group.row
+      .col.col-xs-3= f.label "Members"
+      .col.col-xs-9= f.collection_select :member_ids, User.order_by(:email.asc), :id, :email,{},{multiple: true, class: 'user-search'}
+
+  .form-group.row
+    .col.col-xs-9= f.submit :class => 'button'
+    -unless @committee.new_record?
+      .button.red= link_to 'Delete', [:admin, @committee], :method => 'delete'
+
+
+-unless @committee.new_record?
+  %h4 Invite new members
+  =form_tag batch_invite_admin_committee_path(@committee.id), method: :post do
+    .form-group.row
+      =label_tag :emails, 'Separate emails by commas or semicolons'
+      %br
+      =text_area_tag :emails, nil, rows: 6, cols: 70
+
+      =button_tag class: 'btn btn-success', type: :submit do
+        %i.icon-check Invite

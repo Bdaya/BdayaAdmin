@@ -2,7 +2,7 @@ class Committee
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :name, :type => String
+  field :name
 
   belongs_to :head, class_name: 'User', inverse_of: :head_of_committee
   has_many :vices, class_name: 'User', inverse_of: :vice_of_committee

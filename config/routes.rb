@@ -1,5 +1,8 @@
 BdayaAdmin::Application.routes.draw do
-  
+
+
+  devise_for :admins
+
   resources :meetings do
     get :invite_users
     member do
@@ -61,6 +64,21 @@ BdayaAdmin::Application.routes.draw do
     member do
       post :update_image
     end
+  end
+
+  namespace :admin, path: 'bd_admin' do
+
+    root to: 'committees#index'
+
+    resources :committees do
+      member do
+        post :batch_invite
+      end
+
+    end
+    resources :users
+    
+    
   end
 
   #matching for oauth only
