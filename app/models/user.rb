@@ -335,7 +335,7 @@ class User
   end
 
   def in_committee?(com_name)
-    return member_of_committee.name == com_name
+    return member_of_committee.name == com_name if member_of_committee
   end  
 
   def is_meeting_attendance(m,s)

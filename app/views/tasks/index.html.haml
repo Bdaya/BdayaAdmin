@@ -1,6 +1,6 @@
 #tasks
 	.split-main
-		-if(current_user.head? || current_user.vice_head? || current_user.upper_board? || current_user.president?)
+		-if Task.creatable_by? current_user
 			%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
 			%span.button.orange.right= link_to("Sent Tasks", sent_tasks_path(), method: :get)
 		%h1 Tasks
@@ -70,7 +70,7 @@
 					
 
 
--if(current_user.head? || current_user.vice_head? || current_user.upper_board? || current_user.president?)
+-if Task.creatable_by? current_user
 	#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
 		.modal-dialog
 			.modal-content

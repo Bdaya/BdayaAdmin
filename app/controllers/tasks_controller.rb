@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
 
+	authorize_actions_for Task
+
 	def new
 		@task = Task.new
 	end

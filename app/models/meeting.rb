@@ -14,7 +14,7 @@ class Meeting
 
   attr_accessor :logistics_notes
 
-  # self.authorizer_name = 'MeetingAuthorizer'
+  self.authorizer_name = 'MeetingAuthorizer'
 
   has_and_belongs_to_many :attendees, class_name: "User", inverse_of: :attending_meetings
   has_many :attendances

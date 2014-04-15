@@ -1,5 +1,5 @@
 <div id='requests'>
-<div class='container hidden-scroll'>
+<div class='split-main full lefty'>
 <h1>Requests</h1>
 	<h2>Room Requests</h2>
 		<table class='datatable'>
@@ -15,7 +15,7 @@
 	  		</thead>
 	  		<tbody>
 	  			<% @request_rooms.each do |req| %>
- 					<%= render partial: "form", locals: { :@req => req} %>
+ 					<%= render partial: "form", locals: { :@req => req } %>
 				<% end %>
 	  		</tbody>
 		</table>

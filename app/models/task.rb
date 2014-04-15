@@ -1,6 +1,7 @@
 class Task
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Authority::Abilities
 
   #field :feedback, :type => String
   field :title, :type => String
@@ -12,6 +13,8 @@ class Task
   belongs_to :creator, class_name: 'User', inverse_of: :created_tasks
   belongs_to :responsible_user, class_name: 'User', inverse_of: :tasks_responsible_for
   has_many :discussions
+
+  self.authorizer_name = 'TaskAuthorizer'
 
   validates_presence_of :deadline
   validates_presence_of :title

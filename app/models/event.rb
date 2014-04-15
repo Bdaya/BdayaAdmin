@@ -1,6 +1,7 @@
 class Event
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Authority::Abilities
 
   field :name, :type => String
   field :description, :type => String
@@ -27,6 +28,8 @@ class Event
   has_many :requests
   has_many :event_images
   has_many :event_logs
+
+  self.authorizer_name = 'EventAuthorizer'
 
 
   validates_presence_of :start_date, :message=> "Cannot Be Blank"

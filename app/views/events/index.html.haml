@@ -1,5 +1,5 @@
 #events
-	-if(current_user.head? || current_user.vice_head? || current_user.upper_board? || current_user.president?)
+	-if Event.creatable_by? current_user
 		%span.button.right{:data => {:toggle => 'modal', :target => '#createModal'}} Create
 
 	%h1 Events List
@@ -14,7 +14,7 @@
 
 
 
--if(current_user.head? || current_user.vice_head? || current_user.upper_board? || current_user.president?)
+-if Event.creatable_by? current_user
 	#createModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
 		.modal-dialog
 			.modal-content

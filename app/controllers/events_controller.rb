@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+  authorize_actions_for Event
+
 	def new
 		@event = Event.new
     @project_managers = User.all

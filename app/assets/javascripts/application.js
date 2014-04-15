@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.en.js
 //= require jquery.timepicker.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation

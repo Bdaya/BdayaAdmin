@@ -34,4 +34,7 @@
       $(document).ready(function(){
         var img = $("#user-info .pp img").attr("src");
         $("#user-info .pp-bg").css("background-image", "url("+img+")");
+        $('[data-behaviour~=datepicker]').datepicker();
+        $('[data-behaviour~=timepicker]').timepicker();
+        $('.datatable').dataTable();
       });
