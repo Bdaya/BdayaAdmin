@@ -7,13 +7,14 @@
 		#user-info
 			.pp-bg
 			.pp
+				#change-pp.image
 				- if current_user 
 					- unless current_user.try(:image).try(:url) == nil
-						= image_tag current_user.image.url, id: 'change-pp'
+						= image_tag current_user.image.url
 					- else
-						= image_tag "logo.png", alt: 'logo', id: 'change-pp'
+						= image_tag "logo.png", alt: 'logo'
 				- else
-					= image_tag "logo.png", alt: 'logo', id: 'change-pp'
+					= image_tag "logo.png", alt: 'logo'
 
 				- if current_user
 					%div{id:'update_image',style:'display:none;'}
