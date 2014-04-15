@@ -2,6 +2,10 @@ class Admin::UsersController < ApplicationController
   
   before_filter :authenticate_admin!
 
+  before_filter :init_user, except: [:index, :new, :create]
+
+  
+
   def new
   end
 
@@ -18,6 +22,12 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+  end
+
+  private
+
+  def init_user
+    @user = User.find params[:id]
   end
 
 end

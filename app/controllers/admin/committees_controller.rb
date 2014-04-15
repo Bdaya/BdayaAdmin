@@ -2,7 +2,7 @@ class Admin::CommitteesController < ApplicationController
   
   before_filter :authenticate_admin!
 
-  before_filter :init_committee, except: [:index, :new]
+  before_filter :init_committee, except: [:index, :new, :create]
 
   def new
   end
