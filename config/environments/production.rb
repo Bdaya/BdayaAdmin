@@ -50,6 +50,8 @@ BdayaAdmin::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
+  config.action_mailer.default_url_options = { :host => '146.185.151.250:8080' }
+
   config.assets.paths << "#{Rails.root}/app/assets/images"
 
   config.action_mailer.smtp_settings = {
