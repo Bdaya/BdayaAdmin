@@ -10,6 +10,23 @@
 .event {
 	margin-left: -1px; //Fixes annoying white space!
 
+
+	.shadow {
+		position: absolute;
+		width: 100%;
+		height: @cover-height;
+		background-color: @color2dark;
+		z-index: 0;
+	}
+	.background {
+		position: absolute;
+		width: 100%;
+		height: @cover-height;
+		background: url('/assets/event-cover.png') center center;
+		background-size: cover;
+		z-index: 0;
+		opacity: 0.4;
+	}
 	@cover-height: 196px;
 	.cover {
 		position: relative;
@@ -18,8 +35,10 @@
 
 		border-bottom: 1px solid @color-border;
 
-		background: url('/assets/event-cover.png') center center;
-		background-size: cover;
+		// background: url('/assets/event-cover.png') center center;
+		// background-size: cover;
+		// background-color: @color2dark;
+		background-color: transparent;
 
 		.name {
 			background-color: @color1;
@@ -31,11 +50,15 @@
 			padding: 15px 20px 15px 20px;
 
 			font-size: 24px;
+
+			cursor: pointer;
 		}
 
 		.slogan {
 			margin: 5px;
 			font-size: 18px;
+			color: white;
+			cursor: pointer;
 		}
 
 		.pp {
@@ -105,6 +128,7 @@
 	.main {
 		padding: @padding;
 		margin-left: @side-width;
+
 	}
 }
 
