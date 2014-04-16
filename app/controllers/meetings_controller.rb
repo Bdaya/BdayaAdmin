@@ -1,6 +1,6 @@
 class MeetingsController < ApplicationController
 
-  authorize_actions_for Meeting
+  authorize_actions_for Meeting, except: [:set_attendance, :send_message]
 
   def index
     #if Rails.cache.read("ERROR").nil?

@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
 
-  authorize_actions_for Event
+  authorize_actions_for Event, except: [:requests, :new_materials,
+                    :new_permissions, :profile_picture, :cover_picture,
+                    :rate_image, :add_image]
 
 	def new
 		@event = Event.new

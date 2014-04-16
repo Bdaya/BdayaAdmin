@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 
-	authorize_actions_for Task
+	authorize_actions_for Task, except: [:sent_tasks, :accept, :done, 
+		:reopen, :request_extension, :send_message]
 
 	def new
 		@task = Task.new

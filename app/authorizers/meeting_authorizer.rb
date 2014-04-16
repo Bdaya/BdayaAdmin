@@ -19,7 +19,6 @@ class MeetingAuthorizer < ApplicationAuthorizer
     true
   end
 
-
   def self.readable_by?(user)
     true
   end
