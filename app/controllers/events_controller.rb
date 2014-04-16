@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.new(params[:event])
+    @event.creator = current_user
 
     if @event.save
         redirect_to events_path , notice: "Event Created succssfully"
