@@ -8,19 +8,32 @@
     %h1 Bdaya جوانيات
     %br
     
-    .group
+    .list-feed
       -if @ideas.length > 0
-        .title
-        -@ideas.each do |idea|  
-          .task.show-side{:data => {:link => (url_for idea)}}
+        -@ideas.each do |idea| 
+          .item.row.show-side{:data => {:link => (url_for idea)}}
+            .item-user.col-xs-2
+              .pp
+                - unless idea.creator.image.url == nil
+                  = image_tag idea.creator.image.url
+                - else
+                  = image_tag "logo.png", alt: 'logo'
+              .name= idea.creator.name
+
+            .item-body.col-xs-9
+              .item-title=idea.title
+              .item-date=idea.created_at.to_date
+
             -if(idea.upvoters.include?(current_user))
-              .attButton.greenFilled.right= link_to("Unvote", upvote_idea_path(idea), method: :post)
+              = link_to(upvote_idea_path(idea), method: :post) do
+                .upvote.voted.col-xs-1
+                  .fa.fa-arrow-up
+                  .count= idea.upvotes
             -else
-              .attButton.green.right= link_to("Upvote", upvote_idea_path(idea), method: :post)
-            %strong.green= idea.upvotes
-            .status=#task.status
-            %h2.name=idea.title
-            .date=idea.created_at.to_date 
+              = link_to(upvote_idea_path(idea), method: :post) do
+                .upvote.col-xs-1
+                  .fa.fa-arrow-up
+                  .count= idea.upvotes
 
   .split-side
     .topbar
