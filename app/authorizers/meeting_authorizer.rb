@@ -15,6 +15,9 @@ class MeetingAuthorizer < ApplicationAuthorizer
     user.upper_board? || user.president?
   end
 
+  def self.messagable_by?(user)
+    true
+  end
 
 
   def self.readable_by?(user)
