@@ -15,5 +15,8 @@ $(document).ready ->
 	$('#add-design').click ->
 		$('#add-design-form input[type=file]').click()
 
+	img = $(".event .background").attr('data-image')
+	$(".event .background").css "background-image", 'url('+img+')'
+
 
 	return

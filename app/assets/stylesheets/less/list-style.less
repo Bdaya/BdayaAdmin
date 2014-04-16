@@ -1,0 +1,65 @@
+.list-feed {
+	.item {
+		margin-top: 20px;
+		padding: 10px 0px 10px 0px;
+		cursor: pointer;
+		&:hover {
+			background-color: @color2light;
+		}
+		.upvote {
+			border: 1px solid @color1;
+			padding: 5px;
+
+			text-align: center;
+			color: @color1;
+
+			a {
+				color: @color1;
+			}
+
+			.fa {
+				font-size: 24px;
+				margin-bottom: 5px;
+			}
+
+			.count {
+				font-size: 18px;
+			}
+
+			&.voted {
+				color: white;
+				background-color: @color1;
+			}
+		}
+		.item-body {
+
+			.item-title {
+				font-size: 22px;
+				color: @color1;
+			}
+			.item-date {
+				font-size: 10px;
+			}
+		}
+
+		.item-user {
+			text-align: center;
+
+			.pp {
+				width: 50px;
+				height: 50px;
+				border-radius: 50px;
+				overflow: hidden;
+
+				img {
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.name {
+				width: 50px;
+				font-size: 12px;
+			}
+		}
+	}
+}

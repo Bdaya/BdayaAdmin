@@ -1,4 +1,7 @@
 .event
+	.shadow
+	-if @event.cover_pic
+		.background{:data => {:image => (@event.cover_pic.image)}}
 	.cover
 		-if @event.name
 			.name{"data-target" => "#addName", "data-toggle" => "modal"}=@event.name
