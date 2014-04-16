@@ -20,4 +20,8 @@ class MeetingAuthorizer < ApplicationAuthorizer
   def self.readable_by?(user)
     true
   end
+
+  def self.default(a, b)
+    true
+  end
 end
