@@ -3,9 +3,9 @@ class FeedbacksController < ApplicationController
 	def index
 		
 		if(current_user.in_committee?("IT"))
-			@feedbacks = Feedback.all.to_a
+			@feedbacks = Feedback.all.desc(:created_at).to_a
 		else
-			@feedbacks = current_user.feedbacks.to_a
+			@feedbacks = current_user.feedbacks.desc(:created_at).to_a
 		end
 
 	end
