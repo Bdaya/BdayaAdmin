@@ -40,6 +40,17 @@
           %p=simple_format(@meeting.description)
 
       .invites
+        %h3
+          Meeting Creator
+        .pp
+          - unless @meeting.creator.image.url == nil
+            = image_tag @meeting.creator.image.url
+          - else
+            = image_tag "logo.png", alt: 'logo'
+          %br  
+          =@meeting.creator.name
+
+      .invites
         %h3 Invitees
         -@meeting.attendees.each do |a|
           .pp
