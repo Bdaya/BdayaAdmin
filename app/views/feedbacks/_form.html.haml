@@ -15,4 +15,6 @@
 	.form-group
 		.col.col-xs-3
 		= f.submit :class => 'button'
+		-if !@feedback.new_record
+			.button.red= link_to 'Delete', @feedback, :method => 'delete'
 		
