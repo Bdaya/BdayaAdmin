@@ -1,6 +1,8 @@
 -if @feedback != nil
 	.info
-		
+		-if @feedback.user.id == current_user.id
+			%span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#updateModal'}}
+
 		%h1 
 			=@feedback.title
 
@@ -21,4 +23,12 @@
 				=simple_format(@feedback.content)
 
 		
-			
+	-if @feedback.user.id == current_user.id
+		#updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}
+			.modal-dialog
+				.modal-content
+					.modal-header
+						%span.right.fa.fa-times.fa-2x{:data => {:dismiss => "modal"}}
+						%h1 Update
+					.modal-body
+						= render :partial => 'form', :locals => {:@feedback => @feedback}		

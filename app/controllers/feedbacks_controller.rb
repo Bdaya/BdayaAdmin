@@ -26,4 +26,13 @@ class FeedbacksController < ApplicationController
 		end
    	end
 
+   	def update
+   		@feedback = Feedback.find(params[:id])
+		if @feedback.update_attributes!(params[:feedback])
+			redirect_to feedbacks_path
+		else
+			redirect_to :back, alert: @feedback.errors.full_messages.join("\n")
+		end
+   	end
+
 end
