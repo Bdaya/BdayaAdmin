@@ -3,19 +3,35 @@
 	-if @event.cover_pic
 		.background{:data => {:image => (@event.cover_pic.image)}}
 	.cover
-		-if @event.name
-			.name{"data-target" => "#addName", "data-toggle" => "modal"}=@event.name
+		-if(@event.is_manager?(current_user) || @event.is_creator?(current_user))
+			-if @event.name
+				.name{"data-target" => "#addName", "data-toggle" => "modal"}=@event.name
 
+			-else
+				.name{"data-target" => "#addName", "data-toggle" => "modal"}
+					Add Name
 		-else
-			.name{"data-target" => "#addName", "data-toggle" => "modal"}
-				Add Name
+			-if @event.name
+				.name=@event.name
 
-		-if @event.slogan
-			.slogan{"data-target" => "#addSlogan", "data-toggle" => "modal"}=@event.slogan
+			-else
+				.name
+					No Name
 
+		-if(@event.is_manager?(current_user) || @event.is_creator?(current_user))
+			-if @event.slogan
+				.slogan{"data-target" => "#addSlogan", "data-toggle" => "modal"}=@event.slogan
+
+			-else
+				.slogan{"data-target" => "#addSlogan", "data-toggle" => "modal"}
+					Add Slogan
 		-else
-			.slogan{"data-target" => "#addSlogan", "data-toggle" => "modal"}
-				Add Slogan
+			-if @event.slogan
+				.slogan=@event.slogan
+
+			-else
+				.slogan
+					No Slogan
 
 		-if @event.profile_pic
 			.pp= image_tag @event.profile_pic.image, alt: 'logo'
