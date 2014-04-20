@@ -3,6 +3,7 @@ class Admin::CommitteesController < AdminController
   before_filter :init_committee, except: [:index, :new, :create]
 
   def new
+    @committee = Committee.new
   end
 
   def edit
@@ -17,6 +18,13 @@ class Admin::CommitteesController < AdminController
   end
 
   def create
+    @committee = Committee.new params[:committee]
+    if @committee.save
+      redirect_to [:admin, @committee], notice: 'Successfully created'
+    else
+      redirect_to :back, notice: 'Error creating committee'
+    end
+
   end
 
   def show

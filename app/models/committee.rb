@@ -10,4 +10,6 @@ class Committee
   has_many :events
   has_many :spreadsheets
 
+  validates :name, presence: true, uniqueness: true
+
 end
