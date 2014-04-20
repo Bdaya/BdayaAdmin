@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bdaya System</title>
+		<link rel="stylesheet" type="text/css" href="/assets/login/login-style.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="/assets/login/login-js.js"></script>
+	</head>
+	<body>
+
+		<div id="wrapper">
+			<div id="content">
+				<div id="logo" class="logo-wrapper">
+					<img src="/assets/logo-login.png">
+					
+
+					<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+					  <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
+
+					  <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
+
+					  <div><%= f.submit "Login" %></div>
+					<% end %>
+
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>
