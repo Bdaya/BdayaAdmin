@@ -1,6 +1,6 @@
 $(window).load ->
 
-		delay 1000, ->
+		delay 500, ->
 			$(".logo-wrapper").addClass "show"
 
 
