@@ -9,6 +9,7 @@ class Task
   field :deadline, :type => Date
   field :status, :type => String
   field :type, :type => String
+  field :seen_at, type: Time
 
   belongs_to :creator, class_name: 'User', inverse_of: :created_tasks
   belongs_to :responsible_user, class_name: 'User', inverse_of: :tasks_responsible_for

@@ -6,6 +6,15 @@ class EventsController < ApplicationController
                     :new_permissions, :profile_picture, :cover_picture,
                     :rate_image, :add_image]
 
+  authorize_actions_for :load_event, only: [
+    :new_materials,
+    :new_permissions,
+    :profile_picture,
+    :cover_picture,
+    :rate_image,
+    :add_image
+  ]
+
 	def new
 		@event = Event.new
     @project_managers = User.all
@@ -115,6 +124,12 @@ class EventsController < ApplicationController
     image.rating = ((image.rating+(params[:rating].to_i))/image.raters).round(1)
     image.save
     redirect_to event, :notice => "Successfully Rated Image."
+  end
+
+  private
+
+  def load_event
+    @event = Event.find params[:id]
   end
 
 end

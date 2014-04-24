@@ -1,6 +1,6 @@
 %span#add-design.button.right Add Image
 %h1 Desgin
--if(@event.is_manager?(current_user) || @event.is_creator?(current_user) || @event.is_member(current_user))	
+-if @event.updatable_by?(current_user)
 	= form_for(@event, :url => add_image_event_path(@event), :html => { :method => :post, :multipart => true, :id=>"add-design-form" }) do |f|
 		= f.file_field :image, {class: 'button'}
 		= f.submit "Add Image",class: 'btn btn-sm'
@@ -9,7 +9,7 @@
 #designs-list
 	-@event.event_images.each do |img|
 		.item
-			= image_tag img.image.url,:style =>"length:100px;width:100px;"
+			= image_tag img.image.url, :style =>"length:100px;width:100px;"
 			%br
 			= "Current Rating: #{img.rating}"
 			%br

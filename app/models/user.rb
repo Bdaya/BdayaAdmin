@@ -114,9 +114,9 @@ class User
   has_many :created_ideas, class_name: 'Idea', inverse_of: :creator
   has_and_belongs_to_many :upvoted_ideas, class_name: 'Idea', inverse_of: :upvoters
   
-  # def get_pending_tasks
-  #   tasks = self.tasks_responsible_for.where(:status=>"pending").to_a
-  # end
+  def get_pending_tasks
+    tasks = self.tasks_responsible_for.where(status: "pending").to_a
+  end
 
   # def get_done_tasks
   #   tasks = self.tasks_responsible_for.where(:status=>"done").to_a

@@ -35,7 +35,7 @@
         var img = $("#user-info .pp img").attr("src");
         $("#user-info .pp-bg").css("background-image", "url("+img+")");
         $("#user-info .pp .image").css("background-image", "url("+img+")");
-        $('[data-behaviour~=datepicker]').datepicker();
+        $('[data-behaviour~=datepicker]').datepicker({dateFormat: 'dd-mm-yyyy'}).val();
         $('[data-behaviour~=timepicker]').timepicker();
         if ($('.datatable').length > 0)
           $('.datatable').dataTable();
