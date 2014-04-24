@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  before_filter :authenticate_user!
   def index
 		@users = User.all.to_a
 		@request_rooms = Request.where(request_type: 'room').desc(:time).to_a

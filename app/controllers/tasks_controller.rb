@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
 
+	before_filter :authenticate_user!
 	authorize_actions_for Task, except: [:sent_tasks, :accept, :done, 
 		:reopen, :request_extension, :send_message]
 
