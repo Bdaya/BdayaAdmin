@@ -9,8 +9,20 @@
   <p><%= f.label :phone %><br />
   <%= f.text_field :phone %></p>
 
+  <p><%= f.label :faculty %><br />
+  <%= f.text_field :faculty %></p>
+
+  <p><%= f.label :major %><br />
+  <%= f.text_field :major %></p>
+
   <p><%= f.label :semester %><br />
   <%= f.text_field :semester %></p>
+
+  <p><%= f.label :tshirt_size %><br />
+  <%= f.text_field :tshirt_size %></p>
+
+  <p><%= f.label :address %><br />
+  <%= f.text_field :address %></p>
 
 <% resource.class.invite_key_fields.each do |field| -%>
   <p><%= f.label field %><br />

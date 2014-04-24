@@ -59,18 +59,19 @@ class User
   validates_uniqueness_of :phone, :message=> "This mobile number is already associated with another user!"
 
   field :major, :type => String
-  #validates_presence_of :major, :message=> "Must enter your major!"
+  validates_presence_of :major, :message=> "Must enter your major!"
 
   field :faculty, :type => String
-  #validates_presence_of :faculty, :message=> "Must enter your faculty!"
+  validates_presence_of :faculty, :message=> "Must enter your faculty!"
 
   field :semester, :type => Integer
   validates_numericality_of :semester, :presence => true, :message=> "Must enter semester in numerical form only!"
 
   field :tshirt_size, :type => String
-  #validates_presence_of :tshirt_size, :message=> "Must enter your T-shirt Size!"
+  validates_presence_of :tshirt_size, :message=> "Must enter your T-shirt Size!"
 
   field :address, :type => String
+  validates_presence_of :address
   # field :progress, :type => Integer
   
   mount_uploader :image, ImageUploader

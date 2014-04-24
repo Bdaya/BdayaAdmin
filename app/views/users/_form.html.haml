@@ -1,0 +1,38 @@
+-if flash[:alert]
+	.alert.alert-danger
+		= simple_format flash[:alert]
+
+= form_for @user, :html => {:role => 'form'} do |f|
+	
+	.form-group
+		.col.col-xs-3= f.label :name
+		= f.text_field :name
+
+	.form-group
+		.col.col-xs-3= f.label :phone
+		= f.text_field :phone
+
+	.form-group
+		.col.col-xs-3= f.label :faculty
+		= f.text_field :faculty
+
+	.form-group
+		.col.col-xs-3= f.label :major
+		= f.text_field :major
+
+	.form-group
+		.col.col-xs-3= f.label :semester
+		= f.text_field :semester
+
+	.form-group
+		.col.col-xs-3= f.label :tshirt_size
+		= f.text_field :tshirt_size
+
+	.form-group
+		.col.col-xs-3= f.label :address
+		= f.text_area :address	
+
+	.form-group
+		.col.col-xs-3
+		= f.submit :class => 'button'		
+		

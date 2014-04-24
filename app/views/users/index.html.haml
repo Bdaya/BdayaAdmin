@@ -1,0 +1,16 @@
+#events
+
+	%h1 Users List
+	%br
+
+	.event-list
+		- @users.each do |user|
+			= link_to user do
+				.event-name.well.well-sm
+					.pp
+						- unless user.image.url == nil
+							= image_tag user.image.url
+						- else
+							= image_tag "logo.png", alt: 'logo'	
+					= user.name ? user.name : user.email
+
