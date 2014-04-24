@@ -59,7 +59,7 @@ class User
   validates_uniqueness_of :phone, :message=> "This mobile number is already associated with another user!"
 
   field :major, :type => String
-  validates_presence_of :major, :message=> "Must enter your major!"
+  #validates_presence_of :major, :message=> "Must enter your major!"
 
   field :faculty, :type => String
   validates_presence_of :faculty, :message=> "Must enter your faculty!"

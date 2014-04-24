@@ -28,8 +28,14 @@
 	%br
 	%h2
 		%span.fa.fa-book
-			Faculty (Major)
-	=@user.faculty << " (" << @user.major << ")"
+			Faculty
+	=@user.faculty
+	%h3
+		Major 
+	-if(@user.major)
+		=@user.major
+	-else
+		= "NA"	
 	%h3
 		Semester 
 	=@user.semester
