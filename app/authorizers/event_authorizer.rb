@@ -19,6 +19,12 @@ class EventAuthorizer < ApplicationAuthorizer
     true
   end
 
+  def updatable_by?(user)
+    resource.is_manager?(user) ||
+    resource.is_creator?(user) ||
+    resource.is_member(user)
+  end
+
   def self.default(a, b)
     true
   end

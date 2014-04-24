@@ -2,15 +2,14 @@
 <html>
 	<head>
 		<title>Bdaya System</title>
-		<link rel="stylesheet" type="text/css" href="/assets/login/login-style.css">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<%= stylesheet_link_tag "login-style", :media => "all" %>
 	</head>
 	<body>
 		<canvas id="fireworks"></canvas>
 		<div id="wrapper">
 			<div id="content">
 				<div id="logo" class="logo-wrapper">
-					<img src="/assets/logo-login.png">
+					<%= image_tag 'logo-login.png' %>
 					
 
 					<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -24,9 +23,6 @@
 				</div>
 			</div>
 		</div>
-		
-
-		<script type="text/javascript" src="/assets/login/login-js.js"></script>
-		<script type="text/javascript" src="/assets/login/fireworks.js"></script>
+		<%= javascript_include_tag "application" %>
 	</body>
 </html>
