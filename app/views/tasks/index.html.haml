@@ -52,21 +52,21 @@
 						.date=task.deadline				
 									
 
-.split-side
-	.topbar
-		%span.back.fa.fa-angle-left.fa-2x.topbarButton
+	.split-side
+		.topbar
+			%span.back.fa.fa-angle-left.fa-2x.topbarButton
 
-	#details.content.hidden-scroll
-		-if @today_tasks.first != nil
-			= render :partial => 'tasks/details', :locals => {:@task => @today_tasks.first}
-		-elsif @tomorrow_tasks.first != nil
-			= render :partial => 'tasks/details', :locals => {:@task => @tomorrow_tasks.first}
-		-elsif @week_tasks.first != nil
-			= render :partial => 'tasks/details', :locals => {:@task => @week_tasks.first}
-		-elsif @later_tasks.first != nil
-			= render :partial => 'tasks/details', :locals => {:@task => @later_tasks.first}
-		-elsif @past_tasks.first != nil
-			= render :partial => 'tasks/details', :locals => {:@task => @past_tasks.first}			
+		#details.content.hidden-scroll
+			-if @today_tasks.first != nil
+				= render :partial => 'tasks/details', :locals => {:@task => @today_tasks.first}
+			-elsif @tomorrow_tasks.first != nil
+				= render :partial => 'tasks/details', :locals => {:@task => @tomorrow_tasks.first}
+			-elsif @week_tasks.first != nil
+				= render :partial => 'tasks/details', :locals => {:@task => @week_tasks.first}
+			-elsif @later_tasks.first != nil
+				= render :partial => 'tasks/details', :locals => {:@task => @later_tasks.first}
+			-elsif @past_tasks.first != nil
+				= render :partial => 'tasks/details', :locals => {:@task => @past_tasks.first}			
 					
 
 
