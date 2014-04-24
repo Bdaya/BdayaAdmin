@@ -17,7 +17,7 @@
 			="Bdaya " + current_user.member_of_committee.name + " Member"
 	
 	%br
-	.pp
+	.pp-user
 		- unless @user.image.url == nil
 			= image_tag @user.image.url
 		- else
