@@ -40,7 +40,6 @@ var canvas = document.getElementById( 'fireworks' ),
 canvas.width = cw;
 canvas.height = ch;
 
-}
 // now we are going to setup our function placeholders for the entire demo
 
 // get a random number within a range
@@ -275,3 +274,4 @@ canvas.addEventListener( 'mouseup', function( e ) {
 // once the window loads, we are ready for some fireworks!
 window.onload = loop;
 
+}
