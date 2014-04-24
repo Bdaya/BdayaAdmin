@@ -190,7 +190,7 @@ class User
 
   def get_past_sent_tasks
     tasks = []
-    self.created_tasks.asc(:deadline).each do |t|
+    self.created_tasks.desc(:deadline).each do |t|
       if(t.deadline < DateTime.now.to_date)
         tasks << t
       end
@@ -314,7 +314,7 @@ class User
         meetings << m
       end
     end
-    meetings.sort! { |a,b| a.date <=> b.date }
+    meetings.sort! { |a,b| b.date <=> a.date }
     return meetings
   end
 p
