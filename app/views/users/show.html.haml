@@ -5,16 +5,16 @@
 		%span.fa.fa-user
 		=@user.name
 	%h2
-		-if(current_user.president)
+		-if(@user.president)
 			="Bdaya President"
-		-elsif(current_user.upper_board)
+		-elsif(@user.upper_board)
 			="Bdaya Upper Board"	
-		-elsif (current_user.head_of_committee?)
-			="Bdaya " + current_user.head_of_committee.name + " Head"
-		-elsif (current_user.vice_of_committee?)
-			="Bdaya " + current_user.vice_of_committee.name + " Vice Head"
-		-elsif (current_user.member_of_committee?)
-			="Bdaya " + current_user.member_of_committee.name + " Member"
+		-elsif (@user.head_of_committee?)
+			="Bdaya " + @user.head_of_committee.name + " Head"
+		-elsif (@user.vice_of_committee?)
+			="Bdaya " + @user.vice_of_committee.name + " Vice Head"
+		-elsif (@user.member_of_committee?)
+			="Bdaya " + @user.member_of_committee.name + " Member"
 	
 	%br
 	.pp-user
