@@ -10,28 +10,30 @@ window.requestAnimFrame = ( function() {
 })();
 
 // now we will setup our basic variables for the demo
+
 var canvas = document.getElementById( 'fireworks' ),
-    ctx = canvas.getContext( '2d' ),
-    // full screen dimensions
-    cw = window.innerWidth,
-    ch = window.innerHeight,
-    // firework collection
-    fireworks = [],
-    // particle collection
-    particles = [],
-    // starting hue
-    hue = 120,
-    // when launching fireworks with a click, too many get launched at once without a limiter, one launch per 5 loop ticks
-    limiterTotal = 5,
-    limiterTick = 0,
-    // this will time the auto launches of fireworks, one launch per 80 loop ticks
-    timerTotal = 10,
-    timerTick = 0,
-    mousedown = false,
-    // mouse x coordinate,
-    mx,
-    // mouse y coordinate
-    my;
+  if(canvas)
+    {ctx = canvas.getContext( '2d' ),
+        // full screen dimensions
+        cw = window.innerWidth,
+        ch = window.innerHeight,
+        // firework collection
+        fireworks = [],
+        // particle collection
+        particles = [],
+        // starting hue
+        hue = 120,
+        // when launching fireworks with a click, too many get launched at once without a limiter, one launch per 5 loop ticks
+        limiterTotal = 5,
+        limiterTick = 0,
+        // this will time the auto launches of fireworks, one launch per 80 loop ticks
+        timerTotal = 10,
+        timerTick = 0,
+        mousedown = false,
+        // mouse x coordinate,
+        mx,
+        // mouse y coordinate
+        my;}
     
 // set canvas dimensions
 canvas.width = cw;
