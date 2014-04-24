@@ -3,7 +3,7 @@
 		-if @feedback.user.id == current_user.id
 			%span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#updateModal'}}
 
-		%h1 
+		%h1.arabic
 			=@feedback.title
 
 		.item
@@ -19,8 +19,7 @@
 
 		.item
 			%span.fa.fa-exclamation-circle
-			%p
-				=simple_format(@feedback.content)
+			=simple_format(@feedback.content, class: 'arabic')
 
 		
 	-if @feedback.user.id == current_user.id

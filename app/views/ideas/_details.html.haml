@@ -3,7 +3,7 @@
 		-if @idea.creator.id == current_user.id
 			%span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#updateModal'}}
 
-		%h1 
+		%h1.arabic
 			=@idea.title
 
 		.item
@@ -20,7 +20,7 @@
 
 		.item
 			%span.fa.fa-exclamation-circle
-			%p
+			%p.arabic
 				=simple_format(@idea.content)
 
 		.gap-discussion
