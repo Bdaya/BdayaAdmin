@@ -10,8 +10,8 @@
       %td Time
       %td Status
   %tbody
-    %tr
-      -if(@event.is_manager?(current_user) || @event.is_creator?(current_user) || @event.is_member(current_user))
+    -if(@event.updatable_by?(current_user))
+      %tr
         = form_for @request, url: new_materials_event_path(@event) do |f|
           =hidden_field_tag(request_forgery_protection_token.to_s, form_authenticity_token)
           %td= f.text_field :materials
@@ -37,8 +37,8 @@
       %td Status
       
   %tbody
-    %tr
-      -if(@event.is_manager?(current_user) || @event.is_creator?(current_user) || @event.is_member(current_user))
+    -if(@event.updatable_by?(current_user))
+      %tr
         = form_for @request, url: new_permissions_event_path(@event) do |f|
           =hidden_field_tag(request_forgery_protection_token.to_s, form_authenticity_token)
           %td= f.text_field :permissions
