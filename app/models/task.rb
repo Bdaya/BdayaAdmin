@@ -19,6 +19,7 @@ class Task
   validates_presence_of :deadline
   validates_presence_of :title
   validates_presence_of :type
+  validates_presence_of :details
 
   def post_message(username, message)
     discussion  = Discussion.create(user_name:username, message:message)
