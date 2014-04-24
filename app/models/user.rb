@@ -354,4 +354,8 @@ p
     a.save
   end
 
+  def is_brens?
+    president? || upper_board?
+  end
+
 end
