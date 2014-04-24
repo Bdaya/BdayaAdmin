@@ -13,6 +13,7 @@
     %tr
       -if(@event.is_manager?(current_user) || @event.is_creator?(current_user) || @event.is_member(current_user))
         = form_for @request, url: new_materials_event_path(@event) do |f|
+          =hidden_field_tag(request_forgery_protection_token.to_s, form_authenticity_token)
           %td= f.text_field :materials
           %td= f.text_field :notes
           %td= f.text_field :date, :'data-behaviour' => 'datepicker'
@@ -39,6 +40,7 @@
     %tr
       -if(@event.is_manager?(current_user) || @event.is_creator?(current_user) || @event.is_member(current_user))
         = form_for @request, url: new_permissions_event_path(@event) do |f|
+          =hidden_field_tag(request_forgery_protection_token.to_s, form_authenticity_token)
           %td= f.text_field :permissions
           %td= f.text_field :notes
           %td= f.text_field :date, :'data-behaviour' => 'datepicker'

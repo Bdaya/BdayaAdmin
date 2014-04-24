@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+  
+  before_filter :authenticate_user!
   authorize_actions_for Event, except: [:requests, :new_materials,
                     :new_permissions, :profile_picture, :cover_picture,
                     :rate_image, :add_image]
@@ -51,11 +53,13 @@ class EventsController < ApplicationController
 
   def new_materials
     @event = Event.find(params[:id])
+    logger.error ">>>>>>>>>>>>>>>>> before"
     @request=Request.new(params[:request])
     @request.event = @event
     @request.request_type = "materials"
-    if @request.save 
-      redirect_to(event_path(@event), notice: "Successfully created")
+    if @request.save
+      logger.error "<<<<<<<<<<<<<<<<<<< after"
+      redirect_to(@event, notice: "Successfully created")
     else
       redirect_to :back, notice: "Error occured"
     end
