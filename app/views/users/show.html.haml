@@ -4,8 +4,20 @@
 	%h1
 		%span.fa.fa-user
 		=@user.name
+	%h2
+		-if(current_user.president)
+			="Bdaya President"
+		-elsif(current_user.upper_board)
+			="Bdaya Upper Board"	
+		-elsif (current_user.head_of_committee?)
+			="Bdaya " + current_user.head_of_committee.name + " Head"
+		-elsif (current_user.vice_of_committee?)
+			="Bdaya " + current_user.vice_of_committee.name + " Vice Head"
+		-elsif (current_user.member_of_committee?)
+			="Bdaya " + current_user.member_of_committee.name + " Member"
+	
 	%br
-	.pp
+	.pp-user
 		- unless @user.image.url == nil
 			= image_tag @user.image.url
 		- else

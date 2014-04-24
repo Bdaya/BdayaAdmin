@@ -96,7 +96,7 @@ class MeetingsController < ApplicationController
           Attendance.create_attendance(@meeting,a)
         end   
       end
-      redirect_to action: 'index', notice: 'Meeting was successfully updated.'
+      redirect_to meetings_path, notice: 'Meeting was successfully updated.'
     else
       redirect_to meetings_path, alert: @meeting.errors.full_messages.join("\n")
     end

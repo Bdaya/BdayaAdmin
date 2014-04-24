@@ -21,8 +21,8 @@
 						= form_for(current_user, :url => update_image_user_path(current_user), :html => { :method => :post, :multipart => true, id: "change-pp-form" }) do |f|
 							= f.file_field :image
 							= f.submit "Upload new Avatar"
-					%h1
-						=current_user.name
+					= link_to current_user do
+						%h1=current_user.name
 					%h2
 						-if(current_user.president)
 							="Bdaya President"
@@ -37,9 +37,9 @@
 
 		#menus
 			%ul.menu
-				%a{href:'/'}
+				%a{href:'/users'}
 					%li
-						%span.fa.fa-home Home
+						%span.fa.fa-home Our Family
 				
 				%a{href:'/tasks'}
 					%li
