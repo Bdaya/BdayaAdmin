@@ -21,6 +21,19 @@
 			%span.fa.fa-exclamation-circle
 			=simple_format(@feedback.content, class: 'arabic')
 
+		.item
+			%span.fa.fa-gear
+			%p 
+				Status:  
+				-if(@feedback.solved)
+					%strong.green
+						Solved
+				-else
+					%strong
+						Pending
+
+	-if(current_user.in_committee?("IT") && !@feedback.solved)
+		.button.green= link_to 'Mark as Solved', mark_as_solved_feedback_path(@feedback.id), :method => 'post'
 		
 	-if @feedback.user.id == current_user.id
 		#updateModal.modal.fade{:tabindex=>"-1", :role=>"dialog"}

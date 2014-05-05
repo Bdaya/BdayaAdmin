@@ -41,4 +41,10 @@ class FeedbacksController < ApplicationController
    		redirect_to feedbacks_path
    	end
 
+   	def mark_as_solved
+   		@feedback = Feedback.find(params[:id])
+   		@feedback.mark_as_solved
+   		redirect_to feedbacks_path
+   	end
+
 end
