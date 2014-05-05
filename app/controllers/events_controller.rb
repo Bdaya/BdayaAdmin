@@ -6,14 +6,14 @@ class EventsController < ApplicationController
                     :new_permissions, :profile_picture, :cover_picture,
                     :rate_image, :add_image]
 
-  authorize_actions_for :load_event, only: [
-    :new_materials,
-    :new_permissions,
-    :profile_picture,
-    :cover_picture,
-    :rate_image,
-    :add_image
-  ]
+  # authorize_actions_for :load_event, only: [
+  #   :new_materials,
+  #   :new_permissions,
+  #   :profile_picture,
+  #   :cover_picture,
+  #   :rate_image,
+  #   :add_image
+  # ]
 
 	def new
 		@event = Event.new
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
 	end
 
 	def index
-		@events = Event.all.to_a
+		@events = current_user.get_my_events.to_a
 	end
 
   def show

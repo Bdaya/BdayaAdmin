@@ -358,4 +358,14 @@ p
     president? || upper_board?
   end
 
+  def get_my_events
+    events = []
+    Event.each do |e|
+      if(e.updatable_by?(self))
+        events << e
+      end
+    end
+    return events
+  end
+
 end
