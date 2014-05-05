@@ -120,9 +120,14 @@ class EventsController < ApplicationController
   def rate_image
     event = Event.find(params[:id])
     image = EventImage.find(params[:image_id])
-    image.raters = image.raters+1
-    image.rating = ((image.rating+(params[:rating].to_i))/image.raters).round(1)
-    image.save
+    if (!image.voters.include?(current_user))
+      image.raters = image.raters+1
+      image.voters << current_user
+      image.ratings << params[:rating].to_i
+      sum = image.ratings.inject(0) {|sum, i|  sum + i }
+      image.rating = sum / image.ratings.count
+      image.save
+    end
     redirect_to event, :notice => "Successfully Rated Image."
   end
 
