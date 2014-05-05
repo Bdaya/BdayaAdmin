@@ -1,6 +1,6 @@
 #events
 	-if @user.id == current_user.id
-		%span.fa.fa-edit.right{:data => {:toggle => 'modal', :target => '#updateModal'}}
+		%span.button.right{:data => {:toggle => 'modal', :target => '#updateModal'}} Update Info
 	%h1
 		%span.fa.fa-user
 		=@user.name
