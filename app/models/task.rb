@@ -7,7 +7,7 @@ class Task
   field :title, :type => String
   field :details, :type => String
   field :deadline, :type => Date
-  field :status, :type => String
+  field :status, :type => String, :default => "pending"
   field :type, :type => String
   field :seen_at, type: Time
 

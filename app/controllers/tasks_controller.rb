@@ -42,7 +42,7 @@ class TasksController < ApplicationController
 	end
 
 	def done
-		@task = Task.find(params[:task_id])
+		@task = Task.find(params[:id])
 		current_user.mark_task_done(@task)
 		redirect_to action: "index"
 	end
