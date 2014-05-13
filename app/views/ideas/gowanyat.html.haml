@@ -21,7 +21,7 @@
               .name= idea.creator.name
 
             .item-body.col-xs-9
-              .item-title=idea.title
+              .item-title.arabic=idea.title
               .item-date=idea.created_at.to_date
 
             -if(idea.upvoters.include?(current_user))

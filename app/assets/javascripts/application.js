@@ -31,3 +31,14 @@ function showhide(x) {
     // ele.style.display = 'none';
   }
 }
+
+function fixArabic() {
+  var arabic = /[\u0600-\u06FF]/;
+  $('#content').find('.arabic').each(function(){
+    var content = $(this).text();
+    if (arabic.test(content));
+      //$(this).css "text-align", "left"
+      $(this).css("direction", "rtl");
+  })
+    
+}

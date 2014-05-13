@@ -13,5 +13,6 @@ $('#content').on 'click touchstart', '.show-side', ->
 		url: url
 		success: (data)->
 			$('#details').html data
+			fixArabic()
 			#Load userSearch plugin *****FIX THIS******
 			# $('form').find('.user-search').userSearch()
