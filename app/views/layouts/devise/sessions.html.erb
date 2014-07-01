@@ -17,8 +17,12 @@
 
 					  <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
 
-					  <div><%= f.submit "Login" %></div>
+					  <div><%= f.submit "Login" %>
+					  <center><%= render "devise/shared/links" %></center>
+					  </div>
 					<% end %>
+
+
 
 				</div>
 			</div>
