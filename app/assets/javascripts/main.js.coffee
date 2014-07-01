@@ -19,10 +19,18 @@ $ ->
 	$('#content').on "click", ".gap-discussion", ->
 		$(this).next('.discussion').toggle()
 
+	fixArabic()
+
 
 	return
 
-
+fixArabic = ()->
+	arabic = /[\u0600-\u06FF]/
+	$('#content').find('.arabic').each ->
+		content = $(this).text()
+		if (arabic.test(content))
+			# $(this).css "text-align", "left"
+			$(this).css "direction", "rtl"
 
 
 # $.fn.extend
